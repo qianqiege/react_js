@@ -68,10 +68,9 @@ class Login extends Component {
 
     return (
       <div className="login-container">
-        <div className="login-mask"/>
         <Form className="login-content" layout="horizontal" onSubmit={this.handleSubmit}>
-          <h2>React Mobx Demo</h2>
-          <FormItem label="账号" hasFeedback>
+          <h2></h2>
+          <FormItem label="邮箱" hasFeedback>
             {emailProps(
               <Input
                 placeholder="请输入账号"
