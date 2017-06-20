@@ -1,78 +1,159 @@
 import React, { PropTypes, Component } from 'react';
 import { observer } from 'mobx-react';
+import $ from "jquery";
 import { Link } from 'react-router';
-import { Menu, Breadcrumb, Icon } from 'antd';
-
-import Login from './../Login/Login';
-import User from 'models/User';
+import { Layout, Menu, Icon, Breadcrumb,  } from 'antd';
 import './App.scss';
 
+import Login from "../Login/Login";
+
 const SubMenu = Menu.SubMenu;
+const { Header, Sider, Content } = Layout;
 
-@observer
+
 class App extends Component {
-  static propTypes = {
-    children: PropTypes.element,
-  };
-
-  constructor(props) {
+  constructor(props) { 
     super(props);
-    this.renderAuthenticatedPage = this.renderAuthenticatedPage.bind(this);
-
-    this.state = {
-      collapse: false
-    };
+    this.listNav = this.listNav.bind(this);
+    this.handleOut = this.handleOut.bind(this);
+    this.renderAuthorLogin = this.renderAuthorLogin.bind(this);
+    // this.handleOpen = this.handleOpen.bind(this);
+    
   }
-
-  componentDidMount() {
+  state = {
+    collapsed: false,
+    title: "慢病健康管理平台",
+    navTitle: [
+                {key: "sub1", ListTitle:"首页", iconType: "skin", childTitle: 
+                  [
+                    {key: "child1", littleTitle: "健康管理师首页", linkTo: "/" }
+                  ]
+                },
+                {key: "sub2", ListTitle:"角色管理模块", iconType: "user-add", childTitle: 
+                  [
+                    {key: "child2",littleTitle: "角色配置", linkTo: "/rolesmanage/roles" },
+                    {key: "child3",littleTitle: "健康管理师列表", linkTo: "/rolesmanage/doctorsList" },
+                  ]
+                },
+                {key: "sub3", ListTitle:"健康管理记录号", iconType: "skin", childTitle: 
+                  [
+                    {key: "child4",littleTitle: "记录号", linkTo: "/healthrecord" },
+                  ]
+                },
+                {key: "sub4", ListTitle:"档案室模块", iconType: "skin", childTitle: 
+                  [
+                    {key: "child5",littleTitle: "新建档案", linkTo: "/recordManage/newRecord" },
+                    {key: "child6",littleTitle: "客户列表", linkTo: "/recordManage/patientList" },
+                  ]
+                },
+                {key: "sub5", ListTitle:"体检室模块", iconType: "skin", childTitle: 
+                  [
+                    {key: "child7",littleTitle: "随访包测量", linkTo: "/physical/followUpSurvey" },
+                    {key: "child8",littleTitle: "血压数据录入", linkTo: "/physical/bloodPressure" },
+                    {key: "child9",littleTitle: "血糖数据录入", linkTo: "/physical/bloodSugar" },
+                    {key: "child10",littleTitle: "体温数据录入", linkTo: "/physical/temperature" },
+                    {key: "child11",littleTitle: "体重数据录入", linkTo: "/physical/weight" },
+                    {key: "child12",littleTitle: "心率数据录入", linkTo: "/physical/heartRate" },
+                    {key: "child13",littleTitle: "血脂数据录入", linkTo: "/physical/blood_fat" },
+                    {key: "child14",littleTitle: "尿酸数据录入", linkTo: "/physical/unine" },
+                  ]
+                },
+                {key: "sub6", ListTitle:"方案室模块", iconType: "skin", childTitle: 
+                  [
+                    {key: "child15",littleTitle: "疾病谱定位", linkTo: "/means/diseaseLocation" },
+                    {key: "child16",littleTitle: "筑脊模块", linkTo: "/means/spine" },
+                    {key: "child17",littleTitle: "健康管理模块", linkTo: "/means/healthManagement" },
+                  ]
+                },
+                {key: "sub7", ListTitle:"院外动态管理", iconType: "skin", childTitle: 
+                  [
+                    {key: "child18",littleTitle: "异常管理", linkTo: "/dynamic/exceptionData" },
+                    {key: "child19",littleTitle: "随访记录", linkTo: "/dynamic/followUpRecord" },
+                  ]
+                },
+    ],
+    auth: true, //判断是否登录；
+  } 
+  //菜单项列表；
+  listNav() { 
+    const navTitles = this.state.navTitle;
+    return(
+      navTitles.map(navTitle => { 
+        const childTitles = navTitle.childTitle;
+        const ctl = childTitles.map(childTitle => { 
+          return (
+            <Menu.Item key={childTitle.key}>
+              <Link to={'' + childTitle.linkTo + ''}>
+                <Icon type="user" />
+                <span className="nav-text"> { childTitle.littleTitle } </span>
+              </Link>
+            </Menu.Item>
+          )
+        })
+        return(
+              <SubMenu className="menu-font" key={navTitle.key} title={<span><Icon type={navTitle.iconType} /><span> {navTitle.ListTitle} </span></span>}>
+                { ctl }
+              </SubMenu>
+        )
+      }) 
+    )
   }
-
-  renderAuthenticatedPage() {
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+    if( !this.state.collapsed ) {
+      this.state.title = "";
+    }else{
+      this.state.title = "慢病健康管理平台";
+    }
+  }
+  //
+ 
+  renderAuthorLogin() {
     return (
-      <div className="ant-layout-aside">
-        <aside className="ant-layout-sider">
-          <div className="ant-layout-logo"/>
-          <Menu mode="inline" theme="dark"
-            defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']}>
-            <SubMenu key="sub1" title={<span><Icon type="user" />用户管理</span>}>
-              <Menu.Item key="1">
-                <Link to={'/users'}>
-                  用户列表
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="2">角色配置</Menu.Item>
-            </SubMenu>
+      <Layout className="apps">
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+          width={270}
+          collapsedWidth={90}
+        >
+          <div className="logo">
+            <img src="../.././images/yblogo.png" />
+            <span> { this.state.title } </span>
+          </div>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className="aside-bar" openAnimation='slide-up'>
+            { this.listNav() }
           </Menu>
-        </aside>
-        <div className="ant-layout-main">
-          <div className="ant-layout-header" />
-          <div className="ant-layout-breadcrumb">
-            <Breadcrumb>
-              <Breadcrumb.Item>首页</Breadcrumb.Item>
-              <Breadcrumb.Item>用户管理</Breadcrumb.Item>
-              <Breadcrumb.Item>用户列表</Breadcrumb.Item>
-            </Breadcrumb>
-          </div>
-          <div className="ant-layout-container">
-            <div className="ant-layout-content">
-              <div style={{ height: 590 }}>
-                {this.props.children}
-              </div>
-            </div>
-          </div>
-          <div className="ant-layout-footer">
-          Ant Design 版权所有 © 2015 由蚂蚁金服体验技术部支持
-          </div>
-        </div>
-      </div>
-    );
-  }
 
+        </Sider>
+        <Layout>
+          <Header style={{ background: '#fff', padding: 0 }}>
+            <Icon
+              className="trigger"
+              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+            />
+            <span className="out-login-button" onClick={this.handleOut}>退出</span>
+          </Header>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+            {this.props.children}
+          </Content>
+        </Layout>
+      </Layout>
+    )
+  }
+  handleOut() {
+    this.setState({
+      auth: false,
+    })
+  }
   render() {
-    const { isAuthenticated } = User.auth;
     return (
       <div>
-        {isAuthenticated? this.renderAuthenticatedPage() : <Login/>}
+        { this.state.auth ? this.renderAuthorLogin() : <Login /> }
       </div>
     );
   }
