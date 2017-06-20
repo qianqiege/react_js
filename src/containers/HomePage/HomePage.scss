@@ -1,21 +1,100 @@
-// color variables
-$lightGrey: #e9e9e9;
+*{
+  margin: 0; padding: 0;
+}
 
-.client-info {
-  .ant-row {
-    height: 30px;
-    line-height: 30px;
-    border-left: 1px solid $lightGrey;
-    border-top: 1px solid $lightGrey;
-    border-right: 1px solid $lightGrey;
-    &:last-child {
-      border-bottom: 1px solid $lightGrey;
-    }
-    .ant-col-12 {
-      padding-left: 15px;
-      &:first-child {
-        border-right: 1px solid $lightGrey;
-      }
-    }
-  }
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  zoom: 1;
+}
+
+/*-----------------------------------------*/
+
+.con p {
+  text-align: left;
+  font-size: 22px;
+  text-indent: 22px;
+}
+
+.homeCon {
+  background: #fff;
+}
+
+.homeCon .top,.bottom{
+  display: flex;
+  margin:20px 20px 0 22px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #62a8ea;
+}
+
+.homeCon .top div{
+  flex: 1;
+  height: 150px;
+  background: skyblue;
+  margin-right: 10px;
+  font-size: 50px;
+  color: #fff;
+  position: relative;
+  line-height: 130px;
+  text-align: center;
+}
+
+.homeCon .top div span{
+  font-size: 12px;
+  position: absolute;
+  bottom: 7px;
+  left: 10px;
+  line-height: 12px;
+}
+
+.homeCon .top div:hover{
+  box-shadow: 2px 2px 3px #aaa;
+}
+
+.bottom {
+  border:0;
+}
+
+.bottom .left , .bottom .right {
+  flex: 1;
+  font-size: 18px;
+  padding-bottom: 20px;
+  box-shadow: 2px 2px 3px #aaa;
+  position: relative;
+}
+
+.bottom .left span , .bottom .right span {
+  color: #62a8ea;
+}
+
+.bottom .right span {
+  margin-left: 30px;
+}
+
+ul {
+  padding:15px 0 20px 0;
+}
+
+ul li {
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  padding: 0 15px 0 0;
+  cursor: pointer;
+}
+
+.bottom .right ul {
+  width: 88%;
+  margin:0 auto;
+}
+
+.bottom .left ul:first-child {
+  width: 30%;
+  margin:0 auto;
 }
