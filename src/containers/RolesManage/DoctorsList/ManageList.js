@@ -21,6 +21,7 @@ class MangeList extends React.Component {
 			       style={{ width: 450,height:35,marginTop:50,marginLeft:30,border:0,borderBottom:0}}
 			       onSearch={value => console.log(value)}
 			    />,
+          <hr style={{marginLeft:30,marginTop:30}}/>
           <ul style={{marginLeft:20,marginTop:20}}>
             <li >
               <ul>
