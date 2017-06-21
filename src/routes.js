@@ -30,6 +30,10 @@ import Unine from "./containers/Physical/Unine"; //尿酸数据录入
 // import ExceptionData from "./containers/Dynamic/ExceptionData"; //异常管理
 // import FollowUpRecord from "./containers/Dynamic/FollowUpRecord"; //随访记录
 
+import HolographicView from "./containers/HolographicView/HolographicView"; //全息视图
+//import HealthMonitor from "./containers/RecordManage/PatientList/HealthMonitor"; //客户列表页面的查看体检健康报告的健康监测
+
+
 export default (
 		<Route path="/" component={App}>
 			<IndexRoute component={HomePage}/>
@@ -56,6 +60,9 @@ export default (
 
 			{/*<Route path="/dynamic/exceptionData" component={ExceptionData}/> */}
 			{/*<Route path="/dynamic/followUpRecord" component={FollowUpRecord}/> */}
+
+			<Route path="/holographicView" component={HolographicView}/>
+			
 			<Route path="*" component={NotFoundPage}/>
 		</Route>
 );

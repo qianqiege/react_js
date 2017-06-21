@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import { observer } from 'mobx-react';
-import $ from "jquery";
 import { Link } from 'react-router';
 import { Layout, Menu, Icon, Breadcrumb,  } from 'antd';
 import './App.scss';
@@ -73,7 +72,10 @@ class App extends Component {
                 },
     ],
     auth: true, //判断是否登录；
+    current: '1',
+    openKeys: [],
   } 
+
   //菜单项列表；
   listNav() { 
     const navTitles = this.state.navTitle;
@@ -108,8 +110,33 @@ class App extends Component {
       this.state.title = "慢病健康管理平台";
     }
   }
-  //
- 
+
+  //点击菜单，收起其他展开的所有菜单，保持菜单聚焦简洁。
+  onOpenChange = (openKeys) => {
+    const state = this.state;
+    const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
+    const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));
+
+    let nextOpenKeys = [];
+    if (latestOpenKey) {
+      nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
+    }
+    if (latestCloseKey) {
+      nextOpenKeys = this.getAncestorKeys(latestCloseKey);
+    }
+    this.setState({ openKeys: nextOpenKeys });
+  }
+  getAncestorKeys = (key) => {
+    const map = {
+      sub8: ['sub7'],
+    };
+    return map[key] || [];
+  }
+  handleClick = (e) => {
+    console.log('Clicked: ', e);
+    this.setState({ current: e.key });
+  }
+
   renderAuthorLogin() {
     return (
       <Layout className="apps">
@@ -124,7 +151,15 @@ class App extends Component {
             <img src="../.././images/yblogo.png" />
             <span> { this.state.title } </span>
           </div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className="aside-bar" openAnimation='slide-up'>
+          <Menu 
+            theme="dark" 
+            mode="inline"
+            openKeys={this.state.openKeys} 
+            defaultSelectedKeys={['1']} 
+            className="aside-bar"
+            onOpenChange={this.onOpenChange}
+            >
+
             { this.listNav() }
           </Menu>
 
@@ -138,7 +173,7 @@ class App extends Component {
             />
             <span className="out-login-button" onClick={this.handleOut}>退出</span>
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff'}}>
             {this.props.children}
           </Content>
         </Layout>
