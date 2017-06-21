@@ -1,0 +1,24 @@
+.holo-block {
+	background-color: #e4eaec;
+	padding: 20px;
+	font-size: 16px;
+	border-radius: 3px;
+	width: 98%;
+	margin: 20px 0;
+	p:not(:first-child) {
+		color: #76838f;
+	}
+	
+}
+.pend-block {
+	h3 {
+		line-height: 25px;
+		margin: 20px 0 10px 0;
+	}
+	.ant-table-tbody > tr > td:last-child {
+		color: red;
+	}
+}
+.mar-top {
+		margin: 10px 0;
+	}
