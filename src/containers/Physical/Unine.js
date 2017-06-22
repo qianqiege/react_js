@@ -3,8 +3,6 @@ import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'an
 import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
 
-import HolographicView from "../HolographicView/HolographicView";
-
 import "../style.scss";
 
 
@@ -21,8 +19,6 @@ class Unine extends React.Component {
 	render() {
 		return <div className="record-content">
 			<PhysicalInfo store={this.state} />
-
-			<a href="/holographicView">全息视图</a>
 		</div>
 	}
 }

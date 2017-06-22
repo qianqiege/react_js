@@ -1,0 +1,46 @@
+.userHealth {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+	display: none;
+}
+
+.submit {
+	width: 95%;
+	margin:30px 0 15px 0;
+	background: green;
+	height: 36px;
+	color: #fff;
+	line-height: 36px;
+}
+
+.userHealth p {
+	color: #37474f; 
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.userHealth .fangmian {
+	font-size: 16px;
+	color: #37474f;
+	margin-bottom: 10px;
+}
+
+.userHealth .fangmian span {
+	display: block;
+	text-indent: 14px;
+	margin-bottom: 5px;
+}
+
+textarea {
+	width: 95%;
+	height:80px;
+	border: 0;
+	border: 1px solid #ccc;
+	border-radius:5px;
+	margin-bottom: 10px;
+}
+
+.zhu p,.ji p,.jian p,.ci p{
+	margin-bottom: 10px;
+}
