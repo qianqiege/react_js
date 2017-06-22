@@ -1,0 +1,18 @@
+
+.meanSearchs {
+	width: 50%;
+	margin: 0 auto;
+	display: flex;
+}
+
+.searchInput {
+	border-bottom: 0;
+	border: 0;
+	border: 1px solid #ddd;
+	flex: 1;
+}
+
+.look {
+	width: 80px;
+	margin-left: 20px;
+}

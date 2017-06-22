@@ -1,0 +1,22 @@
+
+.userInfos {
+	margin-top: 30px;
+	display: none;
+}
+
+.userInfos p {
+	color: #37474f; 
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.userInfos .row {
+	display: flex;
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+.userInfos .row .col {
+	display: inline-block;
+	flex: 1;
+}

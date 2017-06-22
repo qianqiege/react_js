@@ -1,0 +1,24 @@
+.userSpine {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+	display: none;
+}
+
+.userSpine p {
+	color: #37474f; 
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.userSpine .suggest {
+	font-size: 14px;
+	color: #37474f;
+	margin-bottom: 10px;
+}
+
+.userSpine .suggest span {
+	display: block;
+	text-indent: 14px;
+	margin-bottom: 5px;
+}
