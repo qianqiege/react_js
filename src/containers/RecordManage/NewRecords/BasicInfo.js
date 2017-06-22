@@ -1,3 +1,4 @@
+// 基本资料组件
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
 
@@ -43,7 +44,6 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <h3 style={{paddingLeft: 80, marginBottom: 10,fontSize:16}}>基本资料</h3>
         <Form onSubmit={this.handleSubmit} className="login-form record-block" >
           <Row>
             <Col span={10} style={{float: 'left'}}>

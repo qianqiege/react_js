@@ -58,12 +58,9 @@ class AddRole extends React.Component {
         <br />
         <p className='choose'>用户名</p>
         <br/>
-        <CheckboxGroup options={options} defaultValue={['Pear']} onChange={onChange} className='Checkbox'/>
-        <br />
-
-        
+        <CheckboxGroup options={options} onChange={onChange} className='Checkbox'/>
+        <br /> 
         <br/>
-   
         <br/>
         </Modal>
       </div>
