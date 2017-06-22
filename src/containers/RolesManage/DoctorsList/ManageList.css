@@ -1,14 +1,33 @@
-
-/*.useright{
-	float:right;
-	/*margin-left: 500px;*/
-
-/*.iconuser{
-	border:1px solid #000;
-	border-radius:50%;
-	/*background:#ddd;*/
-	/*margin-bottom: 50px;*/
-/*}*/
+.search{
+	/*width: 450px;*/
+	/*height: 35px;*/
+	/*margin-top: 50px;*/
+	/*margin-left: 30pxs;*/
+/*	border: 0;*/
+	/*border-bottom: 0*/
+}
+hr{
+	margin-left: 30px;
+	margin-top: 30px;
+}
+.manalist{
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.iconuser{
+	font-size: 35px;
+	margin-left: 19px;
+	color: gray;
+}
+.user{
+	font-size: 10px;
+	margin-right: 5px;
+}
+.spannum{
+	font-size: 14px;
+}
 .listuser{
-	float:right;
+	/*float: right;*/
+	margin-bottom: 10px;
+	padding-left: 800px;
 }

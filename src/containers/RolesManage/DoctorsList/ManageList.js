@@ -9,7 +9,7 @@ import AddPermiss from './AddPermiss';
 const Search = Input.Search;
 
 @observer
-class MangeList extends React.Component {
+class ManageList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -17,25 +17,23 @@ class MangeList extends React.Component {
     return (
 	      <div>
           <h1>健康管理师列表</h1>
-	      	<Search
-			       style={{ width: 450,height:35,marginTop:50,marginLeft:30,border:0,borderBottom:0}}
-			       onSearch={value => console.log(value)}
-			    />,
-          <hr style={{marginLeft:30,marginTop:30}}/>
-          <ul style={{marginLeft:20,marginTop:20}}>
+	      	<Search className='search' style={{width: 450,height:35,marginTop:50,marginLeft:30,border:0,borderBottom:0}}
+			       onSearch={value => console.log(value)}/>
+          <hr/>
+          <ul className='manalist'>
             <li >
               <ul>
                 <li>
-                  <Icon className='iconuser' type="user" style={{fontSize:35,marginLeft:19,color:'gray'}}/>
+                  <Icon className='iconuser' type="user" />
                 </li>
                 <li>
                   袁延强
                   <div >                
-                    <Icon type="user" style={{fontSize:10,marginRight:5}}/>
-                    <span  style={{fontSize:16}}>58</span>
+                    <Icon className='user'  type="user" />
+                    <span className='spannum'>58</span>
                   </div>
                 </li>
-                <li className='listuser' style={{marginLeft:800}}>
+                <li className='listuser'>
                   <AddPermiss/>
                 </li>
               </ul>
@@ -43,16 +41,16 @@ class MangeList extends React.Component {
             <li style={{marginTop:30}}>
               <ul>
                 <li>
-                  <Icon className='iconuser' type="user" style={{fontSize:35,marginLeft:19,color:'gray'}}/>
+                  <Icon className='iconuser' type="user"/>
                 </li>
                 <li>
                   袁延强
                   <div >                
-                    <Icon type="user" style={{fontSize:10,marginRight:5}}/>
-                    <span  style={{fontSize:16}}>58</span>
+                    <Icon className='user' type="user" />
+                    <span className='spannum'>58</span>
                   </div>
                 </li>
-                <li className='listuser' style={{marginLeft:800,marginTop:-10}}>
+                <li className='listuser'>
                   <AddPermiss/>
                 </li>
               </ul>
@@ -62,4 +60,4 @@ class MangeList extends React.Component {
     );
   }
 }
-export default MangeList;
+export default ManageList;

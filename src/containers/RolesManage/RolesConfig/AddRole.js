@@ -46,7 +46,7 @@ class AddRole extends React.Component {
 
     return (
       <div>
-        <Button type="primary" style={{height:35,fontSize:15}}  onClick={this.showModal}>添加角色</Button>
+        <Button type="primary" className='showmodal' onClick={this.showModal}>添加角色</Button>
         <Modal
           title="添加角色"
           visible={this.state.visible}
@@ -59,7 +59,7 @@ class AddRole extends React.Component {
         <br />
         <p className='choose'>选择角色权限</p>
         <br/>
-        <CheckboxGroup options={options} defaultValue={['Pear']} onChange={onChange} className='Checkbox'/>
+        <CheckboxGroup options={options} onChange={onChange} className='checkBox'/>
         <br />
 
         
