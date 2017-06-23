@@ -1,7 +1,10 @@
+import cookie from 'js-cookie';
 import React, { PropTypes, Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router';
 import { Layout, Menu, Icon, Breadcrumb,  } from 'antd';
+import User from 'models/User';
+
 import './App.scss';
 
 import Login from "../Login/Login";
@@ -9,13 +12,13 @@ import Login from "../Login/Login";
 const SubMenu = Menu.SubMenu;
 const { Header, Sider, Content } = Layout;
 
-
+@observer
 class App extends Component {
   constructor(props) { 
     super(props);
     this.listNav = this.listNav.bind(this);
-    this.handleOut = this.handleOut.bind(this);
     this.renderAuthorLogin = this.renderAuthorLogin.bind(this);
+    this.handleOut = this.handleOut.bind(this);
     // this.handleOpen = this.handleOpen.bind(this);
     
   }
@@ -138,6 +141,7 @@ class App extends Component {
   }
 
   renderAuthorLogin() {
+    
     return (
       <Layout className="apps">
         <Sider
@@ -180,15 +184,17 @@ class App extends Component {
       </Layout>
     )
   }
+  //登出；
   handleOut() {
-    this.setState({
-      auth: false,
-    })
+    const { isAuthenticated } = User.auth;
+    cookie.set("access_token", "");
+    location.href = "/";
   }
   render() {
+    const { isAuthenticated } = User.auth;
     return (
       <div>
-        { this.state.auth ? this.renderAuthorLogin() : <Login /> }
+        { isAuthenticated ? this.renderAuthorLogin() : <Login /> }
       </div>
     );
   }

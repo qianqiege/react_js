@@ -18,7 +18,9 @@ class User {
     isFetching: false,
     isAuthenticated: cookie.get('access_token') ? true : false
   }
-
+  @observable record = {
+    numbers: ""
+  }
   @action async fetchUsers(params = {page: 1, per_page: 10 }) {
     this.list.isFetching = true;
     const ret = await cFetch(API_CONFIG.users, { method: "GET", params: params });
