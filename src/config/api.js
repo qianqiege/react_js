@@ -1,10 +1,4 @@
-let host;
-
-if(process.env.NODE_ENV == "test"){
-  host = "http://192.168.1.227:3000";
-}else{
-  host = location.origin;
-}
+let host = "http://qolm.ybyt.cc";
 
 const baseUri = host + "/api/v1/";
 export const API_CONFIG = {
@@ -12,4 +6,5 @@ export const API_CONFIG = {
   baseUri: baseUri,
   auth: 'auth',
   users: 'users'
+  
 };
