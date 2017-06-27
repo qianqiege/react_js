@@ -19,7 +19,7 @@ class User {
     isAuthenticated: cookie.get('access_token') ? true : false
   }
   @observable record = {
-    numbers: ""
+    numbers: "11"
   }
   @action async fetchUsers(params = {page: 1, per_page: 10 }) {
     this.list.isFetching = true;
