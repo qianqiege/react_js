@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Input,Icon,Button } from 'antd';
 import { Link } from 'react-router';
 import { observer } from 'mobx-react';
+import UserList from 'models/UserList';
 import $ from "jquery";
 import TimeLine from './TimeLine';
 import "./PatientList.scss";
@@ -16,21 +17,27 @@ class PatientList extends React.Component{
     this.handleSearch = this.handleSearch.bind(this);
   }
   handleSearch(value) {
-    $(".showList").slideToggle();
+    const reg = /^(\d{18,18}|\d{15,15}|\d{17,17}x)$/;
+    if( reg.test(value) ) {
+      UserList.getRecord(`http://qolm.ybyt.cc/api/v1/patient/get_by_id_number?id_number=${value}`);
+      $(".showList").slideDown();
+    }else{
+      alert("身份证格式不正确");
+      return;
+    }
     
-    console.log(value);
   }
 
 
-
   render() {
+    const { uname } = UserList.userInfo;
     return (
       <div >
         <h1 style={{marginBottom:50}}>客户列表</h1>
-      	<span>
-      		<Search className='search' style={{ width: 450,height:35,marginLeft:100,border:0,borderBottom:0}} 
+        <span>
+          <Search className='search' style={{ width: 450,height:35,marginLeft:100,border:0,borderBottom:0}} 
           onSearch={this.handleSearch}/>  
-      	</span>
+        </span>
         <Button className="p-list-btn" style={{ height:35,marginTop:1,marginRight:50}}>
           <Link to={'/recordManage/newRecord'}>添加新客户</Link>
         </Button>
@@ -45,7 +52,7 @@ class PatientList extends React.Component{
                     <Icon className='iconuser' type="user" style={{fontSize:35,marginLeft:19,color:'gray'}}/>
                   </li>
                   <li>
-                    刘静静
+                    {uname}
                     <div >                
                       <Icon type="user" style={{fontSize:10,marginRight:5}}/>
                       <span  style={{fontSize:16}}>382</span>
@@ -61,7 +68,7 @@ class PatientList extends React.Component{
               </li>
             </ul> ,
             <p className='clear'>健康管理动态</p>
-            <TimeLine/>
+            <TimeLine />
           </div>
       </div>
     );
