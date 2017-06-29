@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
 import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
-
+import HolographicView from "../HolographicView/HolographicView";
 import "../style.scss";
 
 

@@ -1,38 +1,50 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
-
+import { observer } from "mobx-react";
+import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal, Alert } from 'antd';
+import UserPhysical from "models/UserPhysical";
 import "../style.scss";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+const confirm = Modal.confirm;
 
+
+
+
+@observer
 class FollowUpSurver extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      deviceList: [123545, 2345644, 3456534],
-    }
   }
   handleSubmit = (e) => {
+    const { validateFields, resetFields } = this.props.form;
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+            UserPhysical.checkDevice("http://qolm.ybyt.cc/api/v1/examination_input/check", `id_number=${values.idCord}&phone=${values.deviceNum}`);
+            console.log(values.idCord);
+            resetFields();
+            UserPhysical.statusBool.display = "block";
+            setTimeout( function() {
+              UserPhysical.statusBool.display = "none";
+            }, 3000)
       }
     });
+  }
+  handleStatus() {
+    this.setState({
+      statusBool: "true",
+    })
   }
   handleChange(value) {
     console.log(`selected ${value}`);
   }
+  componentDidMount() {
+    UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const arr = [];
-    this.state.deviceList.map(d => {
-      return(
-        arr.push(<Option className="optionWidth" key={d}>{ d }</Option>)
-      )
-    })
-
+    const { display } = UserPhysical.statusBool;
     return (
       <div className="record-content">
         <h1>随访包测量</h1>
@@ -42,8 +54,8 @@ class FollowUpSurver extends React.Component {
             <Col span={10} style={{float: 'left', fontSize: 16 }}>
               <span>请输入身份证号码</span>
               <FormItem>
-                {getFieldDecorator('userName', {
-                  rules: [{ required: false, message: 'Please input your username!' }],
+                {getFieldDecorator('idCord', {
+                  rules: [{ required: true, message: '请输入身份证号码!' }],
                 })(
                   <Input style={{border: 'none', borderBottom: '1px solid #e1e1e1', boxShadown: 'none', borderRadius: 'none'}} className="" placeholder="" />
                 )}
@@ -51,22 +63,28 @@ class FollowUpSurver extends React.Component {
             </Col>
             <Col span={10} style={{ float: 'right', fontSize: 16 }}>
               <span>请选择设备号码</span>
-              <Select
-                mode="combobox"
-                size="default"
-                defaultValue="13567859943"
-                onChange={this.handleChange}
-                className="border-none"
-              >
-                {arr}
-              </Select>
+              <FormItem>
+                {getFieldDecorator('deviceNum', {
+                  rules: [{ required: false, message: '请选择设备号码!' }],
+                  initialValue: "13530803462",
+                })(
+                    <Select
+                      mode="combobox"
+                      size="default"
+                      className="border-none"
+                    >
+                      {UserPhysical.deviceList}
+                    </Select>
+                )}
+              </FormItem>
+             
             </Col>
-          </Row>
-            
+          </Row>           
           <FormItem>
             <Button type="primary" htmlType="submit" className="login-form-button"> 提交 </Button>
           </FormItem>
         </Form>
+        <Alert message="提交成功" type="success" style={{ display: `${display}`, position: "absolute", top: "20px", width: "100%" }} />
       </div>
       
     );

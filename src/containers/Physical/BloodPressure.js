@@ -1,14 +1,28 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import {observer} from "mobx-react";
+import PhysicalData from "models/PhysicalData";
 import AddRecord from "./AddRecord";
 
 import "../style.scss";
 
 const FormItem = Form.Item;
 
+@observer
 class BloodPressure extends React.Component {
 	constructor(props) {
 		super(props);
+	}
+	handleSubmit = ( e) => {
+		e.preventDefault();
+		const { idCard } = PhysicalData.userInfo;
+		this.props.form.validateFields((err, values) => {
+			if (!err) {
+      			PhysicalData.clearInfo();
+				PhysicalData.SubmitPhysical("http://qolm.ybyt.cc/api/v1/examination_input/blood_pressure",
+					`id_number=${idCard}&max_BloodPressure=${values.max_BloodPressure}&min_BloodPressure=${values.min_BloodPressure}` );
+			}
+		});
 	}
 	render() {
     	const { getFieldDecorator } = this.props.form;
@@ -21,7 +35,7 @@ class BloodPressure extends React.Component {
 		            <Col span={10} style={{float: 'left', marginTop: 0,  fontSize: 16 }}>
 						<span>收缩压</span>
 						<FormItem>
-							{getFieldDecorator('userName', {
+							{getFieldDecorator('min_BloodPressure', {
 							  rules: [{ required: false, message: 'Please input your username!' }],
 							})(
 							  <Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
@@ -31,7 +45,7 @@ class BloodPressure extends React.Component {
 		            <Col span={10} style={{ float: 'right', fontSize: 16 }}>
 		            	<span>舒张压</span>
 						<FormItem>
-							{getFieldDecorator('userName', {
+							{getFieldDecorator('max_BloodPressure', {
 							  rules: [{ required: false, message: 'Please input your username!' }],
 							})(
 							  <Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />

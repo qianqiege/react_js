@@ -4,6 +4,9 @@ import cookie from "js-cookie";
 
 class UserPhysical {
 	@observable deviceList = [];
+	@observable statusBool = {
+		display: "none",
+	};
 	@action async getDevice(url) {
 		const ret = await fetch(url, {
 	      mode: "cors",
@@ -44,7 +47,7 @@ class UserPhysical {
 	    }).then( function(response) {
       		return response.json();
 	    }).then( function(jsonData) {
-      		return jsonData;
+      		return console.log(jsonData);
 	    }).catch( function() {
 	      console.log("出现错误!");
 	    })
