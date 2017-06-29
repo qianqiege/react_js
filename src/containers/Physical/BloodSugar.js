@@ -10,6 +10,17 @@ class BloodPressure extends React.Component {
 	constructor(props) {
 		super(props);
 	}
+	handleSubmit = ( e) => {
+		e.preventDefault();
+		const { idCard } = PhysicalData.userInfo;
+		this.props.form.validateFields((err, values) => {
+			if (!err) {
+      			PhysicalData.clearInfo();
+				PhysicalData.SubmitPhysical("http://qolm.ybyt.cc/api/v1/examination_input/blood_pressure",
+					`id_number=${idCard}&max_BloodPressure=${values.max_BloodPressure}&min_BloodPressure=${values.min_BloodPressure}` );
+			}
+		});
+	}
 	render() {
     	const { getFieldDecorator } = this.props.form;
 		return <div className="record-content">

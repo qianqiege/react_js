@@ -1,87 +1,66 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
-
+import { observer } from "mobx-react";
+import PhysicalData from "models/PhysicalData";
 import ".././style.scss";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
 
+@observer
 class NormalLoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      sexValue: "男",
-      marrayValue: "未婚",
-
+  }
+ 
+  handleChange(e) {
+    console.log(e.target.value);
+    const { name, phone, sex } = PhysicalData.userInfo;
+    if( e.target.value.length == 18 ) {
+      PhysicalData.checkUser(`http://qolm.ybyt.cc/api/v1/patient/get_by_id_number?id_number=${e.target.value}`);
     }
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  }
-  handleChange(value) {
-    console.log(`selected ${value}`);
-  }
-  onChangeSex = (e) => {
-    console.log('radio checked', e.target.value);
-    this.setState({
-      sexValue: e.target.value,
-    });
-  }
-  onChangeMarray = (e) => {
-    console.log('radio checked', e.target.value);
-    this.setState({
-      marrayValue: e.target.value,
-    });
-  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { name, phone, sex } = PhysicalData.userInfo;
     return (
       <div>
         <h3 style={{paddingLeft: 80, marginBottom: 10}}>添加新记录</h3>
         <Form onSubmit={this.handleSubmit} className="login-form record-block">
           <Row>
             <Col span={10} style={{float: 'left'}}>
+
+                  <Input onChange={ this.handleChange.bind(this) } className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
+  
               <FormItem>
-                {getFieldDecorator('idCard', {
+                {getFieldDecorator('name', {
                   rules: [{ required: false, message: 'Please input your username!' }],
+                  initialValue: `${name}`,
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>姓 名</span>} placeholder="" disabled/>
                 )}
               </FormItem>
               <FormItem>
-                {getFieldDecorator('Birthday', {
+                {getFieldDecorator('phone', {
                   rules: [{ required: false, message: 'Please input your username!' }],
+                  initialValue: `${phone}`,
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>姓 名</span>} placeholder="" />
-                )}
-              </FormItem>
-              <FormItem>
-                {getFieldDecorator('contactWay', {
-                  rules: [{ required: false, message: 'Please input your username!' }],
-                })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>手机号</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>手机号</span>} placeholder="" disabled/>
                 )}
               </FormItem>
             </Col>
             <Col span={10} style={{ float: 'right', fontSize: 16 }}>
               <div className="mar-b mar-t">
                 <p>性别</p>
-                  <RadioGroup onChange={this.onChangeSex} value={this.state.sexValue}>
+                  <RadioGroup value={sex} disabled>
                     <Radio value={"男"}>男</Radio>
                     <Radio value={"女"}>女</Radio>
                   </RadioGroup>
               </div>
             </Col>
           </Row>
-           {/*<FormItem>
-                       <Button type="primary" htmlType="submit" className="login-form-button"> 提交 </Button>
-                      </FormItem>*/}
         </Form>
       </div>
       
