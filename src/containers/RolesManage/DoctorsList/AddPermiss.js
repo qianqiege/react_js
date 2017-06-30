@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input} from 'antd';
 import { observer } from 'mobx-react';
+import UserMana from 'models/UserMana';
 import '../CustomTable.scss';
 @observer
 class AddRole extends React.Component {
@@ -17,6 +18,11 @@ class AddRole extends React.Component {
     this.setState({
       visible: false,
     });
+
+   
+
+
+
   }
   handleCancel = (e) => {
     console.log(e);
