@@ -1,7 +1,6 @@
 // 心电图展示/TDS数字中医表格
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Table, Input, Icon, Button} from 'antd';
+import { Table, Button} from 'antd';
 import { observer } from 'mobx-react';
 
 
@@ -21,8 +20,8 @@ class Electro extends React.Component {
       dataIndex: 'record',
       render: (text, record, index) => {
         return (
-         <Button type='primary'>查看记录</Button>
-          )
+         <Button type="primary">查看记录</Button>
+          );
       },
     }];
 
@@ -56,7 +55,7 @@ class Electro extends React.Component {
     const columns = this.columns;
     return (
       <div>
-        <Table bordered dataSource={dataSource} columns={columns}  className='table'/>
+        <Table bordered dataSource={dataSource} columns={columns}  className="table"/>
       </div>
     );
   }

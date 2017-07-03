@@ -2,9 +2,9 @@
 import React from 'react';
 import { Icon,Button } from 'antd';
 
-import MeanInfo from './meanInfo.js';
-import MeanSearch from './meanSearch.js';
-import UserInfo from './userInfo.js';
+import MeanInfo from './meanInfo';
+import MeanSearch from './meanSearch';
+import UserInfo from './userInfo';
 
 
 class HealthManagement extends React.Component{
@@ -42,7 +42,7 @@ class HealthManagement extends React.Component{
 					</div>		
 				<MeanInfo />
 			</div>
-		)
+		);
 	}
 }
 

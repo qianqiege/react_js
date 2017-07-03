@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import { Tabs, Row, Col } from 'antd';
 import HolographicInfo from "./HolographicInfo";
 
@@ -11,6 +11,9 @@ import "./HolographicView.scss";
 const TabPane = Tabs.TabPane;
 
 class HolographicView extends React.Component {
+	static propTypes = {
+		store: PropTypes.object.required,
+	}
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -37,12 +40,8 @@ class HolographicView extends React.Component {
 				{title: "健康评估", child: []},
 				
 			]
-		}
-		this.handleChange = this.handleChange.bind(this);
+		};
 
-	}
-	handleChange(key) {
-		console.log(key);
 	}
 	renderHolographi() {
 		const holoProjects = this.state.holoProject;
@@ -52,30 +51,32 @@ class HolographicView extends React.Component {
 				return (
 					<TabPane tab={holoProject.title} key={index+1}>
 						<HolographicInfo store={holoProject.child} />
-			    	</TabPane>
-				)
+					</TabPane>
+				);
 				
 			})
-		)
+		);
 	}
 	render() {
-		return <div>
-			<h1>全息视图</h1>
-			<Row>
-				<Col span={8}>
-					<div className="holo-block">
-						<p>房鸣</p>
-						<p>性别：男</p>
-						<p>联系方式：15986630552</p>
-					</div>
-				</Col>
-				<Col span={24}>
-					<Tabs defaultActiveKey="1" onChange={this.handleChange}>
-						{this.renderHolographi()}
-			  		</Tabs>
-				</Col>
-			</Row>
-		</div>
+		return (
+			<div>
+				<h1>全息视图</h1>
+				<Row>
+					<Col span={8}>
+						<div className="holo-block">
+							<p>房鸣</p>
+							<p>性别：男</p>
+							<p>联系方式：15986630552</p>
+						</div>
+					</Col>
+					<Col span={24}>
+						<Tabs defaultActiveKey="1" onChange={this.handleChange}>
+							{this.renderHolographi()}
+						</Tabs>
+					</Col>
+				</Row>
+			</div>
+		);
 	}
 }
 

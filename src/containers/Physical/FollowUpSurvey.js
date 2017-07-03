@@ -1,12 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal, Alert } from 'antd';
+import { Form, Input, Button, Row, Col, Select, Modal, Alert } from 'antd';
 import UserPhysical from "models/UserPhysical";
 import "../style.scss";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const confirm = Modal.confirm;
+// const Option = Select.Option;
+// const confirm = Modal.confirm;
 
 
 
@@ -16,10 +16,13 @@ class FollowUpSurver extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
+  }
   handleSubmit = (e) => {
     const { validateFields, resetFields } = this.props.form;
     e.preventDefault();
-    validateFields((err, values) => {
+    validateFields(() => {
       if (!err) {
             UserPhysical.checkDevice("http://qolm.ybyt.cc/api/v1/examination_input/check", `id_number=${values.idCord}&phone=${values.deviceNum}`);
             console.log(values.idCord);
@@ -27,21 +30,18 @@ class FollowUpSurver extends React.Component {
             UserPhysical.statusBool.display = "block";
             setTimeout( function() {
               UserPhysical.statusBool.display = "none";
-            }, 3000)
+            }, 3000);
       }
     });
   }
   handleStatus() {
     this.setState({
       statusBool: "true",
-    })
+    });
   }
-  handleChange(value) {
-    console.log(`selected ${value}`);
-  }
-  componentDidMount() {
-    UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
-  }
+  // handleChange(value) {
+  //   console.log(`selected ${value}`);
+  // }
   render() {
     const { getFieldDecorator } = this.props.form;
     const { display } = UserPhysical.statusBool;

@@ -1,7 +1,5 @@
 // 客户列表页的客户信息的时间轴
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Timeline } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
 import { Link } from 'react-router';
@@ -16,10 +14,7 @@ class TimeLine extends React.Component{
     return (
       record_number.map(num => {
         return (
-          <div className="timeline-item">
-            <div className="timeline-icon">
-             
-            </div>
+          <div className="timeline-item" key={num.id}>
             <div className="timeline-content">
               <h3>{ num.number }</h3>
               <p> 

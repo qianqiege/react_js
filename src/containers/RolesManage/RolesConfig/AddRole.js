@@ -1,9 +1,7 @@
 // 角色配置页面的添加角色按钮弹出来的组件模块
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input} from 'antd';
 import { observer } from 'mobx-react';
-import UserRoleConfig from 'models/UserRoleConfig';
 import '../CustomTable.scss';
 @observer
 class AddRole extends React.Component {
@@ -14,7 +12,7 @@ class AddRole extends React.Component {
     });
   }
   handleOk = (e) => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
@@ -28,7 +26,7 @@ class AddRole extends React.Component {
     // })
   }
   handleCancel = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -37,9 +35,9 @@ class AddRole extends React.Component {
 
   render() {
     const CheckboxGroup = Checkbox.Group;
-    function onChange(checkedValues) {
-      console.log('checked = ', checkedValues);
-    }
+    // function onChange(checkedValues) {
+    //   console.log('checked = ', checkedValues);
+    // }
 
     const options = [
     { label: '管理首页', value: '管理首页' },
@@ -55,20 +53,20 @@ class AddRole extends React.Component {
 
     return (
       <div>
-        <Button type="primary" className='showmodal' onClick={this.showModal}>添加角色</Button>
+        <Button type="primary" className="showmodal" onClick={this.showModal}>添加角色</Button>
         <Modal
           title="添加角色"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
-          className='addrole'
+          className="addrole"
         >
          <Input placeholder="角色名称" />
         <br/>
         <br />
-        <p className='choose'>选择角色权限</p>
+        <p className="choose">选择角色权限</p>
         <br/>
-        <CheckboxGroup options={options} onChange={onChange} className='checkBox'/>
+        <CheckboxGroup options={options} className="checkBox"/>
         <br />
 
         

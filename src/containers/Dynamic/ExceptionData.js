@@ -1,6 +1,5 @@
 // 异常处理页面
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Table, Button} from 'antd';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router';
@@ -28,12 +27,12 @@ class ExceptionData extends React.Component {
     },{
       title: '操作',
       dataIndex: 'operation',
-      render: (text, record, index) => {
+      render: () => {
         return (
-            <Button type='primary'>
-              <Link to={'/holographicView'}>处理异常</Link>
+            <Button type="primary">
+              <Link to={"/holographicView"}>处理异常</Link>
             </Button>
-          )
+          );
       },
     }];
 
@@ -75,7 +74,8 @@ class ExceptionData extends React.Component {
       <div>
         <h1>异常管理</h1>
         <p style={{marginTop:50,marginLeft:30,marginBottom:30,fontSize:26}}>最新异常信息</p>
-        <Table  bordered dataSource={dataSource} columns={columns} style={{marginLeft:30}} className='table'/>
+        <Table  bordered dataSource={dataSource} columns={columns} style={{marginLeft:30}} className="table"
+        />
       </div>
     );
   }

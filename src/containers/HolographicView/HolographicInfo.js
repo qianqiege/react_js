@@ -1,9 +1,12 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
 class HolographicInfo extends React.Component {
+	static propTypes = {
+		store: PropTypes.object.required,
+	}
 	constructor(props) {
 		super(props);
 	}
@@ -14,21 +17,20 @@ class HolographicInfo extends React.Component {
 				if ( child ) {
 					return (
 						<TabPane tab={child.name} key={index}> {child.componentObj} </TabPane>
-					)
+					);
 				}
 				
 			})
-		)
+		);
 	}
 	render() {
-		return <div>
-			
+		return (	
 			<div className="card-container">
 				<Tabs type="card">
 					{this.renderInfo()}
 				</Tabs>
 			</div>
-		</div>
+		);
 	}
 }
 export default HolographicInfo;

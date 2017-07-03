@@ -1,6 +1,6 @@
 // 基本资料组件
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import { Form, Input, Button, Row, Col, Select, Radio } from 'antd';
 
 import "../../style.scss";
 
@@ -15,27 +15,15 @@ class NormalLoginForm extends React.Component {
       sexValue: "男",
       marrayValue: "未婚",
 
-    }
+    };
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  }
-  handleChange(value) {
-    console.log(`selected ${value}`);
-  }
+ 
   onChangeSex = (e) => {
-    console.log('radio checked', e.target.value);
     this.setState({
       sexValue: e.target.value,
     });
   }
   onChangeMarray = (e) => {
-    console.log('radio checked', e.target.value);
     this.setState({
       marrayValue: e.target.value,
     });
@@ -44,7 +32,7 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form onSubmit={this.handleSubmit} className="login-form record-block" >
+        <Form className="login-form record-block" >
           <Row>
             <Col span={10} style={{float: 'left'}}>
               <FormItem>
