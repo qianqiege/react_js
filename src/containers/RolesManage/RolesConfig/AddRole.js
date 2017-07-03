@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input} from 'antd';
 import { observer } from 'mobx-react';
+import UserRoleConfig from 'models/UserRoleConfig';
 import '../CustomTable.scss';
 @observer
 class AddRole extends React.Component {
@@ -17,6 +18,14 @@ class AddRole extends React.Component {
     this.setState({
       visible: false,
     });
+    // this.props.input.value((err,val)=>{
+    //   if(err){
+    //     console.log('cuowu');
+    //   }else{
+    //     let value = encodeURIComponent(val.value,"utf-8");
+    //     UserRoleConfig.getAddRole('http://qolm.ybyt.cc/api/v1/roles')
+    //   }
+    // })
   }
   handleCancel = (e) => {
     console.log(e);

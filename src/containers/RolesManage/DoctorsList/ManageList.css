@@ -11,23 +11,23 @@ hr{
 	margin-top: 30px;
 }
 .manalist{
-	margin-left: 20px;
+	width:100%;
+	margin-left: 30px;
 	margin-top: 20px;
+	font-size: 24px;
 }
-.iconuser{
-	font-size: 35px;
-	margin-left: 19px;
-	color: gray;
+.manalist tr{
+	width: 100%;
 }
-.user{
-	font-size: 10px;
-	margin-right: 5px;
+.manalist tr td:first-child{
+	width:3%;
 }
-.spannum{
-	font-size: 14px;
+/*.manalist tr td:nth-child(2){
+	width:5%;
+}*/
+.manalist tr td:last-child{
+	padding:20px 0;
+	float: right;
+	width:20%;
 }
-.listuser{
-	/*float: right;*/
-	margin-bottom: 10px;
-	padding-left: 800px;
-}
+
