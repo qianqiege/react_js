@@ -27,10 +27,10 @@ class UserList {
 			runInAction("request success", () => {
 				this.userInfo.uname = ret.name;
 				this.checkRecord(`http://qolm.ybyt.cc/api/v1/registration/check_registration?id_number=${ret.id_number}`);
-			})
+			});
 		}else{
 			alert("该账号不存在");	    	
-		};	    
+		}	    
 	}
 	@action async checkRecord(url) {
 		const check = await fetch(url, {
@@ -53,7 +53,7 @@ class UserList {
 				this.userInfo.record_number = check;
 				return this.userInfo.record;
 			});
-		};
+		}
 
 	} 
 }

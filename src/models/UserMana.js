@@ -47,9 +47,7 @@ class UserMana {
 			});
 		});		
 	} 	
-
-
-  	@observable RoleList = [];
+	@observable RoleList = [];
 	@action async getRoleList(url) {
 		await fetch(url, {
 			mode: "cors",
@@ -83,7 +81,7 @@ class UserMana {
 
 
 	@action async putUser(url) {
-		const ret = await fetch(url, {
+		await fetch(url, {
 			mode: "cors",
 			method: "PUT",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -97,10 +95,7 @@ class UserMana {
 			return jsonData;
 		}).catch( function() {
 			alert('cuole');
-		})
-		runInAction("request success", () => {
-
-		})		
+		});		
 	} 	
 }
 export default new UserMana();

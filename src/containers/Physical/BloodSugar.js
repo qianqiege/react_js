@@ -1,13 +1,16 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import { Form, Input, Button, Row, Col, Select } from 'antd';
 import AddRecord from "./AddRecord";
-import UserPhysical from "models/UserPhysical";
+import PhysicalData from "models/PhysicalData";
 
 import "../style.scss";
 
 const FormItem = Form.Item;
 
 class BloodPressure extends React.Component {
+	static propTypes = {
+		form: PropTypes.object.required,
+	}
 	constructor(props) {
 		super(props);
 	}
@@ -29,7 +32,7 @@ class BloodPressure extends React.Component {
 				<h1>血糖测量</h1>
 				<AddRecord />
 				<div style={{clear: 'both', marginTop: 30}}>
-				 	<Form onSubmit={this.handleSubmit} className="login-form record-block">
+					<Form onSubmit={this.handleSubmit} className="login-form record-block">
 						<Row>
 							<Col span={10} style={{float: 'left', marginTop: 21, fontSize: 16}}>
 								<span>血糖值</span>

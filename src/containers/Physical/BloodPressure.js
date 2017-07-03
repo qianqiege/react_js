@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import { Form, Input, Button, Row, Col, } from 'antd';
 import {observer} from "mobx-react";
 import PhysicalData from "models/PhysicalData";
@@ -10,6 +10,9 @@ const FormItem = Form.Item;
 
 @observer
 class BloodPressure extends React.Component {
+	static propTypes = {
+		form: PropTypes.object.required,
+	}
 	constructor(props) {
 		super(props);
 	}
@@ -30,8 +33,8 @@ class BloodPressure extends React.Component {
 			<div className="record-content">
 				<h1>血压测量</h1>
 				<AddRecord />
-				 <div style={{clear: 'both', marginTop: 40}}>
-				 	<Form onSubmit={this.handleSubmit} className="login-form record-block">
+				<div style={{clear: 'both', marginTop: 40}}>
+					<Form onSubmit={this.handleSubmit} className="login-form record-block">
 						<Row>
 							<Col span={10} style={{float: 'left', marginTop: 0,  fontSize: 16 }}>
 								<span>收缩压</span>
@@ -39,7 +42,7 @@ class BloodPressure extends React.Component {
 									{getFieldDecorator('min_BloodPressure', {
 									rules: [{ required: false, message: 'Please input your username!' }],
 									})(
-										<Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
+									<Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
 									)}
 								</FormItem>
 							</Col>
@@ -49,17 +52,16 @@ class BloodPressure extends React.Component {
 									{getFieldDecorator('max_BloodPressure', {
 									rules: [{ required: false, message: 'Please input your username!' }],
 									})(
-										<Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
+									<Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
 									)}
 								</FormItem>
 							</Col>
 						</Row>
-					<FormItem>
-						<Button type="primary" htmlType="submit" className="login-form-button"> 提交 </Button>
-					</FormItem> 
-			        </Form>
-				 </div>
-				
+						<FormItem>
+							<Button type="primary" htmlType="submit" className="login-form-button"> 提交 </Button>
+						</FormItem> 
+					</Form>
+				</div>
 			</div>
 		); 
 	}

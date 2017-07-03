@@ -12,7 +12,7 @@ class AddRole extends React.Component {
       visible: true,
     });
   }
-  handleOk = (e) => {
+  handleOk = () => {
     this.setState({
       visible: false,
     });
@@ -22,7 +22,7 @@ class AddRole extends React.Component {
 
 
   }
-  handleCancel = (e) => {
+  handleCancel = () => {
     this.setState({
       visible: false,
     });

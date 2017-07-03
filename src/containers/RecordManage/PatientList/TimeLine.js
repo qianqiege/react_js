@@ -22,9 +22,9 @@ class TimeLine extends React.Component{
               </p>
             </div>
           </div>
-        )
+        );
       })
-    )
+    );
     
   }
   render(){
@@ -34,7 +34,7 @@ class TimeLine extends React.Component{
             { this.renderYB() }
           </div>
         </div>
-    )
+    );
   }
 }
 export default TimeLine;

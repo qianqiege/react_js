@@ -10,12 +10,12 @@ class EditRole extends React.Component {
       visible: true,
     });
   }
-  handleOk = (e) => {
+  handleOk = () => {
     this.setState({
       visible: false,
     });
   }
-  handleCancel = (e) => {
+  handleCancel = () => {
     this.setState({
       visible: false,
     });

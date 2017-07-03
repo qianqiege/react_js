@@ -1,5 +1,5 @@
 // 基本资料组件
-import React from "react";
+import React, {PropTypes} from "react";
 import { Form, Input, Button, Row, Col, Select, Radio } from 'antd';
 
 import "../../style.scss";
@@ -9,6 +9,9 @@ const Option = Select.Option;
 const RadioGroup = Radio.Group;
 
 class NormalLoginForm extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.required,
+  }
   constructor(props) {
     super(props);
     this.state = {

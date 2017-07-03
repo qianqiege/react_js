@@ -18,18 +18,18 @@ class UserRoleConfig {
 			return jsonData.data;
 		}).catch( function() {
 			alert('cuole');
-		})
+		});
 		runInAction("request success", () => {
 			roleConfig.map(roles=>{	    		
 				this.dataSource.push({
 					key: roles.id,
 					number:roles.id,
 					role:roles.name,
-				})	 		
-			})
+				});	 		
+			});
 		});		  
 	} 
-  	@observable addValue=[];
+	@observable addValue=[];
 	@action async getAddRole(url) {
 		const addRole = await fetch(url, {
 			mode: "cors",
@@ -51,9 +51,9 @@ class UserRoleConfig {
 				this.addValue.push({
 					number:values.id,
 					role:values.name,
-				})	 		
+				});	 		
 			});
-		})		  
+		});		  
 	} 
 }
 export default new UserRoleConfig();

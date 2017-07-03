@@ -31,10 +31,9 @@ class UserPhysical {
 			});
 
 		});
-	  
 	}
 	@action async checkDevice(url, data) {
-		const ret = await fetch(url, {
+		await fetch(url, {
 			mode: "cors",
 			method: "POST",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -46,7 +45,7 @@ class UserPhysical {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			return console.log(jsonData);
+			return jsonData;
 		}).catch( function() {
 			alert("出现错误!");
 		});

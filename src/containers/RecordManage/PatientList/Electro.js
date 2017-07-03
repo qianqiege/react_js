@@ -18,7 +18,7 @@ class Electro extends React.Component {
     }, {
       title: '查看记录',
       dataIndex: 'record',
-      render: (text, record, index) => {
+      render: () => {
         return (
          <Button type="primary">查看记录</Button>
           );

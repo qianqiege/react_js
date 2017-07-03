@@ -1,18 +1,19 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import { observer } from "mobx-react";
-import { Form, Input, Button, Row, Col, Select, Modal, Alert } from 'antd';
+import { Form, Input, Button, Row, Col, Select, Alert } from 'antd';
 import UserPhysical from "models/UserPhysical";
 import "../style.scss";
 
 const FormItem = Form.Item;
-// const Option = Select.Option;
-// const confirm = Modal.confirm;
 
 
 
 
 @observer
 class FollowUpSurver extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.required,
+  }
   constructor(props) {
     super(props);
   }
@@ -22,10 +23,9 @@ class FollowUpSurver extends React.Component {
   handleSubmit = (e) => {
     const { validateFields, resetFields } = this.props.form;
     e.preventDefault();
-    validateFields(() => {
+    validateFields((err, values) => {
       if (!err) {
             UserPhysical.checkDevice("http://qolm.ybyt.cc/api/v1/examination_input/check", `id_number=${values.idCord}&phone=${values.deviceNum}`);
-            console.log(values.idCord);
             resetFields();
             UserPhysical.statusBool.display = "block";
             setTimeout( function() {

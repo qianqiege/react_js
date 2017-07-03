@@ -25,7 +25,7 @@ class CustomTable extends React.Component {
       title: '操作',
       dataIndex: 'operation',
       key:'2',
-      render: (text, record) => {
+      render: () => {
         return (
           <span className="inline">
             <EditRole/>&nbsp;<DeleteRole/>

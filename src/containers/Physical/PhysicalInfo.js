@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import { Form, Input, Button, Row, Col } from 'antd';
 import AddRecord from "./AddRecord";
 
@@ -7,6 +7,10 @@ import "../style.scss";
 const FormItem = Form.Item;
 
 class BloodPressure extends React.Component {
+	static propTypes = {
+		form: PropTypes.object.required,
+		store: PropTypes.object.required,
+	}
 	constructor(props) {
 		super(props);
 	}
