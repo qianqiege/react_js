@@ -1,14 +1,10 @@
 // 角色配置页面
-import cookie from 'js-cookie';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import AddRole from './AddRole';
 import DeleteRole from './DeleteRole';
 import EditRole from './EditRole';
-import $ from "jquery";
-// import UserList from './UserList';
 import UserRoleConfig from 'models/UserRoleConfig';
 import '../CustomTable.scss';
 
@@ -29,14 +25,14 @@ class CustomTable extends React.Component {
       title: '操作',
       dataIndex: 'operation',
       key:'2',
-      render: (text, record, index) => {
+      render: () => {
         return (
-          <span className='inline'>
+          <span className="inline">
             <EditRole/>&nbsp;<DeleteRole/>
           </span>   
-        )
+        );
       }
-    }]
+    }];
   }
  
   componentDidMount() {
@@ -48,10 +44,10 @@ class CustomTable extends React.Component {
     const dataSource = UserRoleConfig.dataSource.toJS();
     return (
       <div>
-      <h1 className='roleconfig'>角色配置</h1>
+      <h1 className="roleconfig">角色配置</h1>
         <AddRole  style={{marginButtom:50}}/>
         <Table bordered dataSource={dataSource} columns={columns} 
-        style={{marginTop:50}}  className='table'/>
+        style={{marginTop:50}}  className="table"/>
       </div>
     );
   }

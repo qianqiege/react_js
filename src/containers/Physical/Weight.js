@@ -1,6 +1,4 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
-import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
 
 import "../style.scss";
@@ -14,12 +12,14 @@ class Weight extends React.Component {
 			title: "体重测量",
 			phyName: "体重",
 			unit: "公斤(kg)",
-		}
+		};
 	}
 	render() {
-		return <div className="record-content">
-			<PhysicalInfo store={this.state} />
-		</div>
+		return (
+			<div className="record-content">
+				<PhysicalInfo store={this.state} />
+			</div>
+		);
 	}
 }
 

@@ -1,7 +1,6 @@
 // 健康管理记录号页面
 import cookie from 'js-cookie';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import { Input } from 'antd';
 import User from 'models/User';
@@ -29,25 +28,24 @@ class HealthRecord extends React.Component{
     }).then( function(response) {
       return response.json();
     }).then( function(jsonData) {
-      console.log(jsonData.number);
       $(".healthrecord").slideToggle( function() {
         $(this).text(jsonData.number);
       });
     }).catch( function() {
-      console.log("出现错误!");
-    })
+      alert("出现错误!");
+    });
   }
   render() {
     const { number } = User.record;
     return (
       <div>
-        <h1 className='role'>健康管理记录号</h1>
+        <h1 className="role">健康管理记录号</h1>
         <span className="inputNum" style={{marginLeft:30,fontSize:16}}>
           请输入身份证号码：&nbsp;&nbsp;&nbsp;&nbsp;
           <Search style={{ width: 450,height:35,marginTop:50,border:0,borderBottom:0 }} 
             onSearch={this.handleSearch}/>  
         </span>
-        <p className='healthrecord' style={{display: 'none'}}>
+        <p className="healthrecord" style={{display: 'none'}}>
           {number}
         </p>
       </div>

@@ -2,7 +2,7 @@ import cookie from 'js-cookie';
 import React, { PropTypes, Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router';
-import { Layout, Menu, Icon, Breadcrumb,  } from 'antd';
+import { Layout, Menu, Icon,  } from 'antd';
 import User from 'models/User';
 
 import './App.scss';
@@ -14,6 +14,9 @@ const { Header, Sider, Content } = Layout;
 
 @observer
 class App extends Component {
+ static propTypes = {
+    children: PropTypes.element,
+  };
   constructor(props) { 
     super(props);
     this.listNav = this.listNav.bind(this);
@@ -93,24 +96,28 @@ class App extends Component {
                 <span className="nav-text"> { childTitle.littleTitle } </span>
               </Link>
             </Menu.Item>
-          )
-        })
+          );
+        });
         return(
               <SubMenu className="menu-font" key={navTitle.key} title={<span><Icon type={navTitle.iconType} /><span> {navTitle.ListTitle} </span></span>}>
                 { ctl }
               </SubMenu>
-        )
+        );
       }) 
-    )
+    );
   }
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
     if( !this.state.collapsed ) {
-      this.state.title = "";
+      this.setState({
+        title: "",
+      });
     }else{
-      this.state.title = "慢病健康管理平台";
+      this.setState({
+        title: "慢病健康管理平台",
+      });
     }
   }
 
@@ -136,7 +143,6 @@ class App extends Component {
     return map[key] || [];
   }
   handleClick = (e) => {
-    console.log('Clicked: ', e);
     this.setState({ current: e.key });
   }
 
@@ -182,11 +188,10 @@ class App extends Component {
           </Content>
         </Layout>
       </Layout>
-    )
+    );
   }
   //登出；
   handleOut() {
-    const { isAuthenticated } = User.auth;
     cookie.set("access_token", "");
     location.href = "/";
   }

@@ -1,9 +1,8 @@
 // 健康管理师页面 的添加权限组件
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Checkbox,Modal, Button, Input} from 'antd';
+// import ReactDOM from 'react-dom';
+import { Checkbox,Modal, Button } from 'antd';
 import { observer } from 'mobx-react';
-import UserMana from 'models/UserMana';
 import '../CustomTable.scss';
 @observer
 class AddRole extends React.Component {
@@ -13,8 +12,7 @@ class AddRole extends React.Component {
       visible: true,
     });
   }
-  handleOk = (e) => {
-    console.log(e);
+  handleOk = () => {
     this.setState({
       visible: false,
     });
@@ -24,8 +22,7 @@ class AddRole extends React.Component {
 
 
   }
-  handleCancel = (e) => {
-    console.log(e);
+  handleCancel = () => {
     this.setState({
       visible: false,
     });
@@ -34,9 +31,6 @@ class AddRole extends React.Component {
 
   render() {
     const CheckboxGroup = Checkbox.Group;
-    function onChange(checkedValues) {
-      console.log('checked = ', checkedValues);
-    }
 
     const options = [
     { label: 'test3', value: 'test3' },
@@ -51,20 +45,20 @@ class AddRole extends React.Component {
 
     return (
       <div>
-        <Button className='addrole' type="primary" style={{height:35}} onClick={this.showModal}>添加权限</Button>
+        <Button className="addrole" type="primary" style={{height:35}} onClick={this.showModal}>添加权限</Button>
         <Modal
           title="添加用户权限"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
-          className='addrole'
+          className="addrole"
         >
     
         <br/>
         <br />
-        <p className='choose'>用户名</p>
+        <p className="choose">用户名</p>
         <br/>
-        <CheckboxGroup options={options} onChange={onChange} className='Checkbox'/>
+        <CheckboxGroup options={options} className="Checkbox"/>
         <br /> 
         <br/>
         <br/>

@@ -1,12 +1,11 @@
 //这是筑脊模块页面
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Icon,Button } from 'antd';
+import { Icon } from 'antd';
 
-import MeanInfo from './meanInfo.js';
-import MeanSearch from './meanSearch.js';
-import UserInfo from './userInfo.js';
+import MeanInfo from './meanInfo';
+import MeanSearch from './meanSearch';
+import UserInfo from './userInfo';
 import './spine.css';
 
 
@@ -39,7 +38,7 @@ class Spine extends React.Component{
 
 				<MeanInfo />
 			</div>
-		)
+		);
 	}
 }
 

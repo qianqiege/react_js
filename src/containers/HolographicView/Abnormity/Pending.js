@@ -6,7 +6,6 @@ import "../HolographicView.scss";
 const columns = [{
   title: '时间',
   dataIndex: 'time',
-  render: text => <a href="#">{text}</a>,
 }, {
   title: '居家健康项目',
   dataIndex: 'healthObj',
@@ -42,34 +41,25 @@ const data = [{
 }, {
   key: '3',
   time: '2017-06-20',
-  dealingStatus: '未处理',
   healthObj: '心率',
   surveyData: 56,
   Condition: '偏低',
   dealingStatus: '未处理',
 
 }];
+
 // rowSelection object indicates the need for row selection
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-};
 
 class Holo extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleChange = this.handleChange.bind(this);
-	}
-	handleChange(e) {
-		console.log(`checked = ${e.target.checked}`);
 	}
 	render() {
 		return ( <div className="pend-block">
 				<Row>
 					<Col span={16}>
 						<h3>待处理异常</h3>
-						<Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+						<Table columns={columns} dataSource={data} />
 					</Col>
 						<Col span={7} style={{marginLeft: 20}}>
 						<h3>处理异常</h3>
@@ -82,7 +72,7 @@ class Holo extends React.Component {
 					</Col>
 				</Row>
 			</div>
-		)
+		);
 	}
 }
 export default Holo;

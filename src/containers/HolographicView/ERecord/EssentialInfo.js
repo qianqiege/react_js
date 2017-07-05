@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import React, {Component, PropTypes} from "react";
+import { Form, Input, Row, Col, Select, Radio } from 'antd';
 
 import "../../style.scss";
 
@@ -7,25 +7,26 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
 
-class NormalLoginForm extends React.Component {
+class NormalLoginForm extends Component {
+  static propTypes = {
+    form: PropTypes.object.required,
+  }
   constructor(props) {
     super(props);
   }
   render() {
     const { getFieldDecorator } = this.props.form;
     const userInfo = {
-      name: "fangming",
-      idCard: "142601166202110234",
+      name: "zhangsna",
+      idCard: "331252155236553215",
       birthday: "2017-02-21",
-      contactWay: 15986630552,
+      contactWay: 15735212325,
       postalAddress: "深圳市南山区",
-      contactWay: 15986630552,
       nation: "汉族",
       sexValue: "男",
       marrayValue: "未婚",
       occupation: "软件工程师",
-    }
-    console.log(userInfo.name);
+    };
     return (
       <div style={{marginTop: 80}}>
         <Form className="login-form record-block" >
