@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import { Icon,Modal, Button } from 'antd';
-
+import UserRoleConfig from 'models/UserRoleConfig';
 
 @observer
 class DeleteRole extends React.Component {
@@ -11,12 +12,17 @@ class DeleteRole extends React.Component {
       visible: true,
     });
   }
-  handleOk = () => {
+  handleOk = (e) => {
+    // console.log(e);
     this.setState({
       visible: false,
     });
+    UserRoleConfig.deleteRole('http://qolm.ybyt.cc/api/v1/roles/8');
+
+
   }
-  handleCancel = () => {
+  handleCancel = (e) => {
+    console.log(e);
     this.setState({
       visible: false,
     });
@@ -28,9 +34,7 @@ class DeleteRole extends React.Component {
         <Modal
           visible={this.state.visible}
           onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-
+          onCancel={this.handleCancel}>
           <Icon type="exclamation-circle-o" style={{fontSize:100,marginLeft:190, color:'orange'}}/>
           <p style={{fontSize:26,marginLeft:180,marginTop:20}}>您确定吗？</p>
           <p style={{fontSize:18,marginLeft:160}}>您选择的角色将被删除！</p>

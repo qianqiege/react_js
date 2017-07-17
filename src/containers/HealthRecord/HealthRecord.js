@@ -32,7 +32,7 @@ class HealthRecord extends React.Component{
         $(this).text(jsonData.number);
       });
     }).catch( function() {
-      alert("出现错误!");
+
     });
   }
   render() {

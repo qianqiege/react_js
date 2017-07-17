@@ -1,8 +1,8 @@
 import cookie from 'js-cookie';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router';
-import { Layout, Menu, Icon,  } from 'antd';
+import { Layout, Menu, Icon  } from 'antd';
 import User from 'models/User';
 
 import './App.scss';
@@ -14,9 +14,6 @@ const { Header, Sider, Content } = Layout;
 
 @observer
 class App extends Component {
- static propTypes = {
-    children: PropTypes.element,
-  };
   constructor(props) { 
     super(props);
     this.listNav = this.listNav.bind(this);
@@ -106,20 +103,6 @@ class App extends Component {
       }) 
     );
   }
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-    if( !this.state.collapsed ) {
-      this.setState({
-        title: "",
-      });
-    }else{
-      this.setState({
-        title: "慢病健康管理平台",
-      });
-    }
-  }
 
   //点击菜单，收起其他展开的所有菜单，保持菜单聚焦简洁。
   onOpenChange = (openKeys) => {
@@ -143,6 +126,7 @@ class App extends Component {
     return map[key] || [];
   }
   handleClick = (e) => {
+    
     this.setState({ current: e.key });
   }
 
@@ -151,11 +135,10 @@ class App extends Component {
     return (
       <Layout className="apps">
         <Sider
-          trigger={null}
-          collapsible
-          collapsed={this.state.collapsed}
+          breakpoint="lg"
+          collapsedWidth="0"
+          onCollapse={(collapsed, type) => { }}
           width={270}
-          collapsedWidth={90}
         >
           <div className="logo">
             <img src="../.././images/yblogo.png" />
@@ -176,11 +159,6 @@ class App extends Component {
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
             <span className="out-login-button" onClick={this.handleOut}>退出</span>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff'}}>
@@ -192,6 +170,7 @@ class App extends Component {
   }
   //登出；
   handleOut() {
+    const { isAuthenticated } = User.auth;
     cookie.set("access_token", "");
     location.href = "/";
   }

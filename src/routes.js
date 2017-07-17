@@ -5,6 +5,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './containers/App/App';
 import HomePage from './containers/HomePage/HomePage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
+import Login from "./containers/Login/Login";
 import RolesConfig from "./containers/RolesManage/RolesConfig/RolesConfig"; //角色配置
 import ManageList from "./containers/RolesManage/DoctorsList/ManageList"; //健康管理师列表
 
@@ -12,6 +13,7 @@ import HealthRecord from "./containers/HealthRecord/HealthRecord"; //健康管�
 
 import NewRecord from "./containers/RecordManage/NewRecords/NewRecord"; //新建档案
 import PatientList from "./containers/RecordManage/PatientList/PatientList"; //客户列表
+import Evaluate from "./containers/RecordManage/PatientList/Evaluate" //评价客户
 
 import FollowUpSurvey from "./containers/Physical/FollowUpSurvey"; //随访包测量
 import BloodPressure from "./containers/Physical/BloodPressure"; //血压数据录入
@@ -25,6 +27,7 @@ import Unine from "./containers/Physical/Unine"; //尿酸数据录入
 import Spine from "./containers/Means/Spine"; //筑脊模块
 import DiseaseLocation from "./containers/Means/DiseaseLocation"; //疾病谱定位
 import HealthManagement from "./containers/Means/HealthManagement"; //健康管理模块
+import HealthSearch from "./containers/Means/HealthSearch"; //健康管理模块的记录查询
 
 import ExceptionData from "./containers/Dynamic/ExceptionData"; //异常管理
 // import FollowUpRecord from "./containers/Dynamic/FollowUpRecord"; //随访记录
@@ -43,6 +46,7 @@ export default (
 
 			<Route path="/recordManage/newRecord" component={NewRecord}/> 
 			<Route path="/recordManage/patientList" component={PatientList}/>
+			<Route path="/recordManage/evaluate" component={Evaluate}/>
 			<Route path="/recordManage/healthmonitor" component={HealthMonitor}/>
 
 			<Route path="/physical/followUpSurvey" component={FollowUpSurvey}/>
@@ -57,6 +61,7 @@ export default (
 			<Route path="/means/spine" component={Spine}/>
 			<Route path="/means/diseaseLocation" component={DiseaseLocation}/>
 			<Route path="/means/healthManagement" component={HealthManagement}/>
+			<Route path="/means/healthSearch" component={HealthSearch}/>
 
 			<Route path="/dynamic/exceptionData" component={ExceptionData}/>
 			{/*<Route path="/dynamic/followUpRecord" component={FollowUpRecord}/> */}

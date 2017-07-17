@@ -7,7 +7,14 @@ html,body {
   height: 100%;
   width: 100%;
 }
-
+.apps .ant-layout-sider {
+  position: fixed;
+  height: 100%;
+}
+.apps .ant-layout {
+  position: relative;
+  left: 270px;
+}
 .trigger {
   font-size: 18px;
   line-height: 64px;

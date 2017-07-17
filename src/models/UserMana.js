@@ -1,101 +1,150 @@
+import React from "react";
 import cookie from "js-cookie";
 import { observable, action, runInAction } from "mobx";
+import { Alert,Icon,Table} from 'antd';
+import AddPermiss from '../containers/RolesManage/DoctorsList/AddPermiss';
 import '../containers/RolesManage/DoctorsList/ManageList.css';
 
 class UserMana {
 
+	//从后台获取健康管理师列表的全部数据，展示姓名，ID！
 	@observable ManaList = [];
 	@observable totalData={
 		'total':''
 	}
-	@action async getManaList(url) {
-		const ret = await fetch(url, {
-			mode: "cors",
-			method: "GET",
-			headers: {"Content-Type": "application/x-www-form-urlencoded",
-			"Access-Control-Allow-Headers": "Authorization",
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Credentials": true,
-			"Access-Authorization": `${cookie.get("access_token")}`},
-		}).then( function(response) {
-			return response.json();
-		}).then( function(jsonData) {
-			return jsonData;
-		}).catch( function() {
-			alert('cuole');
-		});
+	// @observable list = {
+	//     isFetching: false,
+	//     meta: {
+	//       total: 0,
+	//       perPage: 10,
+	//       page: 1
+	//     },
+	//     data: []
+	// };
+	@action async getManaList(url){
+		// this.list.isFetching = true;
+	    const ret = await fetch(url, {
+	      mode: "cors",
+	      method: "GET",
+	      headers: {"Content-Type": "application/x-www-form-urlencoded",
+	        "Access-Control-Allow-Headers": "Authorization",
+	        "Access-Control-Allow-Origin": "*",
+	        "Access-Control-Allow-Credentials": true,
+	        "Access-Authorization": `${cookie.get("access_token")}`},
+	    }).then( function(response) {
+      		return response.json();
+	    }).then( function(jsonData) {
+	    	console.log(jsonData.data);
+      		return jsonData;
+	    }).catch( function() {
+	      	console.log('cuole');
+	    })
 		runInAction("request success", () => {
+			// this.list = Object.assign({}, {			
+			// } ,ret);
 			this.totalData.total=ret.meta.total;
-			ret.data.map( mana=>{
-				if(mana.name==null||mana.name==''){
-					return (
-						this.ManaList.push({
-						key:mana.id,
-						name:'无名氏',
-						id:mana.id,
-						})
-					);
-				}else{
-					return (
-						this.ManaList.push({
-						key:mana.id,
-						name:mana.name,       
-						id:mana.id,
-						})
-					);
-				}
-			});
-		});		
-	} 	
-	@observable RoleList = [];
+	    	ret.data.map( mana=>{
+	    		if(mana.name==null||mana.name==''){
+	    		return (
+	    			this.ManaList.push({
+	    				key:mana.id,
+	                    name:'无名氏',
+	   					id:mana.id,
+                    })
+	    		)}else{
+	    			return (
+	    			this.ManaList.push({
+	    				key:mana.id,
+	    				name:mana.name,       
+	   					id:mana.id,
+                    })
+	    		)
+	    		}
+	    	})
+	    });		
+  	} 	
+
+//在健康管理师列表里 搜索某一个健康管理师，设定只能输入身份号，返回当前api请求获得的ID，name！
+  	@observable RoleList = [];
 	@action async getRoleList(url) {
-		await fetch(url, {
-			mode: "cors",
-			method: "GET",
-			headers: {"Content-Type": "application/x-www-form-urlencoded",
-			"Access-Control-Allow-Headers": "Authorization",
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Credentials": true,
-			"Access-Authorization": `${cookie.get("access_token")}`},
-		}).then( function(response) {
-			return response.json();
-		}).then( function(jsonData) {
-			return jsonData.data;
-		}).catch( function() {
-			alert('cuole');
-		});
+	    const roleList = await fetch(url, {
+	      mode: "cors",
+	      method: "GET",
+	      headers: {"Content-Type": "application/x-www-form-urlencoded",
+	        "Access-Control-Allow-Headers": "Authorization",
+	        "Access-Control-Allow-Origin": "*",
+	        "Access-Control-Allow-Credentials": true,
+	        "Access-Authorization": `${cookie.get("access_token")}`},
+	    }).then( function(response) {
+      		return response.json();
+	    }).then( function(jsonData) {
+      		return jsonData;
+	    }).catch( function() {
+	      	console.log('cuole');
+	    })
+	  	
+	  	console.log(roleList);
+	  	if(roleList.id_number){
+			runInAction("request success", () => {
+				return (
+					this.RoleList.push({
+						key:roleList.id,
+						name:roleList.name,
+						id:roleList.id,
+					})
+				)
+		    })	
+		}
+  	}
 
-		// if(ret.id_number) {
-		// 	runInAction("request success", () => {
-		// 		ret.map((roleCon)=>{
-		// 			console.log('123');
-		// 		})
-		//     })
-		//    }else{
-		// 	alert("该账号不存在");	    	
-		//    }	
+//判断当前登录账户是否有权限给别人添加权限，目前只有river账户有权限，id为4，
+//判断拿到的登录账户的ID是否为4，不为4，则选项隐藏！
+  	@observable roleId=[];
+  	@action async showModal(url) {
+	    const showMod = await fetch(url, {
+	      mode: "cors",
+	      method: "GET",
+	      headers: {"Content-Type": "application/x-www-form-urlencoded",
+	        "Access-Control-Allow-Headers": "Authorization",
+	        "Access-Control-Allow-Origin": "*",
+	        "Access-Control-Allow-Credentials": true,
+	        "Access-Authorization": `${cookie.get("access_token")}`},
+	    }).then( function(response) {
+      		return response.json();
+	    }).then( function(jsonData) {
+	    	console.log(jsonData);
+      		return jsonData;
+	    }).catch( function() {
+	      	console.log('cuole');
+	    })
+		runInAction("request success", () => {
+		    this.roleId.push(showMod.id);
+	    })		
+  	} 	
 
-	}
 
 
 
-
-	@action async putUser(url) {
-		await fetch(url, {
-			mode: "cors",
-			method: "PUT",
-			headers: {"Content-Type": "application/x-www-form-urlencoded",
-			"Access-Control-Allow-Headers": "Authorization",
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Credentials": true,
-			"Access-Authorization": `${cookie.get("access_token")}`},
-		}).then( function(response) {
-			return response.json();
-		}).then( function(jsonData) {
-			return jsonData;
-		}).catch( function() {
-			alert('cuole');
-		});		
-	} 	
+  	@action async putUser(url) {
+	    const addPermiss = await fetch(url, {
+	      mode: "cors",
+	      method: "PUT",
+	      headers: {"Content-Type": "application/x-www-form-urlencoded",
+	        "Access-Control-Allow-Headers": "Authorization",
+	        "Access-Control-Allow-Origin": "*",
+	        "Access-Control-Allow-Credentials": true,
+	        "Access-Authorization": `${cookie.get("access_token")}`},
+	    }).then( function(response) {
+      		return response.json();
+	    }).then( function(jsonData) {
+	    	console.log(jsonData.data);
+      		return jsonData;
+	    }).catch( function() {
+	      	console.log('cuole');
+	    })
+		runInAction("request success", () => {
+			
+	    })		
+  	} 	
 }
 export default new UserMana();

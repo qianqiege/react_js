@@ -3,6 +3,7 @@
 	width: 50%;
 	margin: 0 auto;
 	display: flex;
+	margin-left: 22%;
 }
 
 .searchInput {
@@ -15,4 +16,16 @@
 .look {
 	width: 80px;
 	margin-left: 20px;
+}
+
+
+
+/*------------健康查询样式--------------*/
+.hsSearch {
+	border:0;
+}
+
+.hsTable {
+	width: 70%;
+	margin: 0 auto;
 }

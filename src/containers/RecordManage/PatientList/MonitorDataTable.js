@@ -1,6 +1,7 @@
 // 血压检测/血糖检测的检测日志的表格组件
 import React from 'react';
-import { Table } from 'antd';
+import ReactDOM from 'react-dom';
+import { Table, Input, Icon, Button, Popconfirm } from 'antd';
 import { observer } from 'mobx-react';
 
 
@@ -57,7 +58,7 @@ class MonitorDataTable extends React.Component {
     const columns = this.columns;
     return (
       <div>
-        <Table bordered dataSource={dataSource} columns={columns}  className="table"/>
+        <Table bordered dataSource={dataSource} columns={columns}  className='table'/>
       </div>
     );
   }

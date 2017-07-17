@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input} from 'antd';
 import { observer } from 'mobx-react';
 import '../CustomTable.scss';
@@ -10,12 +11,14 @@ class EditRole extends React.Component {
       visible: true,
     });
   }
-  handleOk = () => {
+  handleOk = (e) => {
+    console.log(e);
     this.setState({
       visible: false,
     });
   }
-  handleCancel = () => {
+  handleCancel = (e) => {
+    console.log(e);
     this.setState({
       visible: false,
     });
@@ -24,7 +27,9 @@ class EditRole extends React.Component {
 
   render() {
     const CheckboxGroup = Checkbox.Group;
-
+    function onChange(checkedValues) {
+      console.log('checked = ', checkedValues);
+    }
 
     const options = [
     { label: '管理首页', value: '管理首页' },
@@ -46,14 +51,14 @@ class EditRole extends React.Component {
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
-          className="addrole"
+          className='addrole'
         >
          <Input placeholder="角色名称" />
         <br/>
         <br />
         <p style={{fontSize:14}}>选择角色权限</p>
         <br/>
-        <CheckboxGroup options={options} defaultValue={['Pear']} />
+        <CheckboxGroup options={options} defaultValue={['Pear']} onChange={onChange} />
         <br />
 
         
