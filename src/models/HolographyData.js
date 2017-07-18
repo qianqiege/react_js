@@ -44,92 +44,92 @@ class HolographyData {
 	//通过patient_id获取用户信息；
 	@action async getInfo(url) {
 		const products= await fetch(url, {
-	      mode: "cors",
-	      method: "GET",
-	      headers: {"Content-Type": "application/x-www-form-urlencoded",
-	        "Access-Control-Allow-Headers": "Authorization",
-	        "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials": true,
-	        "Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
-	      return response.json();
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+			"Access-Control-Allow-Headers": "Authorization",
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
 
-	    }).then( function(jsonData) {
-	      return jsonData;
-	    }).catch( function() {
-	      console.log("出现错误!");
-	    }) 
-	    runInAction("request success", () => {
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			console.log("出现错误!");
+		}) 
+		runInAction("request success", () => {
 			this.userInfo = Object.assign({}, products);
-	    })
-  	}
+		})
+	}
 	//获取用户‘待处理’信息的请求；
 	@action async getHolographyInfo(url) {
 		const products= await fetch(url, {
-	      mode: "cors",
-	      method: "GET",
-	      headers: {"Content-Type": "application/x-www-form-urlencoded",
-	        "Access-Control-Allow-Headers": "Authorization",
-	        "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials": true,
-	        "Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
-	      return response.json();
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+			"Access-Control-Allow-Headers": "Authorization",
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
 
-	    }).then( function(jsonData) {
-	      return jsonData;
-	    }).catch( function() {
-	      console.log("出现错误!");
-	    }) 
-	    runInAction("request success", () => {
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			console.log("出现错误!");
+		}) 
+		runInAction("request success", () => {
 			this.exData = Object.assign({}, products);
-	    })
-  	}
-  	//获取用户‘已处理’信息的请求；
-  	@action async get(url) {
+		})
+	}
+	//获取用户‘已处理’信息的请求；
+	@action async get(url) {
 		const products= await fetch(url, {
-	      mode: "cors",
-	      method: "GET",
-	      headers: {"Content-Type": "application/x-www-form-urlencoded",
-	        "Access-Control-Allow-Headers": "Authorization",
-	        "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials": true,
-	        "Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
-	      return response.json();
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+			"Access-Control-Allow-Headers": "Authorization",
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
 
-	    }).then( function(jsonData) {
-	      return jsonData;
-	    }).catch( function() {
-	      console.log("出现错误!");
-	    }) 
-	    runInAction("request success", () => {
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			console.log("出现错误!");
+		}) 
+		runInAction("request success", () => {
 			this.exDataTwo = Object.assign({}, products);
-	    })
-  	}
-  	//提交‘处理异常’信息
-  	@action async putMessage(url, data) {
+		})
+	}
+	//提交‘处理异常’信息
+	@action async putMessage(url, data) {
 		const products= await fetch(url, {
-	      mode: "cors",
-	      method: "PUT",
-	      headers: {"Content-Type": "application/json",
-	        "Access-Control-Allow-Headers": "Authorization",
-	        "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials": true,
-	        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-	        "Access-Authorization": `${cookie.get("access_token")}`},
-	      body: data,
-	    }).then( function(response) {
-	      return response.json();
+			mode: "cors",
+			method: "PUT",
+			headers: {"Content-Type": "application/json",
+			"Access-Control-Allow-Headers": "Authorization",
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Credentials": true,
+			"Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+			"Access-Authorization": `${cookie.get("access_token")}`},
+			body: data,
+		}).then( function(response) {
+			return response.json();
 
-	    }).then( function(jsonData) {
-	      return jsonData;
-	    }).catch( function() {
-	      console.log("出现错误!");
-	    }) 
-	    runInAction("request success", () => {
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			console.log("出现错误!");
+		}) 
+		runInAction("request success", () => {
 			alert("请求");
-	    })
-  	}
+		})
+	}
 }
 export default new HolographyData();

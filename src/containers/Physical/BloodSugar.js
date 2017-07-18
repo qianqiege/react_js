@@ -29,13 +29,13 @@ class BloodPressure extends React.Component {
     });
   }
 	render() {
-    	const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
 		return <div className="record-content">
 			<h1>血糖测量</h1>
 			<AddRecord />
-			 <div style={{clear: 'both', marginTop: 30}}>
-			 	<Form onSubmit={this.handleSubmit} className="login-form record-block">
-          <Row>
+			<div style={{clear: 'both', marginTop: 30}}>
+				<Form onSubmit={this.handleSubmit} className="login-form record-block">
+            <Row>
             <Col span={10} style={{float: 'left', marginTop: 21, fontSize: 16}}>
 						<span>血糖值</span>
 						<FormItem>
@@ -69,7 +69,7 @@ class BloodPressure extends React.Component {
                         </Select>
                       )}
                     </FormItem>
-		              </div>
+		                </div>
 		            </Col>
 		          </Row>
 				<FormItem>
