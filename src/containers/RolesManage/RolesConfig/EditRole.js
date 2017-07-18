@@ -20,18 +20,11 @@ class AddRole extends React.Component {
     RoleConfig.getRole(this.props.store.id);    
   }
   handleOk = (e) => {
-    
-    console.log(RoleConfig.abilities.toJS().length);
-    if(!this.state.name) {
-      alert("名称不能为空");
-    }else if(!RoleConfig.abilities.toJS().length) {
-      alert("请选择角色权限");
-    }else {
-      console.log(RoleConfig.roleItem);
+      // this.handleSubmit();   
+      console.log(this.props.store.id, RoleConfig.abilities.toJS());
       this.setState({
         visible: false,
       });
-    }
   }
   handleCancel = (e) => {
     console.log(e);
@@ -40,7 +33,19 @@ class AddRole extends React.Component {
     });
   }
   handleChange(values) {
-    RoleConfig.abilities = values;
+    // RoleConfig.abilities = RoleConfig.abilities.concat(values);
+    console.log(values);
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        RoleConfig.updateRoles(this.props.store.id, { "checked_features": values.rolePermission,"id": this.props.store.id })
+      }
+      this.setState({
+        visible: false,
+      });
+    });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -52,13 +57,13 @@ class AddRole extends React.Component {
         <Modal
           title="添加角色"
           visible={this.state.visible}
-          onOk={this.handleOk}
+          onOk={this.handleSubmit}
           onCancel={this.handleCancel}
           className='addrole'
         >
           <Form onSubmit={this.handleSubmit}>        
             <FormItem>
-              {getFieldDecorator('physiology', {
+              {getFieldDecorator('name', {
               rules: [{ required: false, message: '' }],
               initialValue: `${name}`,
             })(
@@ -67,9 +72,9 @@ class AddRole extends React.Component {
             </FormItem>
             <FormItem>
               <p className='choose titleAbilities'>选择角色权限</p>
-              {getFieldDecorator('emotion', {
+              {getFieldDecorator('rolePermission', {
               rules: [{ required: false, message: '' }],
-              initialValue: `${abilities.features.toJS()}`,
+              initialValue: abilities.features.toJS(),
             })(
               <CheckboxGroup options={options} className='checkBox' onChange={this.handleChange} />
             )}
