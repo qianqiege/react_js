@@ -4,26 +4,31 @@ import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input} from 'antd';
 import { observer } from 'mobx-react';
 // import UserRoleConfig from 'models/UserRoleConfig';
-import UserRoleConfig from 'models/rolesConfig';
+import RoleConfig from 'models/rolesConfig';
 import '../CustomTable.scss';
 
 const CheckboxGroup = Checkbox.Group;
 
 @observer
 class AddRole extends React.Component {
-  state = { visible: false }
+  state = { visible: false, name: "" }
   showModal = () => {
     this.setState({
       visible: true,
     }); 
-    UserRoleConfig.fetchRoles();    
+    RoleConfig.fetchRoles();    
   }
   handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-    // UserRoleConfig.getAddRole('http://qolm.ybyt.cc/api/v1/roles');
+    if(!this.state.name) {
+      alert("名称不能为空");
+    }else if(!RoleConfig.abilities.toJS().length) {
+      alert("请选择角色权限");
+    }else {
+      RoleConfig.addRoles({name: this.state.name, checked_features: RoleConfig.abilities.toJS()});
+      this.setState({
+        visible: false,
+      });
+    }
   }
   handleCancel = (e) => {
     console.log(e);
@@ -31,8 +36,17 @@ class AddRole extends React.Component {
       visible: false, 
     });
   }
+  handleChange(values) {
+    console.log(values);
+    RoleConfig.abilities = values;
+  }
+  handleRoles(e) {
+    this.setState({
+      name: e.target.value,
+    })
+  }
   render() {
-    const options = UserRoleConfig.options.toJS();
+    const options = RoleConfig.options.toJS();
     return (
       <div>
         <Button type="primary" className='showmodal' onClick={this.showModal}>添加角色</Button>
@@ -43,12 +57,12 @@ class AddRole extends React.Component {
           onCancel={this.handleCancel}
           className='addrole'
         >
-         <Input placeholder="角色名称" className='role_name' type="text" required />
+         <Input onChange={this.handleRoles.bind(this)} placeholder="角色名称" className='role_name' type="text" required />
         <br/>
         <br />
         <p className='choose titleAbilities'>选择角色权限</p>
         <br/>
-        <CheckboxGroup options={options} className='checkBox'/>
+        <CheckboxGroup options={options} className='checkBox' onChange={this.handleChange}/>
         <br />
 
         

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import { Icon,Modal, Button } from 'antd';
-import UserRoleConfig from 'models/UserRoleConfig';
+import RoleConfig from 'models/rolesConfig';
+// import UserRoleConfig from 'models/UserRoleConfig';
 
 @observer
 class DeleteRole extends React.Component {
@@ -13,13 +14,10 @@ class DeleteRole extends React.Component {
     });
   }
   handleOk = (e) => {
-    // console.log(e);
     this.setState({
       visible: false,
     });
-    UserRoleConfig.deleteRole('http://qolm.ybyt.cc/api/v1/roles/8');
-
-
+    RoleConfig.deleteRoles(this.props.store.id);
   }
   handleCancel = (e) => {
     console.log(e);

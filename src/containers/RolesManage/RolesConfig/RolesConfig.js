@@ -9,7 +9,8 @@ import DeleteRole from './DeleteRole';
 import EditRole from './EditRole';
 import $ from "jquery";
 // import UserList from './UserList';
-import UserRoleConfig from 'models/UserRoleConfig';
+import RoleConfig from 'models/rolesConfig';
+// import UserRoleConfig from 'models/UserRoleConfig';
 import '../CustomTable.scss';
 
 @observer
@@ -18,12 +19,12 @@ class CustomTable extends React.Component {
     super(props);
     this.columns = [{
       title: '编号',
-      dataIndex: 'number',
+      dataIndex: 'id',
       width: '30%',
       key:'0',
     }, {
       title: '角色名称',
-      dataIndex: 'role',
+      dataIndex: 'name',
       key:'1',
     }, {
       title: '操作',
@@ -32,7 +33,7 @@ class CustomTable extends React.Component {
       render: (text, record, index) => {
         return (
           <span className='inline'>
-            <EditRole/>&nbsp;<DeleteRole/>
+            <EditRole store={record} />&nbsp;<DeleteRole store={record} />
           </span>   
         )
       }
@@ -40,18 +41,23 @@ class CustomTable extends React.Component {
   }
  
   componentDidMount() {
-    UserRoleConfig.getRoleConfig('http://qolm.ybyt.cc/api/v1/roles?page=1&per_page=8');
+    RoleConfig.getRolesList();
   }
 
   render() {
     const columns = this.columns;
-    const dataSource = UserRoleConfig.dataSource.toJS();
+    const dataSource = RoleConfig.rolesLists.data.toJS();
     return (
       <div>
       <h1 className='roleconfig'>角色配置</h1>
         <AddRole  style={{marginButtom:50}}/>
-        <Table bordered dataSource={dataSource} columns={columns} 
-        style={{marginTop:50}}  className='table'/>
+        <Table 
+        bordered 
+        dataSource={dataSource} 
+        columns={columns} 
+        style={{marginTop:50}}  className='table'
+        rowKey={(record) => record.id}
+        />
       </div>
     );
   }
