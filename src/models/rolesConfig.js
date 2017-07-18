@@ -37,7 +37,7 @@ class rolesConfig {
   }
   //创建角色；
   @action addRoles(values) {
-    return cFetch(API_CONFIG.roles, { method: "POST", body: JSON.stringify(values)}).then(() => {
+    return cFetch(API_CONFIG.roles, { method: "POST", body: JSON.stringify(values) }).then(() => {
       this.getRolesList();
     });
   }
@@ -61,6 +61,12 @@ class rolesConfig {
     runInAction("get role after fetch", () => {
       this.roleItem = Object.assign({}, this.roleItem, ret);
     })
+  }
+  //更新修改角色；
+  @action updateRoles(id, values) {
+    return cFetch(`${API_CONFIG.roles}/${id}`, { method: "PUT", body: JSON.stringify(values) }).then(() => {
+      this.getRolesList();
+    });
   }
 }
 
