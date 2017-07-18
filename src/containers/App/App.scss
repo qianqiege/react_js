@@ -9,9 +9,11 @@ html,body {
 }
 .apps .ant-layout-sider {
   position: fixed;
+  height: 100%;
 }
 .apps .ant-layout {
-  position: relative;
+  // position: relative;
+  padding-left: 270px;
   left: 270px;
 }
 .trigger {

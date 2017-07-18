@@ -5,6 +5,11 @@ import { observable, action, runInAction } from "mobx";
 class UserRoleConfig {
 	//获取角色配置页面的数据 返回ID，name！
 	@observable dataSource = [];
+	@observable options = [
+		{ label: 'Apple', value: 'Apple' },
+		{ label: 'Pear', value: 'Pear' },
+		{ label: 'Orange', value: 'Orange' },
+	];
 	@action async getRoleConfig(url) {
 	    const roleConfig = await fetch(url, {
 	      mode: "cors",
@@ -17,7 +22,6 @@ class UserRoleConfig {
 	    }).then( function(response) {
       		return response.json();
 	    }).then( function(jsonData) {
-	    	console.log(jsonData.data);
       		return jsonData.data;
 	    }).catch( function() {
 	        console.log('cuole');

@@ -39,31 +39,31 @@ export default (
 		<Route path="/" component={App}>
 			<IndexRoute component={HomePage}/>
 
-			<Route path="/rolesmanage/roles" component={RolesConfig}/> 
-			<Route path="/rolesmanage/doctorsList" component={ManageList}/>
+			<Route path="/roles" component={RolesConfig}/> 
+			<Route path="/doctorsList" component={ManageList}/>
 
-			<Route path="/healthrecord" component={HealthRecord}/> 
+			<Route path="/registeredPost" component={HealthRecord}/> 
 
-			<Route path="/recordManage/newRecord" component={NewRecord}/> 
-			<Route path="/recordManage/patientList" component={PatientList}/>
+			<Route path="/newRecord" component={NewRecord}/> 
+			<Route path="/patientList" component={PatientList}/>
 			<Route path="/recordManage/evaluate" component={Evaluate}/>
 			<Route path="/recordManage/healthmonitor" component={HealthMonitor}/>
 
-			<Route path="/physical/followUpSurvey" component={FollowUpSurvey}/>
-			<Route path="/physical/bloodPressure" component={BloodPressure}/>
-			<Route path="/physical/bloodSugar" component={BloodSugar}/>
-			<Route path="/physical/temperature" component={Temperature}/>
-			<Route path="/physical/weight" component={Weight}/>
-			<Route path="/physical/heartRate" component={HeartRate}/>
-			<Route path="/physical/blood_fat" component={BloodFat}/>
-			<Route path="/physical/unine" component={Unine}/>
+			<Route path="/followUpSurvey" component={FollowUpSurvey}/>
+			<Route path="/bloodPressure" component={BloodPressure}/>
+			<Route path="/bloodSugar" component={BloodSugar}/>
+			<Route path="/temperature" component={Temperature}/>
+			<Route path="/weight" component={Weight}/>
+			<Route path="/heartRate" component={HeartRate}/>
+			<Route path="/blood_fat" component={BloodFat}/>
+			<Route path="/unine" component={Unine}/>
 
-			<Route path="/means/spine" component={Spine}/>
-			<Route path="/means/diseaseLocation" component={DiseaseLocation}/>
-			<Route path="/means/healthManagement" component={HealthManagement}/>
+			<Route path="/spine" component={Spine}/>
+			<Route path="/diseaseLocation" component={DiseaseLocation}/>
+			<Route path="/healthManagement" component={HealthManagement}/>
 			<Route path="/means/healthSearch" component={HealthSearch}/>
 
-			<Route path="/dynamic/exceptionData" component={ExceptionData}/>
+			<Route path="/exceptionData" component={ExceptionData}/>
 			{/*<Route path="/dynamic/followUpRecord" component={FollowUpRecord}/> */}
 
 			<Route path="/holographicView" component={HolographicView}/>
