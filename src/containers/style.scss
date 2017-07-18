@@ -4,12 +4,7 @@
 .font2 {
 	font-size: 14px;
 }
-.mar-b {
-	margin-bottom: 10px;
-}
-.mar-t {
-	margin-top: 20px;
-}
+
 
 .record-content {
 	// text-align: center;
@@ -37,14 +32,15 @@
 	font-size: 16px;
 }
 .inpt-left-f.ant-input:not(:first-child) {
-	padding-left: 50px;
+	// padding-left: 50px;
 	font-size: 15px;
 	color: #333;
+	border-bottom:1px solid #ccc;
 }
 .inpt-left-t.ant-input:not(:first-child) {
-	padding-left: 80px;
 	font-size: 15px;
 	color: #333;
+	border-bottom:1px solid #ccc;
 }
 .login-form-button {
 	width: 90%;
