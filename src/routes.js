@@ -28,6 +28,7 @@ import Spine from "./containers/Means/Spine"; //筑脊模块
 import DiseaseLocation from "./containers/Means/DiseaseLocation"; //疾病谱定位
 import HealthManagement from "./containers/Means/HealthManagement"; //健康管理模块
 import HealthSearch from "./containers/Means/HealthSearch"; //健康管理模块的记录查询
+import LookMeans from "./containers/Means/lookMeans"; //记录查询详情页
 
 import ExceptionData from "./containers/Dynamic/ExceptionData"; //异常管理
 // import FollowUpRecord from "./containers/Dynamic/FollowUpRecord"; //随访记录
@@ -62,6 +63,7 @@ export default (
 			<Route path="/diseaseLocation" component={DiseaseLocation}/>
 			<Route path="/healthManagement" component={HealthManagement}/>
 			<Route path="/means/healthSearch" component={HealthSearch}/>
+			<Route path="/means/lookMeans" component={LookMeans}/>
 
 			<Route path="/exceptionData" component={ExceptionData}/>
 			{/*<Route path="/dynamic/followUpRecord" component={FollowUpRecord}/> */}

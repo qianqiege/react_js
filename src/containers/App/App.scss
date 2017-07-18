@@ -12,10 +12,15 @@ html,body {
   height: 100%;
 }
 .apps .ant-layout {
-  // position: relative;
   padding-left: 270px;
-  left: 270px;
 }
+
+@media screen and (max-width: 1200px){
+  .apps .ant-layout {
+    padding-left: 0;
+  }
+}
+
 .trigger {
   font-size: 18px;
   line-height: 64px;

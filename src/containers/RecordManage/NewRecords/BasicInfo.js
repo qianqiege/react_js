@@ -48,35 +48,35 @@ class NormalLoginForm extends React.Component {
                 {getFieldDecorator('userName', {
                   rules: [{ required: false, message: 'Please input your username!' }],
                 })(
-                  <Input className="inpt inpt-left-f" prefix={<span style={{fontSize: 16}}>姓名</span>} placeholder="" />
+                  <Input className="inpt inpt-left-f" addonBefore={<span style={{fontSize: 16}}>姓　　名</span>} placeholder="" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('idCard', {
                   rules: [{ required: false, message: 'Please input your username!' }],
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('Birthday', {
                   rules: [{ required: false, message: 'Please input your username!' }],
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>出生日期</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>出生日期</span>} placeholder="" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('phone', {
                   rules: [{ required: false, message: 'Please input your username!' }],
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>联系方式</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>联系方式</span>} placeholder="" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('postalAddress', {
                   rules: [{ required: false, message: 'Please input your username!' }],
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>通讯地址</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>通讯地址</span>} placeholder="" />
                 )}
               </FormItem>
             </Col>
@@ -138,7 +138,7 @@ class NormalLoginForm extends React.Component {
                   {getFieldDecorator('profession', {
                     rules: [{ required: false, message: 'Please input your username!' }],
                   })(
-                    <Input className="inpt inpt-left-f" prefix={<span style={{fontSize: 16}}>职业</span>} placeholder="" />
+                    <Input className="inpt inpt-left-f" addonBefore={<span style={{fontSize: 16}}>职业</span>} placeholder="" />
                   )}
                 </FormItem>
               </div>
