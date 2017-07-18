@@ -16,23 +16,23 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        
         //NewUser.getUserInfo("http://qolm.ybyt.cc/api/v1/patient_record/create", `name=${values.userName}&nation=${values.nation}&id_number=${values.idCard}&birthday=${values.Birthday}&phone=${values.phone}&occupation=${values.profession}&address=${values.postalAddress}&sex=${values.userSex}&marriage=${values.marrayState}&health_status={item_b1=null&item_b2=null&item_b3=null&item_b4=null&item_b5=null&item_b6=null&item_b7=null&item_b8=null&item_a =[]}&family_history={father=[]&mother=[]&brother=[]&child=[]}&health_status={item_b1=null&item_b2=null&item_b3=null&item_b4=null&item_b5=null&item_b6=null&item_b7=null&item_b8=null&item_a =[]}&family_history={father=[]&mother=[]&brother=[]&child=[]}&sleep_habit={item_1=null&item_2=null&item_3=null&item_4=null}&emotional_state={item_1=null&item_2=null&item_3=null&item_4=null}&environment_state={itemitemitem_3=null=item_4=null}&drink_history={dry_out_years=[]&item_1=[]&item_2=[]&item_3=[]&item_4=[]}&smoke_history={quit_smoking_years=[]&item_1=[]&item_2=[]&item_3=[]&item_4=[]}&eating_habit={item_1=[]&item_2=[]&item_3=[]&item_4=[]&item_5=[]&item_6=[]&item_7=[]&item_8=[]&item_9=[]&item_10=[]&item_11=[]}&exercise_habit={item_1=[]&item_2=[]&item_4=[]&item_3=[]}&professional_state={item_1=null&item_2=null&item_3=[]}&excretion={nocturnal_enuresis_times=""&constipation_times=""&item_1=null&item_2=null}&check_body={item_1=null&item_2=null&item_3=[]&item_4=[]}&physical_examination={height=""&weight=""&baric_index=""&hipline=""&waistline=""&waist_to_hipratio=""&min_BloodPressure=""&max_BloodPressure=""&total_cholesterol=""&triglyceride=""&high_density_lipoprotein=""&low_density_lipoprotein=""&b_BloodGlucose=""&glycosylated_hemoglobin=""&homocysteine=""&glutamic_oxaloacetic_transaminase=""&glutamic_pyruvic_transaminase=""&creatinine=""&usea_nitrogen=""&blood_uric_acid=""&ultrasound=""&electrocardiogram=""&image_analysis=""}`);
         
       }
     });
   }
   handleChange(value) {
-    console.log(`selected ${value}`);
+   
   }
   onChangeSex = (e) => {
-    console.log('radio checked', e.target.value);
+    
     this.setState({
       sexValue: e.target.value,
     });
   }
   onChangeMarray = (e) => {
-    console.log('radio checked', e.target.value);
+    
     this.setState({
       marrayValue: e.target.value,
     });

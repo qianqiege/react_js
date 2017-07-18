@@ -35,21 +35,21 @@ class PatientList extends React.Component{
       <div >
         <h1 style={{marginBottom:50}}>客户列表</h1>
         <span>
-          <Search className='search' style={{ width: 450,height:35,marginLeft:100,border:0,borderBottom:0}} 
+          <Search className="search" style={{ width: 450,height:35,marginLeft:100,border:0,borderBottom:0}} 
           onSearch={this.handleSearch}/>  
         </span>
         <Button className="p-list-btn" style={{ height:35,marginTop:1,marginRight:50}}>
-          <Link to={'/recordManage/newRecord'}>添加新客户</Link>
+          <Link to={"/recordManage/newRecord"}>添加新客户</Link>
         </Button>
         <p style={{fontSize:16,marginLeft:100,marginTop:30,marginBottom:15}}>客户信息</p>
         <hr style={{marginLeft:100,marginTop:15,}}/>
-        <p style={{fontSize:16,marginLeft:100,marginTop:15,display:'none'}}>没有查看权限</p>
-        <div className='showList' style={{display: 'none'}}>
+        <p style={{fontSize:16,marginLeft:100,marginTop:15,display:"none"}}>没有查看权限</p>
+        <div className="showList" style={{display: "none"}}>
           <ul style={{marginLeft:20}}>
               <li >
                 <ul style={{marginLeft:50}}>
                   <li>
-                    <Icon className='iconuser' type="user" style={{fontSize:35,marginLeft:19,color:'gray'}}/>
+                    <Icon className="iconuser" type="user" style={{fontSize:35,marginLeft:19,color:'gray'}}/>
                   </li>
                   <li>
                     {uname}
@@ -60,14 +60,14 @@ class PatientList extends React.Component{
                   </li>
                 </ul>
               </li> 
-              <li className='listuser' style={{marginTop:10}}>
-                  <Button type='primary' style={{marginRight:30,height:35}} >
-                    <Link to={'/holographicView'}>全息档案</Link>
+              <li className="listuser" style={{marginTop:10}}>
+                  <Button type="primary" style={{marginRight:30,height:35}} >
+                    <Link to={"/holographicView"}>全息档案</Link>
                   </Button> 
-                  <Button type='primary' style={{ height:35}}>档案查看/修改</Button>
+                  <Button type="primary" style={{ height:35}}>档案查看/修改</Button>
               </li>
             </ul> ,
-            <p className='clear'>健康管理动态</p>
+            <p className="clear">健康管理动态</p>
             <TimeLine />
           </div>
       </div>
