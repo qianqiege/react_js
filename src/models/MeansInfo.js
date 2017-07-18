@@ -78,6 +78,9 @@ class MeansInfo {
 	//方案室查看记录数据
 	@observable jilu = [];
 
+	////方案室查看记录每条详情页
+	@observable jlNum = "";
+
 	//方案室个人信息组件
 	@action async getInfo(url) {
 	    const infos = await fetch(url, {

@@ -1,0 +1,49 @@
+
+.YBNum {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+}
+
+.allJl {
+	text-align: center;
+	font-size: 30px;
+	margin:20px 0 10px 0;
+}
+
+.jiluContent {
+	width: 95%;
+	margin: 0 auto;
+	padding: 15px 0 15px 0;
+	border-bottom: 1px dashed #d9d9d9;
+}
+
+.jiluContent p{
+	font-size: 16px;
+	color: #108ee9;
+}
+
+.jiluContent ul{
+	width: 100%;
+	display: flex;
+	padding-top: 10px;
+}
+
+.jiluContent ul li {
+	flex: 1;
+	text-align: left;
+}
+
+.jiluContent .jk {
+	margin-left: 24px;margin-top: 15px;
+	width: 90%;
+	word-break:break-all;
+}
+
+.linchuang {
+	display: block;
+	margin:15px 0 15px 24px;
+}
+
+.noPag .ant-pagination.ant-table-pagination {
+	display: none;
+}

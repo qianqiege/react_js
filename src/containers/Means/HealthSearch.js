@@ -1,6 +1,7 @@
 //这是方案室的记录查询
 import { Input,Table,Button } from 'antd';
 import React from 'react';
+import { Link } from 'react-router';
 import { observer } from 'mobx-react';
 import MeansInfo from 'models/MeansInfo';
 
@@ -29,9 +30,11 @@ class HealthSearch extends React.Component {
 				title: '查看记录',
 				dataIndex: 'operation',
 			render: (text, record, index) => {
+				console.log(record);
+				MeansInfo.jlNum = record.number;
 				return (
 					<Button type='primary' style={{ marginLeft: 80 }}>
-						查看记录
+						<Link to={`/means/lookMeans?${MeansInfo.jlNum}`}>查看记录</Link>
 					</Button>
 				)
 			},
