@@ -14,4 +14,5 @@ export const API_CONFIG = {
   users: 'users',
   menus: 'menus', //菜单项；
   rolesAbilities: 'roles/abilities', //获取用于创建角色的权限系列
+  roles: 'roles' //创建角色；
 };
