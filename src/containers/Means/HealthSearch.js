@@ -31,10 +31,9 @@ class HealthSearch extends React.Component {
 				dataIndex: 'operation',
 			render: (text, record, index) => {
 				console.log(record);
-				MeansInfo.jlNum = record.number;
 				return (
 					<Button type='primary' style={{ marginLeft: 80 }}>
-						<Link to={`/means/lookMeans?${MeansInfo.jlNum}`}>查看记录</Link>
+						<Link to={`/means/lookMeans?id=${record.number}`}>查看记录</Link>
 					</Button>
 				)
 			},
