@@ -1,7 +1,7 @@
 // 健康管理师列表页
 import cookie from 'js-cookie';
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Table, Input, Icon, Button,Pagination } from 'antd';
 import { observer } from 'mobx-react';
 import $ from "jquery";
@@ -29,21 +29,21 @@ class ManageList extends React.Component {
       dataIndex: 'operation',
       key:'2',
       render: (text, record, index) => {
-        return (<AddPermiss/>)
+        return (<AddPermiss/>);
       }
     }];
    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount(){
-    UserMana.getManaList('http://qolm.ybyt.cc/api/v1/users/all_users?page=1&per_page=8')
+    UserMana.getManaList('http://qolm.ybyt.cc/api/v1/users/all_users?page=1&per_page=8');
   }
 
   handleSearch(value) {
     const reg = /^(\d{18,18}|\d{15,15}|\d{17,17}x)$/;
     if( reg.test(value) ) {
       UserMana.getRoleList(`http://qolm.ybyt.cc/api/v1/users/get_user_by_id_number?id_number=${value}`);
-      console.log('success');
+      //console.log('success');
       const data = UserMana.RoleList.toJS();
       // console.log(data);
       // console.log(data[0].name);
@@ -63,20 +63,20 @@ class ManageList extends React.Component {
     return (
       <div>
         <h1>健康管理师列表</h1>
-        <Search className='search' 
+        <Search className="search" 
           style={{width: 450,height:35,marginTop:50,marginLeft:30,border:0,borderBottom:0}}
            onSearch={this.handleSearch}/>
         <hr/>
         <Table bordered 
         dataSource={dataSource} columns={columns} 
-        style={{marginTop:50}}  className='table'
+        style={{marginTop:50}}  className="table"
         pagination={{ 
           total:UserMana.totalData.total,
           pageSize:8,
           onChange(pageNumber) {
-              console.log('Page: ', pageNumber);
+              //console.log('Page: ', pageNumber);
               UserMana.getManaList(
-                `http://qolm.ybyt.cc/api/v1/users/all_users?page=${pageNumber}&per_page=8`)
+                `http://qolm.ybyt.cc/api/v1/users/all_users?page=${pageNumber}&per_page=8`);
           }
         }}/>  
         

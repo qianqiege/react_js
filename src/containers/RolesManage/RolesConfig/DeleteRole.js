@@ -20,7 +20,7 @@ class DeleteRole extends React.Component {
     RoleConfig.deleteRoles(this.props.store.id);
   }
   handleCancel = (e) => {
-    console.log(e);
+    //console.log(e);
     this.setState({
       visible: false,
     });

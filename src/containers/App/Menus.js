@@ -15,8 +15,8 @@ class Menus extends React.Component {
 		super(props);
 		this.state = {
 			current: '1',
-    		openKeys: [],
-		}
+			openKeys: [],
+		};
 	}
 	componentDidMount() {
 		MenuData.getMenus();
@@ -45,7 +45,7 @@ class Menus extends React.Component {
 		this.setState({ current: e.key });
 	}
 	handleSelect = ( obj ) => {
-		console.log(obj.key);
+		//console.log(obj.key);
 		if(obj.key == 100) {
 			location.href="/registeredPost";
 		}		
@@ -67,7 +67,7 @@ class Menus extends React.Component {
 						</Link>
 						</Menu.Item>
 						);
-					})
+					});
 					return(
 					<SubMenu 
 						className="menu-font" 
