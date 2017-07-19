@@ -14,7 +14,7 @@ class MeanInfo extends React.Component{
 	}
 	render(){
 		const { userName, registration, dateTime } = MeansInfo.footerInfo;
-		const { allPrice } = MeansJz.isKaifang
+		const { prices } = MeansJz.isKaifang;
 		return (
 			<div className="info">
 				<div className="infoTop">
@@ -22,7 +22,7 @@ class MeanInfo extends React.Component{
 					<p>病例编号：<span>{ registration }</span></p>					
 				</div>
 				<div className="infoBottom">
-					<p>总额：<span>{ allPrice }</span></p>
+					<p>总额：<span>{ prices }</span></p>
 					<p>开具日期：<span>{ dateTime }</span></p>					
 				</div>				
 				

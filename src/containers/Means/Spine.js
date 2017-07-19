@@ -40,6 +40,10 @@ class Spine extends React.Component{
 	onChange (e){
 		if( e.target.checked ) {
 			MeansJz.getBloodletting("http://qolm.ybyt.cc/api/v1/spine/bloodletting");
+		}else if(!e.target.checked) {
+			this.props.form.setFieldsValue({blood_letting_times: 0});
+			MeansJz.isKaifang.allPrice = 0;
+			MeansJz.isKaifang.prices = MeansJz.isKaifang.jizhuPrice;
 		}
 		this.setState({
 			disable:e.target.checked,
@@ -47,15 +51,11 @@ class Spine extends React.Component{
 
 	}
 	onBlood(e) {
-		if( e >= 0 ) {
-			let blood_letting_times = e.target.value;
-			const { bloodPrice } = MeansJz.isKaifang;
-			console.log(parseInt(bloodPrice)*blood_letting_times);
-		}else{
+		if( e.target.value >= 0 ) {
+			MeansJz.handleCount(e.target.value);
+		}else {
 			e.target.value = 0;
 		}
-		
-
 	}
 	render(){
 		const { getFieldDecorator } = this.props.form;
