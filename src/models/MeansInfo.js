@@ -13,17 +13,7 @@ class MeansInfo {
 		{id: 3, name: "yubang"},
 		];
 	//产品使用说明
-	@observable proUse= [
-		{
-			"usage": "",
-			"qty": "",
-			"product": {
-			  "id": "",
-			  "name": " ",
-			  "code": ""
-			}
-		}
-		];
+	@observable proUse= [];
 	@observable kaifang = [];
 	//个人信息
 	@observable meansUser = {
@@ -159,7 +149,7 @@ class MeansInfo {
 	      console.log("出现错误!");
 	    })
 	    runInAction("success", () => {
-	    	this.proUse = [...proInfos];
+	    	this.proUse = proInfos;
 	    }) 
   	}  
 

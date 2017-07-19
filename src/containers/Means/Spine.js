@@ -27,10 +27,10 @@ class Spine extends React.Component{
 			if (!err) {
 				console.log(values, MeansJz.jizhu.slice(), MeansInfo.meansUser.id, MeansJz.isKaifang.levelVal);
 
-				MeansJz.postKaifang("http://qolm.ybyt.cc/api/v1/recipe/create_spine_recipe",
-					`patient_id=${MeansInfo.meansUser.id}&blood_letting_times=${values.blood_letting_times}&physical_condition=${values.physical_condition}&diagnostic_advice=${values.diagnostic_advice}&treatment_level=${MeansJz.isKaifang.levelVal}&treatment_times=${values.treatment_times}&single_amount=&total=${MeansJz.isKaifang.allPrice}&detail=${MeansJz.jizhu.slice()}`);
-			this.props.form.resetFields();
-			message.success('脊柱开方成功');
+			// 	MeansJz.postKaifang("http://qolm.ybyt.cc/api/v1/recipe/create_spine_recipe",
+			// 		`patient_id=${MeansInfo.meansUser.id}&blood_letting_times=${values.blood_letting_times}&physical_condition=${values.physical_condition}&diagnostic_advice=${values.diagnostic_advice}&treatment_level=${MeansJz.isKaifang.levelVal}&treatment_times=${values.treatment_times}&single_amount=&total=${MeansJz.isKaifang.allPrice}&detail=${MeansJz.jizhu.slice()}`);
+			// this.props.form.resetFields();
+			// message.success('脊柱开方成功');
 			}else {
 				message.error('遇到一些问题，请重新提交');
 				this.props.form.resetFields();
@@ -38,10 +38,24 @@ class Spine extends React.Component{
 		});
 	}
 	onChange (e){
-		console.log(e.target.checked);
+		if( e.target.checked ) {
+			MeansJz.getBloodletting("http://qolm.ybyt.cc/api/v1/spine/bloodletting");
+		}
 		this.setState({
 			disable:e.target.checked,
-		})		
+		})
+
+	}
+	onBlood(e) {
+		if( e >= 0 ) {
+			let blood_letting_times = e.target.value;
+			const { bloodPrice } = MeansJz.isKaifang;
+			console.log(parseInt(bloodPrice)*blood_letting_times);
+		}else{
+			e.target.value = 0;
+		}
+		
+
 	}
 	render(){
 		const { getFieldDecorator } = this.props.form;
@@ -49,7 +63,6 @@ class Spine extends React.Component{
 		return (
 			<div>
 				<MeanSearch />
-				
 				<div className="userSpine userSlide">
 					<UserInfo />
 					<div>
@@ -76,15 +89,15 @@ class Spine extends React.Component{
 								<Checkbox  onChange={this.onChange.bind(this)}>放血排毒 3600元</Checkbox>
 								{getFieldDecorator('blood_letting_times', {
 									rules: [{ required: false, message: '' }],
-									initialValue: 0,
 								})(
-									<Input type="number" className="blood"  disabled={!this.state.disable}/>
+									<Input type="number" className="blood"  disabled={!this.state.disable} onChange={this.onBlood}/>
 								)}
 							</FormItem>
 							<FormItem>
 								<span>治疗次数</span>
 								{getFieldDecorator('treatment_times', {
 									rules: [{ required: false, message: '' }],
+									initialValue: 1,
 								})(
 									<Input type="number" className="cishu" />
 								)}

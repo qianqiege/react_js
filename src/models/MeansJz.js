@@ -51,7 +51,9 @@ class MeansJz {
 		levelVal: "初级",
 		boolLevel: false,
 		allPrice: 0,
+		bloodPrice: "0",
 	}
+	@observable isChecked = false;
 	@action async getJibie(url) {
 		const jibie= await fetch(url, {
 	      mode: "cors",
@@ -76,8 +78,8 @@ class MeansJz {
 
   	//脊柱开方金额计算
 	@action handleChange = (e) => {
-		// this.isKaifang.boolLevel = e.target.checked;
-		// console.log(this.isKaifang.boolLevel);
+		this.isKaifang.boolLevel = e.target.checked;
+		console.log(this.isKaifang.boolLevel);
 		if( e.target.checked ) {
 			this.isKaifang.jiZhuBtn = true;
 			this.jizhu.push(e.target.value);
@@ -88,6 +90,9 @@ class MeansJz {
 			return this.jizhu;
 
 		}
+	}
+	@action handleC(e) {
+		this.isChecked = e.target.checked;
 	}
 	@action async getPay(url) {
 		const pay= await fetch(url, {
@@ -162,6 +167,28 @@ class MeansJz {
 			console.log("success");
 	    }) 
   	}
+  	//获取放血排毒的价格；
+  	@action async getBloodletting(url) {
+		const proInfos= await fetch(url, {
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+	    }).then( function(response) {
+			return response.json();
+
+	    }).then( function(jsonData) {
+			return jsonData;
+	    }).catch( function() {
+			console.log("出现错误!");
+	    })
+	    runInAction("success get blood", () => {
+			this.isKaifang.bloodPrice = proInfos.price;
+	    }) 
+  	} 
 }
 
 export default new MeansJz();
