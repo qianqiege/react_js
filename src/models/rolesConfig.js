@@ -1,4 +1,4 @@
-import cookie from 'js-cookie';
+
 import { observable, action, runInAction } from 'mobx';
 import cFetch from 'utils/cFetch';
 import { API_CONFIG } from 'config/api';
@@ -31,7 +31,7 @@ class rolesConfig {
     runInAction('update roles after fetch', () => {
       const arr = ret.map(item => {
         return Object.assign({}, {label: item.menu_name, value: item.features[0].value}, item);
-      })
+      });
       this.options = arr;
     });
   }
@@ -46,21 +46,21 @@ class rolesConfig {
     const ret = await cFetch(API_CONFIG.roles, { method: "GET", params: params });
     runInAction("update roles list after fetch", () => {
       this.rolesLists = Object.assign({}, ret);
-    })
+    });
 
   }
   //删除单个角色；
   @action deleteRoles(id) {
     return cFetch(`${API_CONFIG.roles}/${id}`, { method: "DELETE" }).then(() => {
       this.getRolesList();
-    })
+    });
   }
   //获取单个角色；
   @action async getRole(id) {
     const ret = await cFetch(`${API_CONFIG.roles}/${id}`, { method: "GET" });
     runInAction("get role after fetch", () => {
       this.roleItem = Object.assign({}, this.roleItem, ret);
-    })
+    });
   }
   //更新修改角色；
   @action updateRoles(id, values) {
