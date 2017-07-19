@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       title: "慢病健康管理平台",
-    }
+    };
     this.renderAuthorLogin = this.renderAuthorLogin.bind(this);
     this.handleOut = this.handleOut.bind(this);   
   }
@@ -48,7 +48,7 @@ class App extends Component {
           </Content>
         </Layout>
       </Layout>
-    )
+    );
   }
   //登出；
   handleOut() {
