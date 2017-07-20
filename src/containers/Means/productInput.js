@@ -18,13 +18,25 @@ class Means extends React.Component{
     MeansInfo.getProduct("http://qolm.ybyt.cc/api/v1/product/product_list");
   }
   handleChange(value, option) {
-    MeansInfo.getProInfo(`http://qolm.ybyt.cc/api/v1/product/product_usage_list?product_id=${option.props.dataId}`);
+    MeansInfo.getProInfo(`http://qolm.ybyt.cc/api/v1/product/product_usage_list?product_id=${option.props.dataId}`).then(() => {
+      const proUse = MeansInfo.proUse[0];
+      this.props.form.setFieldsValue({identifier: proUse.product.code, usage: proUse.usage});
+    });
+
+
+
   }
   handleSubmit = (e) => {
+    let proUse = MeansInfo.proUse[0];
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err && values.count) {
-        console.log(values);
+      if(err) {
+        alert("出现错误");
+      }else if(!values.name){
+        return alert("方案名称不能为空");
+      }else if(!values.count) {
+        return alert("数量不能为空");
+      }else {
         MeansInfo.getKaifang(values);
         this.props.form.resetFields();
       }
@@ -59,7 +71,6 @@ class Means extends React.Component{
             <FormItem>
               {getFieldDecorator('identifier', {
                 rules: [{ required: false, message: '' }],
-                initialValue: `${proUse.product.code}`,
               })(
                 <Input />
               )}
@@ -69,7 +80,6 @@ class Means extends React.Component{
             <FormItem>
               {getFieldDecorator('usage', {
                 rules: [{ required: false, message: '' }],
-                initialValue: `${proUse.usage}`,
               })(
                 <Input />
               )}
