@@ -1,6 +1,6 @@
 import React from "react";
 import cookie from "js-cookie";
-import { observable, action, runInAction } from "mobx";
+import { observable, action, runInAction, computed } from "mobx";
 import { Checkbox } from "antd";
 import JzSelect from 'containers/Means/jzSelect';
 import JzCheck from 'containers/Means/jzCheck';
@@ -50,8 +50,10 @@ class MeansJz {
 		jiZhuBtn: false,
 		levelVal: "初级",
 		boolLevel: false,
-		allPrice: 0,
-		bloodPrice: "0",
+		allPrice: 0, //放血总价;
+		bloodPrice: "0", 
+		jizhuPrice: 0, //脊柱总价;
+		prices: 0, //总价;
 	}
 	@observable isChecked = false;
 	@action async getJibie(url) {
@@ -77,19 +79,38 @@ class MeansJz {
 
 	//脊柱开方金额计算
 	@action handleChange = (e) => {
-		if( e.target.checked ) {
-			this.isKaifang.jiZhuBtn = true;
-			this.jizhu.push(e.target.value);
-			this.isKaifang.allPrice += parseInt(e.target.dataCount);
-		}else if(!e.target.checked){
-			this.jizhu.splice(this.jizhu.indexOf(e.target.value), 1);
-			this.isKaifang.allPrice -= parseInt(e.target.dataCount);
-			return this.jizhu;
+		// this.isKaifang.boolLevel = e.target.checked;
+		// console.log(this.isKaifang.boolLevel);
+		// if( e.target.checked ) {
+		// 	this.isKaifang.jiZhuBtn = true;
+		// 	this.jizhu.push(e.target.value);
+		// 	this.isKaifang.allPrice += parseInt(e.target.dataCount);
+		// }else if(!e.target.checked){
+		// 	this.jizhu.splice(this.jizhu.indexOf(e.target.value), 1);
+		// 	this.isKaifang.allPrice -= parseInt(e.target.dataCount);
+		// 	return this.jizhu;
+
+		// }
+		if(e.target.checked) {
+			console.log(e.target.value, e.target.dataCount);
+			this.isKaifang.jizhuPrice += parseInt(e.target.dataCount);
+			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
+
+		}else if(!e.target.checked) {
+			this.isKaifang.jizhuPrice -= parseInt(e.target.dataCount);
+			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
 
 		}
 	}
-	@action handleC(e) {
-		this.isChecked = e.target.checked;
+	//放血总价的计算；
+	@action handleCount(count) {
+		this.isKaifang.allPrice = parseInt(this.isKaifang.bloodPrice) * count;
+		console.log(this.isKaifang.allPrice);
+		this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
+	}
+	//总价的计算；
+	@action allPrices() {
+		// return console.log(parseInt(this.isKaifang.allPrice + this.isKaifang.jizhuPrice));
 	}
 	@action async getPay(url) {
 		const pay= await fetch(url, {
