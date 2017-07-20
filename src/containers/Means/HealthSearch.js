@@ -26,16 +26,16 @@ class HealthSearch extends React.Component {
 			},{
 				title: '挂号号码',
 				dataIndex: 'number',
-		    },{
+			},{
 				title: '查看记录',
 				dataIndex: 'operation',
 			render: (text, record, index) => {
-				console.log(record);
+				//console.log(record);
 				return (
-					<Button type='primary' style={{ marginLeft: 80 }}>
+					<Button type="primary" style={{ marginLeft: 80 }}>
 						<Link to={`/means/lookMeans?id=${record.number}`}>查看记录</Link>
 					</Button>
-				)
+				);
 			},
 		}];	
 
@@ -47,7 +47,9 @@ class HealthSearch extends React.Component {
 
 	componentDidMount(){
 		MeansInfo.idNumber=this.props.location.query.id_number;
-		MeansInfo.getJilu(`http://qolm.ybyt.cc/api/v1/registration/check_registration?id_number=${MeansInfo.idNumber}`);
+		if (MeansInfo.idNumber.length==18) {
+			MeansInfo.getJilu(`http://qolm.ybyt.cc/api/v1/registration/check_registration?id_number=${MeansInfo.idNumber}`);
+		}
 	}
 
 	handleSearch(value){

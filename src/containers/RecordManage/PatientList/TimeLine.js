@@ -1,6 +1,6 @@
 // 客户列表页的客户信息的时间轴
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Timeline } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
@@ -30,9 +30,9 @@ class TimeLine extends React.Component{
               </p>              
             </div>
           </div>
-        )
+        );
       })
-    )
+    );
     
   }
   render(){
@@ -42,7 +42,7 @@ class TimeLine extends React.Component{
             { this.renderYB() }
           </div>
         </div>
-    )
+    );
   }
 }
 export default TimeLine;

@@ -22,12 +22,12 @@ class FollowUpSurver extends React.Component {
     validateFields((err, values) => {
       if (!err) {
             UserPhysical.checkDevice("http://qolm.ybyt.cc/api/v1/examination_input/check", `id_number=${values.idCord}&phone=${values.deviceNum}`);
-            console.log(values.idCord);
+            //console.log(values.idCord);
             resetFields();
             UserPhysical.statusBool.display = "block";
             setTimeout( function() {
               UserPhysical.statusBool.display = "none";
-            }, 3000)
+            }, 3000);
         message.success('提交成功');
       }else {
         message.error('遇到一些问题，请重新提交');
@@ -38,10 +38,10 @@ class FollowUpSurver extends React.Component {
   handleStatus() {
     this.setState({
       statusBool: "true",
-    })
+    });
   }
   handleChange(value) {
-    console.log(`selected ${value}`);
+    //console.log(`selected ${value}`);
   }
   componentDidMount() {
     UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");

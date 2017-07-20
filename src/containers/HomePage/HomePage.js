@@ -9,7 +9,7 @@ class Home extends Component {
 	}
 	render(){
 		return(
-			 <div className="con">
+			<div className="con">
 			<p>健康管理师首页</p>
 			<div className="homeCon">
 				<div className="top">
@@ -43,22 +43,22 @@ class Home extends Component {
 						<span>档案室</span>
 						<ul className="clearfix">
 							<li> 
-								<Link to="/recordManage/newRecord" style={{display: 'block', color: '#726f77'}}>档案新建</Link>
+								<Link to="/newRecord" style={{display: 'block', color: '#726f77'}}>档案新建</Link>
 							</li>
 							<li> 
-								<Link to="/recordManage/patientList" style={{display: 'block', color: '#726f77'}}>客户列表</Link>
+								<Link to="/patientList" style={{display: 'block', color: '#726f77'}}>客户列表</Link>
 							</li>
 						</ul>
 						<span>方案室</span>
 						<ul className="clearfix">
 							<li> 
-								<Link to="/means/spine" style={{display: 'block', color: '#726f77'}}>筑脊开方</Link>
+								<Link to="/spine" style={{display: 'block', color: '#726f77'}}>筑脊开方</Link>
 							</li>
 							<li> 
-								<Link to="/means/diseaseLocation" style={{display: 'block', color: '#726f77'}}>疾病谱定位</Link>
+								<Link to="/diseaseLocation" style={{display: 'block', color: '#726f77'}}>疾病谱定位</Link>
 							</li>
 							<li> 
-								<Link to="/means/healthManagement" style={{display: 'block', color: '#726f77'}}>健康管理</Link>
+								<Link to="/healthManagement" style={{display: 'block', color: '#726f77'}}>健康管理</Link>
 							</li>
 						</ul>						
 					</div>
@@ -67,31 +67,31 @@ class Home extends Component {
 						<span>体检室</span>
 						<ul className="clearfix">
 							<li>
-								<Link to="/physical/bloodPressure" style={{display: 'block', color: '#726f77'}}>
+								<Link to="/bloodPressure" style={{display: 'block', color: '#726f77'}}>
 									<Icon type="bar-chart" /> 
 									. 血压收录
 								</Link>
 							</li>
 							<li>
-								<Link to="/physical/bloodSugar" style={{display: 'block', color: '#726f77'}}>
+								<Link to="/bloodSugar" style={{display: 'block', color: '#726f77'}}>
 									<Icon type="dot-chart" />
 									. 血糖收录
 								</Link>
 							</li>
 							<li>
-								<Link to="/physical/temperature" style={{display: 'block', color: '#726f77'}}>
+								<Link to="/temperature" style={{display: 'block', color: '#726f77'}}>
 									<Icon type="fork" />	
 									. 体温收录
 								</Link>
 							</li>
 							<li>
-								<Link to="/physical/weight" style={{display: 'block', color: '#726f77'}}>
+								<Link to="/weight" style={{display: 'block', color: '#726f77'}}>
 									<Icon type="area-chart" />
 									. 体重收录
 								</Link>
 							</li>
 							<li>
-								<Link to="/physical/heartRate" style={{display: 'block', color: '#726f77'}}>
+								<Link to="/heartRate" style={{display: 'block', color: '#726f77'}}>
 									<Icon type="line-chart" />
 									. 心率收录
 								</Link>

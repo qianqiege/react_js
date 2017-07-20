@@ -137,27 +137,27 @@ class MeansInfo {
 	//点击产品自动显示用法
 	@action async getProInfo(url) {
 		const proInfos= await fetch(url, {
-	      mode: "cors",
-	      method: "GET",
-	      headers: {"Content-Type": "application/x-www-form-urlencoded",
-	        "Access-Control-Allow-Headers": "Authorization",
-	        "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials": true,
-	        "Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
-	      return response.json();
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
 
-	    }).then( function(jsonData) {
-	      return jsonData;
-	    }).catch( function() {
-	      console.log("出现错误!");
-	    })
-	    runInAction("success", () => {
-	    	this.proUse = proInfos;
-	    }) 
-  	}  
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误!");
+		});
+		runInAction("success", () => {
+			this.proUse = proInfos;
+		});
+	}
 
-  	//异常数据获取
+	//异常数据获取
 	@action async getUnnormal(url) {
 		const unNormal= await fetch(url, {
 			mode: "cors",
@@ -321,6 +321,7 @@ class MeansInfo {
 	}
 
 	//查看详细开方记录
+	@observable a = {};
 	@action async getXxJl(url) {
 		let xxData= await fetch(url, {
 			mode: "cors",

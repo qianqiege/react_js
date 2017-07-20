@@ -48,12 +48,13 @@ class LookMeans extends React.Component {
 		const userIdNum = this.props.location.query.id;
 		MeansInfo.getXxJl(`http://qolm.ybyt.cc/api/v1/registration/check_info?number=${userIdNum}`);
 	}
-
 	render(){
-
 		const columns = this.columns;
 		const { dataSource } = this.state;
 		const id = this.props.location.query.id;
+		const disData = MeansInfo.userXxData.disease_location_recipes[0];
+		const healData = MeansInfo.userXxData.health_manage_recipes[0];
+		const spineData = MeansInfo.userXxData.spine_recipes[0];
 		return (
 			<div>
 				<p className="YBNum">编号：<span>{id}</span></p>
@@ -71,25 +72,30 @@ class LookMeans extends React.Component {
 						<li>联系方式：{MeansInfo.userXxData.patient.phone}</li>
 					</ul>					
 				</div>
-				<div className="jiluContent">
+				<div className="jiluContent clearfix">
 					<p><Icon type="pushpin" />	疾病谱定位</p>
-					<div className="jk">生理方面：{MeansInfo.userXxData.disease_location_recipes[0].physiology}</div>
-					<div className="jk">情志方面：{MeansInfo.userXxData.disease_location_recipes[0].emotion}</div>
-					<div className="jk">营养方面：{MeansInfo.userXxData.disease_location_recipes[0].nutrition}</div>
-					<div className="jk">生活方式方面：{MeansInfo.userXxData.disease_location_recipes[0].life_style}</div>
-					<div className="jk">主症：{MeansInfo.userXxData.disease_location_recipes[0].main_symptom}</div>
-					<div className="jk">急症：{MeansInfo.userXxData.disease_location_recipes[0].emergency_symptom}</div>
-					<div className="jk">兼症：{MeansInfo.userXxData.disease_location_recipes[0].part_symptom}</div>
-					<div className="jk">次兼症：{MeansInfo.userXxData.disease_location_recipes[0].second_part_symptom}</div>
+					<div className="jk">生理方面：{disData?<span>{disData.physiology}</span>:null}</div>
+					<div className="jk">情志方面：{disData?<span>{disData.emotion}</span>:null}</div>
+					<div className="jk">营养方面：{disData?<span>{disData.nutrition}</span>:null}</div>
+					<div className="jk">生活方式方面：{disData?<span>{disData.life_style}</span>:null}</div>
+					<div className="jk">主症：{disData?<span>{disData.main_symptom}</span>:null}</div>
+					<div className="jk">急症：{disData?<span>{disData.emergency_symptom}</span>:null}</div>
+					<div className="jk">兼症：{disData?<span>{disData.part_symptom}</span>:null}</div>
+					<div className="jk">次兼症：{disData?<span>{disData.second_part_symptom}</span>:null}</div>
+					<p className="docUser">健管专家：{disData?<span>{disData.doctor_name}</span>:null}</p>					
 				</div>
-				<div className="jiluContent noPag">
+				<div className="jiluContent noPag clearfix">
 					<p><Icon type="bar-chart" />	健康管理</p>
 					<span className="linchuang">深度临床营养强化干预方案：</span>
 					<Table columns={columns} dataSource={dataSource} bordered />
+					<div className="jk">{healData?<span>{healData.detail}</span>:null}</div>
+					<p className="docUser">健管专家：{healData?<span>{healData.doctor_name}</span>:null}</p>
 				</div>
-				<div className="jiluContent">
+				<div className="jiluContent clearfix">
 					<p><Icon type="api" />	脊柱</p>
-					<h5>这里似乎API有问题，不能提交开方，看不到所需内容</h5>
+					<div className="jk">身体状况描述：{spineData?<span>{spineData.physical_condition}</span>:null}</div>
+					<div className="jk">诊断意见：{spineData?<span>{spineData.diagnostic_advice}</span>:null}</div>
+					<p className="docUser">健管专家：{spineData?<span>{spineData.doctor_name}</span>:null}</p>
 				</div>
 			</div>
 		);

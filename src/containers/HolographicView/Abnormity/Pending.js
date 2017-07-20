@@ -88,7 +88,7 @@ class Holo extends React.Component {
     HolographyData.getHolographyInfo(`http://qolm.ybyt.cc/api/v1/exception/by_id?id=${id}&is_handle=0&page=1&per_page=10`);
   }
   shouldComponentUpdate() {
-    console.log("shouldComponentUpdate");
+    //console.log("shouldComponentUpdate");
     return true;
   }
 	render() {

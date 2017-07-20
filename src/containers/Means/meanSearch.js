@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import { observer } from "mobx-react";
 import MeansInfo from 'models/MeansInfo';
 import './meanSearch.css';
-import $ from "jquery";
+//import $ from "jquery";
 
 
 const Search = Input.Search;
@@ -30,8 +30,8 @@ class MeanSearch extends React.Component{
 		
 		if(e.target.value.length == 18){
 			MeansInfo.idNumber = e.target.value;
-			console.log(MeansInfo.idNumber);
-		};
+			//console.log(MeansInfo.idNumber);
+		}
 	}
 
 	render(){
@@ -48,7 +48,7 @@ class MeanSearch extends React.Component{
 					<Link to={`/means/healthSearch?id_number=${MeansInfo.idNumber}`}>查看记录</Link>
 				</Button>				
 			</div>
-		)
+		);
 	}
 }
 

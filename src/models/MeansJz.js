@@ -79,20 +79,8 @@ class MeansJz {
 
 	//脊柱开方金额计算
 	@action handleChange = (e) => {
-		// this.isKaifang.boolLevel = e.target.checked;
-		// console.log(this.isKaifang.boolLevel);
-		// if( e.target.checked ) {
-		// 	this.isKaifang.jiZhuBtn = true;
-		// 	this.jizhu.push(e.target.value);
-		// 	this.isKaifang.allPrice += parseInt(e.target.dataCount);
-		// }else if(!e.target.checked){
-		// 	this.jizhu.splice(this.jizhu.indexOf(e.target.value), 1);
-		// 	this.isKaifang.allPrice -= parseInt(e.target.dataCount);
-		// 	return this.jizhu;
-
-		// }
 		if(e.target.checked) {
-			console.log(e.target.value, e.target.dataCount);
+			//console.log(e.target.value, e.target.dataCount);
 			this.isKaifang.jizhuPrice += parseInt(e.target.dataCount);
 			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
 
@@ -105,7 +93,7 @@ class MeansJz {
 	//放血总价的计算；
 	@action handleCount(count) {
 		this.isKaifang.allPrice = parseInt(this.isKaifang.bloodPrice) * count;
-		console.log(this.isKaifang.allPrice);
+		//console.log(this.isKaifang.allPrice);
 		this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
 	}
 	//总价的计算；
@@ -178,14 +166,14 @@ class MeansJz {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("出现错误!");
-	    })
-	    runInAction("success post kaifang", () => {
-			console.log("success");
-	    }) 
-  	}
-  	//获取放血排毒的价格；
-  	@action async getBloodletting(url) {
+			//console.log("出现错误!");
+		});
+		runInAction("success post kaifang", () => {
+			//console.log("success");
+		});
+	}
+	//获取放血排毒的价格；
+	@action async getBloodletting(url) {
 		const proInfos= await fetch(url, {
 			mode: "cors",
 			method: "GET",
@@ -194,18 +182,18 @@ class MeansJz {
 				"Access-Control-Allow-Origin": "*",
 				"Access-Control-Allow-Credentials": true,
 				"Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
+		}).then( function(response) {
 			return response.json();
 
-	    }).then( function(jsonData) {
+		}).then( function(jsonData) {
 			return jsonData;
-	    }).catch( function() {
-			console.log("出现错误!");
-	    })
-	    runInAction("success get blood", () => {
+		}).catch( function() {
+			//console.log("出现错误!");
+		});
+		runInAction("success get blood", () => {
 			this.isKaifang.bloodPrice = proInfos.price;
-	    }) 
-  	} 
+		});
+	}
 }
 
 export default new MeansJz();

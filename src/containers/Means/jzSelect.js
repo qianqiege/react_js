@@ -15,15 +15,15 @@ class JzSelect extends React.Component{
 	}
 
 	handleChange(value){
-		MeansJz.getPay(`http://qolm.ybyt.cc/api/v1/spine/spine_level_charge?spine_level_id=${value}`)
+		MeansJz.getPay(`http://qolm.ybyt.cc/api/v1/spine/spine_level_charge?spine_level_id=${value}`);
 	}
 
 	render(){
 		return(
-		<Select defaultValue="初级" style={{ width: 120 }} onChange={this.handleChange.bind(this)}>
-			{MeansJz.jzArr}
-		</Select>			
-		)
+			<Select defaultValue="初级" style={{ width: 120 }} onChange={this.handleChange.bind(this)}>
+				{MeansJz.jzArr}
+			</Select>
+		);
 	}
 }
 
