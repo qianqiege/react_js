@@ -18,7 +18,7 @@ class BloodPressure extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
             PhysicalData.clearInfo();
-            console.log(values);
+            //console.log(values);
         PhysicalData.SubmitPhysical("http://qolm.ybyt.cc/api/v1/examination_input/blood_glucose",
           `id_number=${idCard}&value=${values.val}&item_type=${values.item_type}` );
         message.success('提交成功');
@@ -42,10 +42,10 @@ class BloodPressure extends React.Component {
 							{getFieldDecorator('val', {
 							  rules: [{ required: false, message: 'Please input your username!' }],
 							})(
-							  <Input className="border-n" suffix={<span className="font2">毫克/分升</span>} placeholder="" />
+							<Input className="border-n" suffix={<span className="font2">毫克/分升</span>} placeholder="" />
 							)}
 						</FormItem>
-		            </Col>
+		          </Col>
 		            <Col span={10} style={{ float: 'right', fontSize: 16 }}>
 		              <div className="mar-b mar-t">
 		                <p className="mar-b">测量类型</p>
@@ -78,7 +78,7 @@ class BloodPressure extends React.Component {
 		        </Form>
 			 </div>
 			
-		</div>
+		</div>;
 	}
 }
 

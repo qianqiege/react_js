@@ -1,5 +1,5 @@
 import cookie from "js-cookie";
-import React from "react";
+//import React from "react";
 import { observable, action, runInAction } from "mobx";
 
 class HolographyData {
@@ -57,11 +57,11 @@ class HolographyData {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("出现错误!");
-		}) 
+			//console.log("出现错误!");
+		});
 		runInAction("request success", () => {
 			this.userInfo = Object.assign({}, products);
-		})
+		});
 	}
 	//获取用户‘待处理’信息的请求；
 	@action async getHolographyInfo(url) {
@@ -79,11 +79,11 @@ class HolographyData {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("出现错误!");
-		}) 
+			//console.log("出现错误!");
+		});
 		runInAction("request success", () => {
 			this.exData = Object.assign({}, products);
-		})
+		});
 	}
 	//获取用户‘已处理’信息的请求；
 	@action async get(url) {
@@ -101,11 +101,11 @@ class HolographyData {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("出现错误!");
-		}) 
+			//console.log("出现错误!");
+		});
 		runInAction("request success", () => {
 			this.exDataTwo = Object.assign({}, products);
-		})
+		});
 	}
 	//提交‘处理异常’信息
 	@action async putMessage(url, data) {
@@ -125,11 +125,11 @@ class HolographyData {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("出现错误!");
-		}) 
+			//console.log("出现错误!");
+		}); 
 		runInAction("request success", () => {
 			alert("请求");
-		})
+		});
 	}
 }
 export default new HolographyData();

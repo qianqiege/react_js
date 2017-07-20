@@ -18,9 +18,9 @@ class NewUser {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log("success");
+			//console.log("success");
 		}).catch( function() {
-			console.log("请求失败");
+			//console.log("请求失败");
 		})
 	}
 }

@@ -79,7 +79,7 @@ class Holo extends React.Component {
       alert("请选择提醒方式");
     }else{
       const ret = ids.map(i => {return i.id});
-      var str = {"ids": ret, "is_wechart": is_wechat, "is_phone": is_phone, "health_advice": health_advice}
+      var str = {"ids": ret, "is_wechart": is_wechat, "is_phone": is_phone, "health_advice": health_advice};
       HolographyData.putMessage("http://qolm.ybyt.cc/api/v1/exception/handle", JSON.stringify(str, null, 4));
     }
   }
@@ -112,6 +112,6 @@ class Holo extends React.Component {
 				</Row>
 			</div>
 		);
-	};
-};
+	}
+}
 export default Holo;

@@ -1,6 +1,6 @@
 // 角色配置页面的添加角色按钮弹出来的组件模块
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input} from 'antd';
 import { observer } from 'mobx-react';
 // import UserRoleConfig from 'models/UserRoleConfig';
@@ -31,38 +31,38 @@ class AddRole extends React.Component {
     }
   }
   handleCancel = (e) => {
-    console.log(e);
+    //console.log(e);
     this.setState({
       visible: false, 
     });
   }
   handleChange(values) {
-    console.log(values);
+    //console.log(values);
     RoleConfig.abilities = values;
   }
   handleRoles(e) {
     this.setState({
       name: e.target.value,
-    })
+    });
   }
   render() {
     const options = RoleConfig.options.toJS();
     return (
       <div>
-        <Button type="primary" className='showmodal' onClick={this.showModal}>添加角色</Button>
+        <Button type="primary" className="showmodal" onClick={this.showModal}>添加角色</Button>
         <Modal
           title="添加角色"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
-          className='addrole'
+          className="addrole"
         >
-         <Input onChange={this.handleRoles.bind(this)} placeholder="角色名称" className='role_name' type="text" required />
+         <Input onChange={this.handleRoles.bind(this)} placeholder="角色名称" className="role_name" type="text" required />
         <br/>
         <br />
-        <p className='choose titleAbilities'>选择角色权限</p>
+        <p className="choose titleAbilities">选择角色权限</p>
         <br/>
-        <CheckboxGroup options={options} className='checkBox' onChange={this.handleChange}/>
+        <CheckboxGroup options={options} className="checkBox" onChange={this.handleChange}/>
         <br />
 
         

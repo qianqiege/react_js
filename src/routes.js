@@ -13,7 +13,7 @@ import HealthRecord from "./containers/HealthRecord/HealthRecord"; //健康管�
 
 import NewRecord from "./containers/RecordManage/NewRecords/NewRecord"; //新建档案
 import PatientList from "./containers/RecordManage/PatientList/PatientList"; //客户列表
-import Evaluate from "./containers/RecordManage/PatientList/Evaluate" //评价客户
+import Evaluate from "./containers/RecordManage/PatientList/Evaluate"; //评价客户
 
 import FollowUpSurvey from "./containers/Physical/FollowUpSurvey"; //随访包测量
 import BloodPressure from "./containers/Physical/BloodPressure"; //血压数据录入

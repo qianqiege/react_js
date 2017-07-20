@@ -1,6 +1,6 @@
 // 角色配置页面的添加角色按钮弹出来的组件模块
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input, Form } from 'antd';
 import { observer } from 'mobx-react';
 import RoleConfig from 'models/rolesConfig';
@@ -21,20 +21,20 @@ class AddRole extends React.Component {
   }
   handleOk = (e) => {
       // this.handleSubmit();   
-      console.log(this.props.store.id, RoleConfig.abilities.toJS());
+      //console.log(this.props.store.id, RoleConfig.abilities.toJS());
       this.setState({
         visible: false,
       });
   }
   handleCancel = (e) => {
-    console.log(e);
+    //console.log(e);
     this.setState({
       visible: false, 
     });
   }
   handleChange(values) {
     // RoleConfig.abilities = RoleConfig.abilities.concat(values);
-    console.log(values);
+    //console.log(values);
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -53,13 +53,13 @@ class AddRole extends React.Component {
     const { name, abilities } = RoleConfig.roleItem;
     return (
       <div>
-        <Button type="primary" className='showmodal' onClick={this.showModal}>编辑</Button>
+        <Button type="primary" className="showmodal" onClick={this.showModal}>编辑</Button>
         <Modal
           title="添加角色"
           visible={this.state.visible}
           onOk={this.handleSubmit}
           onCancel={this.handleCancel}
-          className='addrole'
+          className="addrole"
         >
           <Form onSubmit={this.handleSubmit}>        
             <FormItem>
@@ -67,16 +67,16 @@ class AddRole extends React.Component {
               rules: [{ required: false, message: '' }],
               initialValue: `${name}`,
             })(
-              <Input className='role_name' type="text" readOnly />
+              <Input className="role_name" type="text" readOnly />
             )}
             </FormItem>
             <FormItem>
-              <p className='choose titleAbilities'>选择角色权限</p>
+              <p className="choose titleAbilities">选择角色权限</p>
               {getFieldDecorator('rolePermission', {
               rules: [{ required: false, message: '' }],
               initialValue: abilities.features.toJS(),
             })(
-              <CheckboxGroup options={options} className='checkBox' onChange={this.handleChange} />
+              <CheckboxGroup options={options} className="checkBox" onChange={this.handleChange} />
             )}
             </FormItem>
           </Form>
