@@ -4,15 +4,15 @@ import cookie from "js-cookie";
 class PatientRecord {
 	//全息视图页面的电子档案模块的基本信息获取
 	@observable record={
-	  name: "",
-      idCard: "",
-      birthday: "",
-      phone: "",
-      Address: "",
-      nation: "",
-      sexValue: "",
-      marrayValue: "",
-      occupation: "",
+		name: "",
+		idCard: "",
+		birthday: "",
+		phone: "",
+		Address: "",
+		nation: "",
+		sexValue: "",
+		marrayValue: "",
+		occupation: "",
 	};
 	@action async getRecord(url) {
 		const Record = await fetch(url, {
@@ -26,23 +26,22 @@ class PatientRecord {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log("success");
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success patient_record',() =>{
 			this.record.name = Record.name;
-		    this.record.idCard = Record.id_number;
-		    this.record.birthday = Record.birthday;
-		    this.record.phone = Record.phone;
-		    this.record.Address = Record.address;
-		    this.record.nation = Record.nation;
-		    this.record.sexValue = Record.sex;
-		    this.record.marrayValue = Record.marriage;
-		    this.record.occupation = Record.occupation;
-		})
+			this.record.idCard = Record.id_number;
+			this.record.birthday = Record.birthday;
+			this.record.phone = Record.phone;
+			this.record.Address = Record.address;
+			this.record.nation = Record.nation;
+			this.record.sexValue = Record.sex;
+			this.record.marrayValue = Record.marriage;
+			this.record.occupation = Record.occupation;
+		});
 	}
 
 	//血糖监测的信息表格
@@ -73,12 +72,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success BloodGlucose',() =>{
-		  this.bloodGlu=Object.assign({}, BloodGlu);
-		})
+			this.bloodGlu=Object.assign({}, BloodGlu);
+		});
 	}
 
 
@@ -112,12 +111,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success BloodPre',() =>{
-		  this.bloodPre=Object.assign({}, BloodPre);
-		})
+			this.bloodPre=Object.assign({}, BloodPre);
+		});
 	}
 
 
@@ -149,12 +148,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success Temperature',() =>{
-		  this.temperature=Object.assign({}, Temperature);
-		})
+			this.temperature=Object.assign({}, Temperature);
+		});
 	}
 //体温检测数据
 	@observable weight = {
@@ -184,12 +183,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success Weight',() =>{
-		  this.weight=Object.assign({}, Weight);
-		})
+			this.weight=Object.assign({}, Weight);
+		});
 	}
 
 	//心率检测数据
@@ -220,12 +219,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success HeartRate',() =>{
-		  this.heartRate=Object.assign({}, HeartRate);
-		})
+			this.heartRate=Object.assign({}, HeartRate);
+		});
 	}
 
 	//尿酸检测数据
@@ -256,12 +255,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success Unine',() =>{
-		  this.unine=Object.assign({}, Unine);
-		})
+			this.unine=Object.assign({}, Unine);
+		});
 	}
 
 	//血脂检测数据
@@ -292,12 +291,12 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success BloodFat',() =>{
-		  this.bloodfat=Object.assign({}, Bloodfat);
-		})
+			this.bloodfat=Object.assign({}, Bloodfat);
+		});
 	}
 
 	//心电图检测数据
@@ -328,29 +327,22 @@ class PatientRecord {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("请求失败");
-		})
+			//console.log("请求失败");
+		});
 
 		runInAction('success BloodFat',() =>{
-		  this.ecg=Object.assign({}, Ecg);
-		})
+			this.ecg=Object.assign({}, Ecg);
+		});
 	}
 
 	//TDS检测数据
 	@observable tds= {
-	    id: "",
-	    report_url: "",
-	    get_jsonResult: "[]",
-	    created_at: "2017-04-19T16:29:20.000+08:00"
-  	}
-	// @observable tds = [
-	// 	{
-	// 		id:"",
-	// 		created_at:"",
-	// 		report_url:"",
-	// 		get_jsonResult:"",						
-	// 	}
-	// ]
+		id: "",
+		report_url: "",
+		get_jsonResult: "[]",
+		created_at: "2017-04-19T16:29:20.000+08:00"
+	}
+
 
 	@action async getTDS(url) {
 		const Tds = await fetch(url, {
@@ -367,11 +359,11 @@ class PatientRecord {
 			return jsonData;
 		}).catch( function() {
 			console.log("请求失败");
-		})
+		});
 
 		runInAction('success BloodFat',() =>{
-		  this.tds=Object.assign({}, Tds);
-		})
+			this.tds=Object.assign({}, Tds);
+		});
 	}
 }
 
