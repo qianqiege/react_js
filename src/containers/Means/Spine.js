@@ -21,38 +21,53 @@ class Spine extends React.Component{
 			disable:false,
 		};
 	}
+	//开方提交；
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.form.validateFieldsAndScroll((err, values) => {
 			if (!err) {
 				console.log(values, MeansJz.jizhu.slice(), MeansInfo.meansUser.id, MeansJz.isKaifang.levelVal);
-
-			// 	MeansJz.postKaifang("http://qolm.ybyt.cc/api/v1/recipe/create_spine_recipe",
-			// 		`patient_id=${MeansInfo.meansUser.id}&blood_letting_times=${values.blood_letting_times}&physical_condition=${values.physical_condition}&diagnostic_advice=${values.diagnostic_advice}&treatment_level=${MeansJz.isKaifang.levelVal}&treatment_times=${values.treatment_times}&single_amount=&total=${MeansJz.isKaifang.allPrice}&detail=${MeansJz.jizhu.slice()}`);
-			// this.props.form.resetFields();
-			// message.success('脊柱开方成功');
+				MeansJz.postKaifang("http://qolm.ybyt.cc/api/v1/recipe/create_spine_recipe",
+					`patient_id=${MeansInfo.meansUser.id}&blood_letting_times=${values.blood_letting_times}&physical_condition=${values.physical_condition}&diagnostic_advice=${values.diagnostic_advice}&treatment_level=${MeansJz.isKaifang.levelVal}&treatment_times=${values.treatment_times}&single_amount=&total=${MeansJz.isKaifang.prices}&detail=${MeansJz.jizhu.slice()}`);
+				this.props.form.resetFields();
+				message.success('脊柱开方成功');
 			}else {
 				message.error('遇到一些问题，请重新提交');
 				this.props.form.resetFields();
 			}
 		});
 	}
+	//点击放血排毒checkbox;
 	onChange (e){
 		if( e.target.checked ) {
-			MeansJz.getBloodletting("http://qolm.ybyt.cc/api/v1/spine/bloodletting");
+			//请求放血排毒价格数据，然后选中时将1作为参数传入；
+			MeansJz.getBloodletting("http://qolm.ybyt.cc/api/v1/spine/bloodletting").then(() => {
+				MeansJz.handleCount(1);
+			});
 		}else if(!e.target.checked) {
-			this.props.form.setFieldsValue({blood_letting_times: 0});
-			MeansJz.isKaifang.allPrice = 0;
-			MeansJz.isKaifang.prices = MeansJz.isKaifang.jizhuPrice;
+			this.props.form.setFieldsValue({blood_letting_times: 1}); //放血排毒input变为0；
+			MeansJz.isKaifang.allPrice = 0; //放血排毒的总价为0；
+			MeansJz.isKaifang.prices = MeansJz.isKaifang.jizhuPrice; //总额等于脊柱的总额；
 		}
 		this.setState({
 			disable:e.target.checked,
 		})
 
 	}
+	//放血排毒输入框
 	onBlood(e) {
 		if( e.target.value >= 0 ) {
 			MeansJz.handleCount(e.target.value);
+			MeansJz.isKaifang.jiZhuBtn = true;
+		}else {
+			e.target.value = 0;
+		}
+	}
+	handleTreatment(e) {
+		if( e.target.value >= 0 ) {
+			MeansJz.isKaifang.treatmentCount = e.target.value;
+			MeansJz.isKaifang.prices = MeansJz.isKaifang.allPrice + MeansJz.isKaifang.jizhuPrice * MeansJz.isKaifang.treatmentCount;
+			MeansJz.isKaifang.jiZhuBtn = true;
 		}else {
 			e.target.value = 0;
 		}
@@ -89,6 +104,7 @@ class Spine extends React.Component{
 								<Checkbox  onChange={this.onChange.bind(this)}>放血排毒 3600元</Checkbox>
 								{getFieldDecorator('blood_letting_times', {
 									rules: [{ required: false, message: '' }],
+									initialValue: 1,
 								})(
 									<Input type="number" className="blood"  disabled={!this.state.disable} onChange={this.onBlood}/>
 								)}
@@ -99,7 +115,7 @@ class Spine extends React.Component{
 									rules: [{ required: false, message: '' }],
 									initialValue: 1,
 								})(
-									<Input type="number" className="cishu" />
+									<Input type="number" className="cishu" onChange={this.handleTreatment}/>
 								)}
 							</FormItem>
 						</Form>

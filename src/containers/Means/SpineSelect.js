@@ -46,6 +46,7 @@ class SpineSelect extends React.Component{
     MeansJz.getPay(`http://qolm.ybyt.cc/api/v1/spine/spine_level_charge?spine_level_id=${option.props.dataId}`);
     MeansJz.isKaifang.jizhuPrice = 0;
     MeansJz.isKaifang.prices = MeansJz.isKaifang.allPrice;
+    MeansJz.isKaifang.jiZhuBtn = true;
 
 
   }
