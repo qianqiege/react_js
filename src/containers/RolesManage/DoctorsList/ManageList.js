@@ -29,7 +29,7 @@ class ManageList extends React.Component {
       dataIndex: 'operation',
       key:'2',
       render: (text, record, index) => {
-        return (<AddPermiss/>);
+        return (<AddPermiss store={record.id} />);
       }
     }];
    this.handleSearch = this.handleSearch.bind(this);

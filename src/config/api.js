@@ -12,6 +12,7 @@ export const API_CONFIG = {
   baseUri: baseUri,
   auth: 'auth', //用户登录；
   users: 'users',
+  get_user_by_id: 'users/get_user_by_id', //通过id查询用户；
   menus: 'menus', //菜单项；
   rolesAbilities: 'roles/abilities', //获取用于创建角色的权限系列
   roles: 'roles' //创建角色；
