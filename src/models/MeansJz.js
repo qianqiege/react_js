@@ -54,6 +54,7 @@ class MeansJz {
 		bloodPrice: "0", 
 		jizhuPrice: 0, //脊柱总价;
 		prices: 0, //总价;
+		treatmentCount: 1, //治疗次数;
 	}
 	@observable isChecked = false;
 	@action async getJibie(url) {
@@ -80,21 +81,22 @@ class MeansJz {
 	//脊柱开方金额计算
 	@action handleChange = (e) => {
 		if(e.target.checked) {
-			//console.log(e.target.value, e.target.dataCount);
+			this.isKaifang.jiZhuBtn = true;
 			this.isKaifang.jizhuPrice += parseInt(e.target.dataCount);
-			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
-
+			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice * this.isKaifang.treatmentCount;
+			this.jizhu.push(e.target.value);
 		}else if(!e.target.checked) {
 			this.isKaifang.jizhuPrice -= parseInt(e.target.dataCount);
-			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
-
+			this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice * this.isKaifang.treatmentCount;
+			this.jizhu.splice(this.jizhu.indexOf(e.target.value), 1);
+			return this.jizhu;
 		}
 	}
 	//放血总价的计算；
 	@action handleCount(count) {
 		this.isKaifang.allPrice = parseInt(this.isKaifang.bloodPrice) * count;
-		//console.log(this.isKaifang.allPrice);
-		this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice;
+		console.log(this.isKaifang.allPrice);
+		this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice * this.isKaifang.treatmentCount;
 	}
 	//总价的计算；
 	@action allPrices() {

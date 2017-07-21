@@ -5,6 +5,7 @@ import { observable, action, runInAction } from "mobx";
 class UserList {
 	@observable userInfo = {
 		uname: "",
+		uid:"",
 		record_number: [],
 	}
 
@@ -27,6 +28,7 @@ class UserList {
 		if(ret.name) {
 			runInAction("request success", () => {
 				this.userInfo.uname = ret.name;
+				this.userInfo.uid = ret.id;
 				this.checkRecord(`http://qolm.ybyt.cc/api/v1/registration/check_registration?id_number=${ret.id_number}`);
 			});
 		}else{

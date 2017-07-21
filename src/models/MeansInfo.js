@@ -75,6 +75,14 @@ class MeansInfo {
 		spine_recipes:[],
 	};
 
+	//方案室数据记录详情页面药房数据
+	@observable drugData = [{
+				key: '',
+				name: '',
+				how: '',
+				number: '',		
+	}];
+
 	//方案室个人信息组件
 	@action async getInfo(url) {
 		const infos = await fetch(url, {
@@ -341,6 +349,18 @@ class MeansInfo {
 		runInAction("success", () => {
 			this.userXxData = Object.assign({}, xxData);
 			console.log(this.userXxData);
+			console.log(this.userXxData.health_manage_recipes[0].detail);
+			// const drug = eval(this.userXxData.health_manage_recipes[0].detail);
+			// for(var i = 0; i<drug.length; i++){
+			// 	const item = [];
+			// 	item.push(drug[i]["产品名"]);
+			// 	item.push(drug[i]["用法"]);
+			// 	item.push(drug[i]["数量"]);
+			// 	this.drugData.push(item);
+			// }
+
+			// console.log(this.drugData);
+						
 		});
 	}
 

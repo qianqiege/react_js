@@ -20,7 +20,6 @@ class MeanSearch extends React.Component{
 	}
 
 	handleSearch(value) {
-
 		MeansInfo.getInfo(`http://qolm.ybyt.cc/api/v1/patient/get_by_id_number?id_number=${value}`);
 		MeansInfo.getRecords(`http://qolm.ybyt.cc/api/v1/registration/get_number?id_number=${value}`);
 		MeansInfo.getCurrentUser("http://qolm.ybyt.cc/api/v1/users/current_user");
@@ -30,8 +29,7 @@ class MeanSearch extends React.Component{
 		
 		if(e.target.value.length == 18){
 			MeansInfo.idNumber = e.target.value;
-			//console.log(MeansInfo.idNumber);
-		}
+		};
 	}
 
 	render(){
