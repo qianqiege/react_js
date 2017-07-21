@@ -17,10 +17,11 @@ class User {
   @observable auth = {
     isFetching: false,
     isAuthenticated: cookie.get('access_token') ? true : false
-  }
+  };
   @observable record = {
     numbers: ""
-  }
+  };
+  @observable role_ids = []; //用户的角色权限；
   @action async fetchUsers(params = {page: 1, per_page: 10 }) {
     this.list.isFetching = true;
     const ret = await cFetch(API_CONFIG.users, { method: "GET", params: params });
@@ -53,6 +54,18 @@ class User {
     return cFetch(`${API_CONFIG.users}/${id}`, { method: "DELETE" }).then(() => {
       this.fetchUsers();
     });
+  }
+  //通过id查询用户；
+  @action async get_user(id) {
+    const ret = await cFetch(`${API_CONFIG.get_user_by_id}?id=${id}`, { method: "GET" });
+    runInAction("success require fetch", () => {
+      this.role_ids = ret.role_ids;
+
+    })
+  }
+  //通过id查询用户；
+  @action update_user(id, values) {
+    return cFetch(`${API_CONFIG.users}/${id}`, { method: "PUT", body: JSON.stringify(values) });
   }
 }
 

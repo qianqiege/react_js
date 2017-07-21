@@ -1,11 +1,19 @@
 // 健康管理师页面 的添加权限组件
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Checkbox,Modal, Button, Input} from 'antd';
+import { Checkbox,Modal, Button, Input, Form} from 'antd';
 import { observer } from 'mobx-react';
 import UserMana from 'models/UserMana';
+import RolesConfig from 'models/rolesConfig';
+import User from 'models/User';
+
 import $ from "jquery";
+
 import '../CustomTable.scss';
+
+const FormItem = Form.Item;
+const CheckboxGroup = Checkbox.Group;
+
 @observer
 class AddRole extends React.Component {
   state = { visible: false }
@@ -14,32 +22,20 @@ class AddRole extends React.Component {
     this.setState({
       visible: true,
     });
-    UserMana.showModal('http://qolm.ybyt.cc/api/v1/users/current_user');
-    //console.log('succ');
-    const data = UserMana.roleId.toJS();
-    //console.log(data[0]);
-    if(data[0]!==4){
-      $('.Checkbox').text('');   
-    }else{
-
-    }
+    RolesConfig.getRolesList();
+    User.get_user(this.props.store);
   }
 
-  handleOk = (e) => {
-    //console.log(e);
-    this.setState({
-      visible: false,
+  handleSubmit = (e) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log(values, this.props.store);
+        User.update_user(this.props.store, values);
+      }
+      this.setState({
+        visible: false,
+      });
     });
-
-     UserMana.putUser('http://qolm.ybyt.cc/api/v1/users/411423199409183020');
-    // this.props.checkbox.value((err) => {
-    //   if (err) {
-    //     console.log("err");
-    //   }else {
-    //     UserMana.putUser('http://qolm.ybyt.cc/api/v1/users/411423199409183020'); 
-            
-    //   }
-    // });
   }
 
   handleCancel = (e) => {
@@ -48,24 +44,13 @@ class AddRole extends React.Component {
       visible: false,
     });
   }
-
   render() {
-    const CheckboxGroup = Checkbox.Group;
-    function onChange(checkedValues) {
-      //console.log('checked = ', checkedValues);
-    }
-
-    const options = [
-    { label: 'test3', value: 'test3' },
-    { label: 'test2', value: 'test2' },
-    { label: '村卫生室', value: '村卫生室' },
-    { label: '工作站管理员', value: '工作站管理员' },
-    { label: '健康管理师列表', value: '健康管理师列表' },
-    { label: '档案室', value: '档案室' },
-    { label: '管理师', value: '管理师' },
-    { label: '管理员', value: '管理员' },
-  ];
-
+    const { getFieldDecorator } = this.props.form;
+    const role_ids = User.role_ids.toJS();
+    const options = RolesConfig.rolesLists.data.toJS();
+    const arr = options.map((option) => {
+      return { label: option.name, value: option.id }
+    })
     return (
       <div>
         <Button className="addrole" type="primary" style={{height:35}} 
@@ -73,16 +58,25 @@ class AddRole extends React.Component {
         <Modal
           title="添加用户权限"
           visible={this.state.visible}
-          onOk={this.handleOk}
+          onOk={this.handleSubmit}
           onCancel={this.handleCancel}
           className="addrole"
         >
-    
         <br/>
         <br />
         <p className="choose">用户名</p>
         <br/>
-        <CheckboxGroup options={options} onChange={onChange} className="Checkbox"/>
+        
+        <Form onSubmit={this.handleSubmit}>        
+        <FormItem>
+          {getFieldDecorator('role_ids', {
+          rules: [{ required: false, message: '' }],
+          initialValue: role_ids,
+        })(
+          <CheckboxGroup options={arr} className="Checkbox" />
+        )}
+        </FormItem>
+        </Form>
         <br /> 
         <br/>
         <br/>
@@ -91,4 +85,4 @@ class AddRole extends React.Component {
     );
   }
 }
-export default AddRole;
+export default Form.create()(AddRole);
