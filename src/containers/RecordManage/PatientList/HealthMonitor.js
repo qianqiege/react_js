@@ -1,6 +1,6 @@
 // 健康监测页面
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Tabs } from 'antd';
 import { observer } from 'mobx-react';
 import MonitorDataTable from './MonitorDataTable';
@@ -29,7 +29,7 @@ class HealthMonitor extends React.Component{
 					<TabPane tab="TDS数字中医" key="9"><Electro/></TabPane>
 				</Tabs>
 			</div>
-		)
+		);
 	}
 }
 

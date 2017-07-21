@@ -40,15 +40,15 @@ class BloodPressure extends React.Component {
 						<span>血糖值</span>
 						<FormItem>
 							{getFieldDecorator('val', {
-							  rules: [{ required: false, message: 'Please input your username!' }],
+							rules: [{ required: false, message: 'Please input your username!' }],
 							})(
 							<Input className="border-n" suffix={<span className="font2">毫克/分升</span>} placeholder="" />
 							)}
 						</FormItem>
-		          </Col>
-		            <Col span={10} style={{ float: 'right', fontSize: 16 }}>
-		              <div className="mar-b mar-t">
-		                <p className="mar-b">测量类型</p>
+		        </Col>
+		        <Col span={10} style={{ float: 'right', fontSize: 16 }}>
+		          <div className="mar-b mar-t">
+		            <p className="mar-b">测量类型</p>
                     <FormItem>
                       {getFieldDecorator('item_type', {
                         rules: [{ required: false, message: 'Please input your username!' }],
@@ -69,14 +69,14 @@ class BloodPressure extends React.Component {
                         </Select>
                       )}
                     </FormItem>
-		                </div>
-		            </Col>
-		          </Row>
+		            </div>
+		          </Col>
+		        </Row>
 				<FormItem>
 					<Button type="primary" htmlType="submit" className="login-form-button"> 提交 </Button>
 				</FormItem> 
-		        </Form>
-			 </div>
+		  </Form>
+			</div>
 			
 		</div>;
 	}

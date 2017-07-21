@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
 
@@ -15,12 +15,14 @@ class Unine extends React.Component {
 			phyName: "尿酸值",
 			unit: "mmol/L",
 			name: "unine",
-		}
+		};
 	}
 	render() {
-		return <div className="record-content">
-			<PhysicalInfo store={this.state} />
-		</div>
+		return (
+			<div className="record-content">
+				<PhysicalInfo store={this.state} />
+			</div>
+		);
 	}
 }
 

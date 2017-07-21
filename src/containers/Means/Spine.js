@@ -51,7 +51,7 @@ class Spine extends React.Component{
 		}
 		this.setState({
 			disable:e.target.checked,
-		})
+		});
 
 	}
 	//放血排毒输入框

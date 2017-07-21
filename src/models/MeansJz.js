@@ -168,14 +168,14 @@ class MeansJz {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			console.log("出现错误!");
-	    })
-	    runInAction("success post kaifang", () => {
-			console.log("success");
-	    }) 
-  	}
-  	//获取放血排毒的价格；
-  	@action async getBloodletting(url) {
+			//console.log("出现错误!");
+		});
+		runInAction("success post kaifang", () => {
+			//console.log("success");
+		});
+	}
+	//获取放血排毒的价格；
+	@action async getBloodletting(url) {
 		const proInfos= await fetch(url, {
 			mode: "cors",
 			method: "GET",
@@ -184,18 +184,18 @@ class MeansJz {
 				"Access-Control-Allow-Origin": "*",
 				"Access-Control-Allow-Credentials": true,
 				"Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
+		}).then( function(response) {
 			return response.json();
 
-	    }).then( function(jsonData) {
+		}).then( function(jsonData) {
 			return jsonData;
-	    }).catch( function() {
-			console.log("出现错误!");
-	    })
-	    runInAction("success get blood", () => {
+		}).catch( function() {
+			//console.log("出现错误!");
+		});
+		runInAction("success get blood", () => {
 			this.isKaifang.bloodPrice = proInfos.price;
-	    }) 
-  	} 
+		});
+	}
 }
 
 export default new MeansJz();

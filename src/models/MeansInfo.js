@@ -75,6 +75,14 @@ class MeansInfo {
 		spine_recipes:[],
 	};
 
+	//方案室数据记录详情页面药房数据
+	@observable drugData = [{
+				key: '',
+				name: '',
+				how: '',
+				number: '',		
+	}];
+
 	//方案室个人信息组件
 	@action async getInfo(url) {
 		const infos = await fetch(url, {
@@ -137,27 +145,27 @@ class MeansInfo {
 	//点击产品自动显示用法
 	@action async getProInfo(url) {
 		const proInfos= await fetch(url, {
-	      mode: "cors",
-	      method: "GET",
-	      headers: {"Content-Type": "application/x-www-form-urlencoded",
-	        "Access-Control-Allow-Headers": "Authorization",
-	        "Access-Control-Allow-Origin": "*",
-	        "Access-Control-Allow-Credentials": true,
-	        "Access-Authorization": `${cookie.get("access_token")}`},
-	    }).then( function(response) {
-	      return response.json();
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
 
-	    }).then( function(jsonData) {
-	      return jsonData;
-	    }).catch( function() {
-	      console.log("出现错误!");
-	    })
-	    runInAction("success", () => {
-	    	this.proUse = proInfos;
-	    }) 
-  	}  
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误!");
+		});
+		runInAction("success", () => {
+			this.proUse = proInfos;
+		});
+	}
 
-  	//异常数据获取
+	//异常数据获取
 	@action async getUnnormal(url) {
 		const unNormal= await fetch(url, {
 			mode: "cors",
@@ -321,6 +329,7 @@ class MeansInfo {
 	}
 
 	//查看详细开方记录
+	@observable a = {};
 	@action async getXxJl(url) {
 		let xxData= await fetch(url, {
 			mode: "cors",
@@ -340,6 +349,18 @@ class MeansInfo {
 		runInAction("success", () => {
 			this.userXxData = Object.assign({}, xxData);
 			console.log(this.userXxData);
+			console.log(this.userXxData.health_manage_recipes[0].detail);
+			// const drug = eval(this.userXxData.health_manage_recipes[0].detail);
+			// for(var i = 0; i<drug.length; i++){
+			// 	const item = [];
+			// 	item.push(drug[i]["产品名"]);
+			// 	item.push(drug[i]["用法"]);
+			// 	item.push(drug[i]["数量"]);
+			// 	this.drugData.push(item);
+			// }
+
+			// console.log(this.drugData);
+						
 		});
 	}
 

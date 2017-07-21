@@ -112,7 +112,7 @@ class DiseaseLocation extends React.Component{
 				<h3 className="null">该账号不存在</h3>
 				<MeanInfo />
 			</div>
-		)
+		);
 	}
 }
 

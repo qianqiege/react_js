@@ -31,6 +31,7 @@ class PatientList extends React.Component{
 
   render() {
     const { uname } = UserList.userInfo;
+    const { uid } = UserList.userInfo;
     return (
       <div >
         <h1 style={{marginBottom:50}}>客户列表</h1>
@@ -55,14 +56,14 @@ class PatientList extends React.Component{
                     {uname}
                     <div >                
                       <Icon type="user" style={{fontSize:10,marginRight:5}}/>
-                      <span  style={{fontSize:16}}>382</span>
+                      <span  style={{fontSize:16}}>{uid}</span>
                     </div>
                   </li>
                 </ul>
               </li> 
               <li className="listuser" style={{marginTop:10}}>
                   <Button type="primary" style={{marginRight:30,height:35}} >
-                    <Link to={"/holographicView"}>全息档案</Link>
+                    <Link to={`/holographicView?id=${uid}`}>全息档案</Link>
                   </Button> 
                   <Button type="primary" style={{ height:35}}>档案查看/修改</Button>
               </li>

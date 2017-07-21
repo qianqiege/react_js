@@ -47,3 +47,9 @@
 .noPag .ant-pagination.ant-table-pagination {
 	display: none;
 }
+
+.jiluContent .docUser {
+	color: #666;
+	float:right;
+	margin: 10px 5% 0 0;
+}

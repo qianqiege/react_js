@@ -64,10 +64,10 @@ class HolographicView extends React.Component {
 					<TabPane tab={holoProject.title} key={index+1}>
 						<HolographicInfo store={holoProject.child} />
 					</TabPane>
-				)
+				);
 				
 			})
-		)
+		);
 	}
 	componentDidMount() {
 		const id = this.props.location.query.id;
@@ -82,8 +82,8 @@ class HolographicView extends React.Component {
 		PatientRecord.getWeight(`http://qolm.ybyt.cc/api/v1/examination_check/weight?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 		PatientRecord.getHeartRate(`http://qolm.ybyt.cc/api/v1/examination_check/heart_rate?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 		PatientRecord.getUnine(`http://qolm.ybyt.cc/api/v1/examination_check/heart_rate?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
-		PatientRecord.getBlooFat(`http://qolm.ybyt.cc/api/v1/examination_check/blood_fat?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`)
-		PatientRecord.getEcg(`http://qolm.ybyt.cc/api/v1/examination_check/ecg?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`)
+		PatientRecord.getBlooFat(`http://qolm.ybyt.cc/api/v1/examination_check/blood_fat?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
+		PatientRecord.getEcg(`http://qolm.ybyt.cc/api/v1/examination_check/ecg?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 		PatientRecord.getTDS(`http://qolm.ybyt.cc/api/v1/tds/check?patient_id=${id}`);
 	}	
 	render() {

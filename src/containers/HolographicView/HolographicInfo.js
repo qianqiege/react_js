@@ -21,7 +21,7 @@ class HolographicInfo extends React.Component {
 		);
 	}
 	handleChange() {
-		console.log(1);
+		//console.log(1);
 	}
 	render() {
 		return (

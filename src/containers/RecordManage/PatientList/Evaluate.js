@@ -1,6 +1,6 @@
 // 评价客户页面
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Rate,Button } from 'antd';
 import { observer } from 'mobx-react';
 import './Evaluate.css';
@@ -14,7 +14,7 @@ class Evaluate extends React.Component{
 		this.state = {
 			value: 3,
 			count: null,
-		}
+		};
 	}
 
 	handleChange = (value) => {
@@ -39,7 +39,7 @@ class Evaluate extends React.Component{
 					<Button type="primary" className="pjPost">提交评价</Button>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

@@ -15,7 +15,7 @@ class NormalLoginForm extends React.Component {
   }
  
   handleChange(e) {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     const { name, phone, sex } = PhysicalData.userInfo;
     if( e.target.value.length == 18 ) {
       PhysicalData.checkUser(`http://qolm.ybyt.cc/api/v1/patient/get_by_id_number?id_number=${e.target.value}`);
@@ -32,7 +32,7 @@ class NormalLoginForm extends React.Component {
           <Row>
             <Col span={10} style={{float: 'left'}}>
 
-                  <Input onChange={ this.handleChange.bind(this) } className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
+                  <Input onChange={this.handleChange.bind(this)} className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
   
               <FormItem>
                 {getFieldDecorator('name', {

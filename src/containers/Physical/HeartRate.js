@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
 
@@ -15,12 +15,14 @@ class HeartRate extends React.Component {
 			phyName: "心率",
 			unit: "次/分",
 			name: "heart_rate",
-		}
+		};
 	}
 	render() {
-		return <div className="record-content">
-			<PhysicalInfo store={this.state} />
-		</div>
+		return (
+			<div className="record-content">
+				<PhysicalInfo store={this.state} />
+			</div>
+		);
 	}
 }
 

@@ -34,7 +34,7 @@ class SpineSelect extends React.Component{
   onChange (e){
     this.setState({
       disable:e.target.checked,
-    })    
+    }); 
   }
   componentDidMount() {
     MeansJz.getJibie("http://qolm.ybyt.cc/api/v1/spine/spine_level");
@@ -54,8 +54,8 @@ class SpineSelect extends React.Component{
     const {jiZhuBtn} = MeansJz.isKaifang;
     const columns = this.columns;
     const price = MeansJz.price.toJS();
-    const levelPer = MeansJz.jzArr.map(a => <Option key={a.id} dataId={a.id} value={a.treatment_level} style={{width: "100%"}}>{a.treatment_level}</Option>)
-    console.log(jiZhuBtn);
+    const levelPer = MeansJz.jzArr.map(a => <Option key={a.id} dataId={a.id} value={a.treatment_level} style={{width: "100%"}}>{a.treatment_level}</Option>);
+    //console.log(jiZhuBtn);
     return (
       <div>
         <Select

@@ -15,12 +15,14 @@ class BloodFat extends React.Component {
 			phyName: "血脂值",
 			unit: "mmol/L",
 			name: "blood_fat",
-		}
+		};
 	}
 	render() {
-		return <div className="record-content">
-			<PhysicalInfo store={this.state} />
-		</div>
+		return (
+			<div className="record-content">
+				<PhysicalInfo store={this.state} />
+			</div>
+		);
 	}
 }
 

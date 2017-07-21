@@ -15,7 +15,7 @@ const columns = [{
   title: '查看记录',
   dataIndex: 'status1',
   render: (text, record) => (
-       <Button type='primary' >查看记录 </Button>
+       <Button type="primary" >查看记录 </Button>
   ),
 }];
 
