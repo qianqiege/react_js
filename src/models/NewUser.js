@@ -21,7 +21,7 @@ class NewUser {
 			//console.log("success");
 		}).catch( function() {
 			//console.log("请求失败");
-		})
+		});
 	}
 }
 export default new NewUser();

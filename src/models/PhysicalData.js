@@ -41,7 +41,7 @@ class PhysicalData {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			return console.log(jsonData);
+			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误!");
 		});

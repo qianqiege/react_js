@@ -49,8 +49,8 @@ class AddRole extends React.Component {
     const role_ids = User.role_ids.toJS();
     const options = RolesConfig.rolesLists.data.toJS();
     const arr = options.map((option) => {
-      return { label: option.name, value: option.id }
-    })
+      return { label: option.name, value: option.id };
+    });
     return (
       <div>
         <Button className="addrole" type="primary" style={{height:35}} 
