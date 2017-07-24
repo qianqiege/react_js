@@ -61,7 +61,7 @@ class User {
     runInAction("success require fetch", () => {
       this.role_ids = ret.role_ids;
 
-    })
+    });
   }
   //通过id查询用户；
   @action update_user(id, values) {
