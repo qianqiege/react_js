@@ -31,6 +31,9 @@
 	border-bottom: 1px solid #e1e1e1;
 	font-size: 16px;
 }
+.ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: 88px;
+}
 .inpt-left-f.ant-input:not(:first-child) {
 	// padding-left: 50px;
 	font-size: 15px;

@@ -14,9 +14,11 @@ const columns = [{
   key:'2',
   title: '查看记录',
   dataIndex: 'status1',
-  render: (text, record) => (
-       <Button type="primary" >查看记录 </Button>
-  ),
+  render: (text, record) => {
+      return (
+        <a href={record.value}>查看记录</a>
+      );
+  },
 }];
 
 

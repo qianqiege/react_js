@@ -1,6 +1,7 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Row, Col } from "antd";
 import PatientRecord from 'models/PatientRecord';
+import BloodGlucoseChart from "../Chart/BloodGlucoseChart";
 
 const columns = [{
   key:'0',
@@ -24,12 +25,21 @@ class BloodGlucose extends React.Component {
 
   render() {
     const data=PatientRecord.bloodGlu.data.slice();
+    console.log(data);
     return ( <div style={{}}>
-            <Table bordered
+      <Row>
+        <Col xs={{ span: 12}}>
+          <Table bordered
               columns={columns}
               dataSource={data}
                />
-            </div>
+            
+        </Col>
+        <Col xs={{ span: 12}}>
+          <BloodGlucoseChart />
+        </Col>
+      </Row>
+    </div>        
     );
   }
 }

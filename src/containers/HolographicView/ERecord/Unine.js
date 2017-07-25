@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import PatientRecord from 'models/PatientRecord';
+import UnineChart from "../Chart/UnineChart";
 
 const columns = [{
   key:'0',
@@ -25,6 +26,7 @@ class Unine extends React.Component {
   render() {
     const data=PatientRecord.unine.data.slice();
     return ( <div style={{}}>
+            <UnineChart />
             <Table bordered
               columns={columns}
               dataSource={data}
