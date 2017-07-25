@@ -1,4 +1,4 @@
-// 血压检测的检测日志的表格组件
+// 体重检测的检测日志的表格组件
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import { Table, Input, Icon, Button, Popconfirm } from 'antd';
@@ -7,7 +7,7 @@ import UserList from 'models/UserList';
 
 
 @observer
-class MonitorDataTable extends React.Component {
+class TizhongTable extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [{
@@ -15,14 +15,11 @@ class MonitorDataTable extends React.Component {
       dataIndex: 'datetime',
       width: '40%',
     }, {
-      title: '收缩压',
-      dataIndex: 'max_blood_pressure',
-    }, {
-      title: '舒张压',
-      dataIndex: 'min_blood_pressure',
+      title: '体重(KG)',
+      dataIndex: 'value',
     }, {
       title: '是否异常',
-      dataIndex: 'abnormal',
+      dataIndex: 'status',
     }];
 
   }
@@ -30,7 +27,7 @@ class MonitorDataTable extends React.Component {
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
-    UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
+    UserList.selfTz(`http://qolm.ybyt.cc/api/v1/examination_check/weight?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
 
   }
 
@@ -43,7 +40,7 @@ class MonitorDataTable extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfXueya;
+    const dataSource = UserList.selfTizhong;
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();
@@ -54,9 +51,9 @@ class MonitorDataTable extends React.Component {
         columns={columns}  
         className="table"
         pagination={{
-          total:UserList.sxyTotal.total,
+          total:UserList.stzTotal.total,
           onChange(pageNumber) {
-              UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDates}&page=${pageNumber}&per_page=10`);
+              UserList.selfTz(`http://qolm.ybyt.cc/api/v1/examination_check/weight?patient_id=${uid}&start_date=2016-01-01&end_date=${currDates}&page=${pageNumber}&per_page=10`);
           }
         }}        
         />
@@ -65,4 +62,4 @@ class MonitorDataTable extends React.Component {
   }
 }
 
-export default MonitorDataTable;
+export default TizhongTable;
