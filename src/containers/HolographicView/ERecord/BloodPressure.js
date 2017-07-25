@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import PatientRecord from 'models/PatientRecord';
+import BloodPressureChart from "../Chart/BloodPressureChart";
 
 const columns = [{
   key:'0',
@@ -38,6 +39,7 @@ class BloodPressure extends React.Component {
   render() {
     const data=PatientRecord.bloodPre.data.slice();
     return ( <div style={{}}>
+            <BloodPressureChart style={{ width: "100%", height: "auto", }} />
             <Table bordered
               columns={columns}
               dataSource={data}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import PatientRecord from 'models/PatientRecord';
-
+import BloodFatChart from "../Chart/BloodFatChart";
 const columns = [{
   key:'0',
   title: '监测日期',
@@ -25,6 +25,7 @@ class BloodFat extends React.Component {
   render() {
     const data=PatientRecord.bloodfat.data.slice();
     return ( <div style={{}}>
+            <BloodFatChart />
             <Table bordered
               columns={columns}
               dataSource={data}

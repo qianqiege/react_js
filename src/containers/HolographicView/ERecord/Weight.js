@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import PatientRecord from 'models/PatientRecord';
+import WeightChart from "../Chart/WeightChart";
 
 const columns = [{
   key:'0',
@@ -25,6 +26,7 @@ class Weight extends React.Component {
   render() {
     const data=PatientRecord.weight.data.slice();
     return ( <div style={{}}>
+            <WeightChart />
             <Table bordered
               columns={columns}
               dataSource={data}

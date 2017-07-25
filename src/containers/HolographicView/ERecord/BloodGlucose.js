@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Row, Col } from "antd";
 import PatientRecord from 'models/PatientRecord';
-import Chart from "./Chart";
+import BloodGlucoseChart from "../Chart/BloodGlucoseChart";
 
 const columns = [{
   key:'0',
@@ -36,7 +36,7 @@ class BloodGlucose extends React.Component {
             
         </Col>
         <Col xs={{ span: 12}}>
-          <Chart />
+          <BloodGlucoseChart />
         </Col>
       </Row>
     </div>        
