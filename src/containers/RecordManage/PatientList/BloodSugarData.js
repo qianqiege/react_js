@@ -1,4 +1,4 @@
-// 血压检测的检测日志的表格组件
+// 血糖检测的检测日志的表格组件
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import { Table, Input, Icon, Button, Popconfirm } from 'antd';
@@ -7,7 +7,7 @@ import UserList from 'models/UserList';
 
 
 @observer
-class MonitorDataTable extends React.Component {
+class BloodSugarData extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [{
@@ -15,22 +15,38 @@ class MonitorDataTable extends React.Component {
       dataIndex: 'datetime',
       width: '40%',
     }, {
-      title: '收缩压',
-      dataIndex: 'max_blood_pressure',
+      title: '血糖值',
+      dataIndex: 'value',
     }, {
-      title: '舒张压',
-      dataIndex: 'min_blood_pressure',
+      title: '测量类型',
+      dataIndex: 'test_type',
     }, {
       title: '是否异常',
-      dataIndex: 'abnormal',
+      dataIndex: 'status1',
     }];
 
+    this.state = {
+      dataSource: [{
+        key: '0',
+        date: '2017-06-14 16:04:58',
+        sblood: '89',
+        dblood: '55',
+        abnormal: '正常/偏低',
+      }, {
+        key: '1',
+        date: '2017-06-09 16:03:22',
+        sblood: '90',
+        dblood: '55',
+        abnormal: '正常/偏低',
+      }],
+      count: 2,
+    };
   }
 
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
-    UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
+    UserList.selfXt(`http://qolm.ybyt.cc/api/v1/examination_check/blood_glucose?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
 
   }
 
@@ -43,7 +59,7 @@ class MonitorDataTable extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfXueya;
+    const dataSource = UserList.selfXuetang;
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();
@@ -54,9 +70,9 @@ class MonitorDataTable extends React.Component {
         columns={columns}  
         className="table"
         pagination={{
-          total:UserList.sxyTotal.total,
+          total:UserList.sxtTotal.total,
           onChange(pageNumber) {
-              UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDates}&page=${pageNumber}&per_page=10`);
+              UserList.selfXt(`http://qolm.ybyt.cc/api/v1/examination_check/blood_glucose?patient_id=${uid}&start_date=2016-01-01&end_date=${currDates}&page=${pageNumber}&per_page=10`);
           }
         }}        
         />
@@ -65,4 +81,4 @@ class MonitorDataTable extends React.Component {
   }
 }
 
-export default MonitorDataTable;
+export default BloodSugarData;
