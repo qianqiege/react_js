@@ -13,6 +13,7 @@ class TimeLine extends React.Component{
   }
   renderYB() {
     const { record_number } = UserList.userInfo;
+    const { uid } = UserList.userInfo;
     return (
       record_number.map(num => {
         return (
@@ -23,7 +24,7 @@ class TimeLine extends React.Component{
             <div className="timeline-content">
               <h3>{ num.number }</h3>
               <p> 
-                <Link className="btn" to={'/recordManage/healthmonitor'}>查看健康体检数据</Link>
+                <Link className="btn" to={`/recordManage/healthmonitor?id=${uid}`}>查看健康体检数据</Link>
               </p>
               <p> 
                 <Link className="pj" to={'/recordManage/evaluate'}>✿管理评价✿</Link>
