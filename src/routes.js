@@ -35,6 +35,7 @@ import ExceptionData from "./containers/Dynamic/ExceptionData"; //异常管理
 
 import HolographicView from "./containers/HolographicView/HolographicView"; //全息视图
 import HealthMonitor from "./containers/RecordManage/PatientList/HealthMonitor"; //客户列表页面的查看体检健康报告的健康监测
+import FileView from "./containers/RecordManage/PatientList/FileView";//客户列表页面的
 
 export default (
 		<Route path="/" component={App}>
@@ -47,6 +48,7 @@ export default (
 
 			<Route path="/newRecord" component={NewRecord}/> 
 			<Route path="/patientList" component={PatientList}/>
+			<Route path="/fileview" component={FileView}/>
 			<Route path="/recordManage/evaluate" component={Evaluate}/>
 			<Route path="/recordManage/healthmonitor" component={HealthMonitor}/>
 

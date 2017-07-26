@@ -65,7 +65,9 @@ class PatientList extends React.Component{
                   <Button type="primary" style={{marginRight:30,height:35}} >
                     <Link to={`/holographicView?id=${uid}`}>全息档案</Link>
                   </Button> 
-                  <Button type="primary" style={{ height:35}}>档案查看/修改</Button>
+                  <Button type="primary" style={{ height:35}}>
+                    <Link to={`/fileview?id=${uid}`}>档案查看/修改</Link>
+                  </Button>
               </li>
             </ul> ,
             <p className="clear">健康管理动态</p>
