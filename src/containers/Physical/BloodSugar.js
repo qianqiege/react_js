@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio,message } from 'antd';
+import { Form, Input, Button, Row, Col, Select,message } from 'antd';
 import {observer} from "mobx-react";
 import AddRecord from "./AddRecord";
 import PhysicalData from "models/PhysicalData";
@@ -13,7 +13,7 @@ class BloodPressure extends React.Component {
 		super(props);
 	}
   handleSubmit = ( e) => {
-    e.preventDefault();
+	e.preventDefault();
     const { idCard } = PhysicalData.userInfo;
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -30,7 +30,7 @@ class BloodPressure extends React.Component {
   }
 	render() {
     const { getFieldDecorator } = this.props.form;
-		return <div className="record-content">
+		return (<div className="record-content">
 			<h1>血糖测量</h1>
 			<AddRecord />
 			<div style={{clear: 'both', marginTop: 30}}>
@@ -45,10 +45,10 @@ class BloodPressure extends React.Component {
 							<Input className="border-n" suffix={<span className="font2">毫克/分升</span>} placeholder="" />
 							)}
 						</FormItem>
-		        </Col>
-		        <Col span={10} style={{ float: 'right', fontSize: 16 }}>
-		          <div className="mar-b mar-t">
-		            <p className="mar-b">测量类型</p>
+			</Col>
+				<Col span={10} style={{ float: 'right', fontSize: 16 }}>
+					<div className="mar-b mar-t">
+					<p className="mar-b">测量类型</p>
                     <FormItem>
                       {getFieldDecorator('item_type', {
                         rules: [{ required: false, message: 'Please input your username!' }],
@@ -69,16 +69,16 @@ class BloodPressure extends React.Component {
                         </Select>
                       )}
                     </FormItem>
-		            </div>
-		          </Col>
-		        </Row>
+					</div>
+					</Col>
+				</Row>
 				<FormItem>
 					<Button type="primary" htmlType="submit" className="login-form-button"> 提交 </Button>
 				</FormItem> 
-		  </Form>
+			</Form>
 			</div>
 			
-		</div>;
+		</div>);
 	}
 }
 

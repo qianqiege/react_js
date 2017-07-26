@@ -45,6 +45,7 @@ class	HealthRecord	extends	React.Component{
 		const	{number}=User.record;
 		const	{idcard}=GetIdentityCard.Idcard;
 		if(idcard==="no_id"){
+			$(".ant-input").val();
 		}else{
 			$(".ant-input").val(idcard);
 		}

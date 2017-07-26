@@ -29,7 +29,7 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	patient_record",()=>{
 			this.record.name=Record.name;
@@ -41,7 +41,7 @@ class	PatientRecord{
 			this.record.sexValue=Record.sex;
 			this.record.marrayValue=Record.marriage;
 			this.record.occupation=Record.occupation;
-		})
+		});
 	}
 
 	//血糖监测的信息表格
@@ -73,11 +73,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	BloodGlucose",()=>{
 			this.bloodGlu=Object.assign({},BloodGlu);
-		})
+		});
 	}
 
 
@@ -112,11 +112,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	BloodPre",()=>{
 			this.bloodPre=Object.assign({},BloodPre);
-		})
+		});
 	}
 
 
@@ -149,11 +149,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	Temperature",()=>{
 			this.temperature=Object.assign({},Temperature);
-		})
+		});
 	}
 	//体重检测数据
 	@observable	weight={
@@ -184,11 +184,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	Weight",()=>{
 			this.weight=Object.assign({},Weight);
-		})
+		});
 	}
 
 	//心率检测数据
@@ -220,11 +220,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	HeartRate",()=>{
 			this.heartRate=Object.assign({},HeartRate);
-		})
+		});
 	}
 
 	//尿酸检测数据
@@ -256,11 +256,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	Unine",()=>{
 			this.unine=Object.assign({},Unine);
-		})
+		});
 	}
 
 	//血脂检测数据
@@ -292,11 +292,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	BloodFat",()=>{
 			this.bloodfat=Object.assign({},Bloodfat);
-		})
+		});
 	}
 
 	//心电图检测数据
@@ -327,11 +327,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	BloodFat",()=>{
 			this.ecg=Object.assign({},Ecg);
-		})
+		});
 	}
 
 	//TDS检测数据
@@ -357,11 +357,11 @@ class	PatientRecord{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 
 		runInAction("success	tds",()=>{
 			this.tds=Object.assign({},Tds);
-		})
+		});
 	}
 }
 

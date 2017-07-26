@@ -64,6 +64,7 @@ class ManageList extends React.Component {
   render() {  
     const {idcard}=GetIdentityCard.Idcard;
       if(idcard==="no_id"){
+        $(".ant-input").val();
       }else{
         $(".ant-input").val(idcard);
       }

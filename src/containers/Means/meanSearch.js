@@ -26,6 +26,7 @@ class	MeanSearch	extends	React.Component{
 			GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`);	
 			const	{idcard}=GetIdentityCard.Idcard;
 			if(idcard==="no_id"){
+				$(".searchInput .ant-input").val();
 			}else{
 				$(".searchInput .ant-input").val(idcard);
 			}
@@ -41,7 +42,7 @@ class	MeanSearch	extends	React.Component{
 	handleChange(e){
 		if(e.target.value.length==18){
 			MeansInfo.idNumber=e.target.value;
-		};
+		}
 	}
 
 	render(){
