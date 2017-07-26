@@ -1,13 +1,14 @@
 // 健康管理师列表页
-import cookie from 'js-cookie';
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Table, Input, Icon, Button,Pagination } from 'antd';
+import { Table, Input } from 'antd';
 import { observer } from 'mobx-react';
 import $ from "jquery";
 import './ManageList.css';
 import AddPermiss from './AddPermiss';
 import UserMana from 'models/UserMana';
+import  User  from  'models/User';
+import  GetIdentityCard from  "models/GetIdentityCard";
 import '../CustomTable.scss';
 const Search = Input.Search;
 
@@ -21,14 +22,14 @@ class ManageList extends React.Component {
       width: '30%',
       key:'0',
     }, {
-      title: 'ID',
+      title:'ID',
       dataIndex: 'id',
       key:'1',
     }, {
       title: '操作',
       dataIndex: 'operation',
       key:'2',
-      render: (text, record, index) => {
+      render: (text, record) => {
         return (<AddPermiss store={record.id} />);
       }
     }];
@@ -36,6 +37,9 @@ class ManageList extends React.Component {
   }
 
   componentDidMount(){
+    User.fetchUsers().then(() => {
+      GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`); 
+    });
     UserMana.getManaList('http://qolm.ybyt.cc/api/v1/users/all_users?page=1&per_page=8');
   }
 
@@ -58,6 +62,11 @@ class ManageList extends React.Component {
   }
 
   render() {  
+    const {idcard}=GetIdentityCard.Idcard;
+      if(idcard==="no_id"){
+      }else{
+        $(".ant-input").val(idcard);
+      }
     const columns = this.columns;
     const dataSource = UserMana.ManaList.toJS();
     return (

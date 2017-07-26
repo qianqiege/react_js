@@ -1,7 +1,10 @@
-import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
-import { observer } from "mobx-react";
-import PhysicalData from "models/PhysicalData";
+import	React from "react";
+import	{ Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import	{ observer } from "mobx-react";
+import	PhysicalData from "models/PhysicalData";
+import	User  from  'models/User';
+import	GetIdentityCard from  "models/GetIdentityCard";
+import $ from "jquery";
 import ".././style.scss";
 
 const FormItem = Form.Item;
@@ -14,8 +17,18 @@ class NormalLoginForm extends React.Component {
     super(props);
   }
  
+  componentDidMount(){
+    User.fetchUsers().then(() => {
+      	GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`); 
+	    const {idcard}=GetIdentityCard.Idcard;
+	    if(idcard ==="no_id"){
+	    }else{
+	      $(".input-idcard .ant-input").val(idcard);
+	    }
+    });
+  }
+
   handleChange(e) {
-    //console.log(e.target.value);
     const { name, phone, sex } = PhysicalData.userInfo;
     if( e.target.value.length == 18 ) {
       PhysicalData.checkUser(`http://qolm.ybyt.cc/api/v1/patient/get_by_id_number?id_number=${e.target.value}`);
@@ -25,6 +38,7 @@ class NormalLoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { name, phone, sex } = PhysicalData.userInfo;
+    
     return (
       <div>
         <h3 style={{paddingLeft: 80, marginBottom: 10}}>添加新记录</h3>
@@ -32,7 +46,7 @@ class NormalLoginForm extends React.Component {
           <Row>
             <Col span={10} style={{float: 'left'}}>
 
-                  <Input onChange={this.handleChange.bind(this)} className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
+                  <Input onChange={this.handleChange.bind(this)} className="inpt inpt-left-t input-idcard" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
   
               <FormItem>
                 {getFieldDecorator('name', {

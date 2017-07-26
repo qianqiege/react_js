@@ -2,6 +2,9 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal, Alert,message } from 'antd';
 import UserPhysical from "models/UserPhysical";
+import	User	from	'models/User';
+import	$	from	"jquery";
+import  GetIdentityCard from  "models/GetIdentityCard";
 import "../style.scss";
 
 const FormItem = Form.Item;
@@ -15,6 +18,12 @@ const confirm = Modal.confirm;
 class FollowUpSurver extends React.Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount() {
+  	User.fetchUsers().then(() => {
+		GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`);		
+	}); 
+	UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
   }
   handleSubmit = (e) => {
     const { validateFields, resetFields } = this.props.form;
@@ -43,10 +52,13 @@ class FollowUpSurver extends React.Component {
   handleChange(value) {
     //console.log(`selected ${value}`);
   }
-  componentDidMount() {
-    UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
-  }
+ 
   render() {
+  	const {idcard}=GetIdentityCard.Idcard;
+    if(idcard ==="no_id"){
+    }else{
+      $(".ant-form-item-control:first").text(idcard);
+    }
     const { getFieldDecorator } = this.props.form;
     const { display } = UserPhysical.statusBool;
     return (
@@ -61,7 +73,9 @@ class FollowUpSurver extends React.Component {
                 {getFieldDecorator('idCord', {
                   rules: [{ required: true, message: '请输入身份证号码!' }],
                 })(
-                  <Input style={{border: 'none', borderBottom: '1px solid #e1e1e1', boxShadown: 'none', borderRadius: 'none'}} className="" placeholder="" />
+                  <Input className="inpt-idcard" 
+                  style={{border: 'none', borderBottom: '1px solid #e1e1e1', 
+                  boxShadown: 'none', borderRadius: 'none'}}/>
                 )}
               </FormItem>
             </Col>
