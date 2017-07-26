@@ -17,7 +17,6 @@ class	GetIdentityCard{
 		}).then(function(response){
 			return	response.json();
 		}).then(function(jsonData){
-			console.log(jsonData);
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");

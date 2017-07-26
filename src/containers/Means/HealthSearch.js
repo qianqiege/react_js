@@ -4,6 +4,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import { observer } from 'mobx-react';
 import MeansInfo from 'models/MeansInfo';
+import	User	from	'models/User';
+import	$	from	"jquery";
+import	GetIdentityCard	from	"models/GetIdentityCard";
 
 const Search = Input.Search;
 
@@ -29,8 +32,7 @@ class HealthSearch extends React.Component {
 			},{
 				title: '查看记录',
 				dataIndex: 'operation',
-			render: (text, record, index) => {
-				//console.log(record);
+			render: (text, record) => {
 				return (
 					<Button type="primary" style={{ marginLeft: 80 }}>
 						<Link to={`/means/lookMeans?id=${record.number}`}>查看记录</Link>
@@ -46,10 +48,20 @@ class HealthSearch extends React.Component {
 	}
 
 	componentDidMount(){
-		MeansInfo.idNumber=this.props.location.query.id_number;
-		if (MeansInfo.idNumber.length==18) {
-			MeansInfo.getJilu(`http://qolm.ybyt.cc/api/v1/registration/check_registration?id_number=${MeansInfo.idNumber}`);
-		}
+
+		User.fetchUsers().then(() => {
+			GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`);	
+			const	{idcard}=GetIdentityCard.Idcard;
+			if(idcard ==="no_id"){
+			}else{
+				$(".ant-input").val(idcard);
+			}
+			MeansInfo.idNumber=this.props.location.query.id_number;
+			if (MeansInfo.idNumber.length==18) {
+				MeansInfo.getJilu(`http://qolm.ybyt.cc/api/v1/registration/check_registration?id_number=${MeansInfo.idNumber}`);
+			}
+		});
+		
 	}
 
 	handleSearch(value){
@@ -59,6 +71,7 @@ class HealthSearch extends React.Component {
 	render() {
 		const columns = this.columns;
 		const jilu = MeansInfo.jilu.slice();
+		
 		return (
 			<div className="hsDiv">
 				<Search
