@@ -164,10 +164,16 @@ class MeansInfo {
 			this.proUse = proInfos;
 		});
 	}
-
+	
 	//异常数据获取
+	@observable exceptionInfo = {
+		meta: {
+			"total": 0,
+		},
+		data: [],
+	};
 	@action async getUnnormal(url) {
-		const unNormal= await fetch(url, {
+		let unNormal= await fetch(url, {
 			mode: "cors",
 			method: "GET",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -185,31 +191,11 @@ class MeansInfo {
 		});
 
 		runInAction("request success", () =>{
-			this.totalData.total=unNormal.meta.total;		
-			unNormal.data.map( unNormals => {
-				if(unNormals.value2 == null && unNormals.status2 == null){
-						this.dataSource.push({
-							key: unNormals.id,
-							data: unNormals.patient.id,
-							name: unNormals.patient.name,
-							prog: unNormals.test_item,
-							number:unNormals.value1,
-							abnormal:unNormals.status1,
-							date:unNormals.updated_at,
-						});
-				}else {
-						this.dataSource.push({
-							key: unNormals.id,
-							data: unNormals.patient.id,
-							name: unNormals.patient.name,
-							prog: unNormals.test_item,
-							number:`${unNormals.value1}/${unNormals.value2}`,
-							abnormal:`${unNormals.status1}/${unNormals.status2}`,
-							date:unNormals.updated_at,
-						});
-				}
-
-			});
+			this.totalData.total=unNormal.meta.total;
+			unNormal.data = unNormal.data.map((d) => {
+				return d = Object.assign({}, {name: d.patient["name"], number: d.value2 ? `${d.value1}/${d.value2}`: d.value1, prog: d.test_item, abnormal: d.status2 ? `${d.status1}/${d.status2}`: d.status1, date: d.created_at});
+			})
+			this.exceptionInfo = Object.assign({}, this.exceptionInfo, unNormal);
 		});
 	}
 	@action getKaifang(val) {

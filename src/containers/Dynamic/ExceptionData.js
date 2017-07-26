@@ -50,7 +50,7 @@ class ExceptionData extends React.Component {
  
   render() {
     const columns = this.columns;
-    const dataSource = MeansInfo.dataSource.toJS();
+    const dataSource = MeansInfo.exceptionInfo.data.toJS();
     return (
       <div>
         <h1>异常管理</h1>
@@ -61,7 +61,7 @@ class ExceptionData extends React.Component {
         style={{marginLeft:30}} 
         className="table"
         pagination={{
-          total:MeansInfo.totalData.total,
+          total:MeansInfo.exceptionInfo.meta["total"],
           onChange(pageNumber) {
               MeansInfo.getUnnormal(`http://qolm.ybyt.cc/api/v1/exception/data?page=${pageNumber}&per_page=10`);
           }

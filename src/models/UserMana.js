@@ -8,7 +8,12 @@ import '../containers/RolesManage/DoctorsList/ManageList.css';
 class UserMana {
 
 	//从后台获取健康管理师列表的全部数据，展示姓名，ID！
-	@observable ManaList = [];
+	@observable ManaList = {
+		meta: {
+			"total": 0,
+		},
+		data: [],
+	};
 	@observable totalData={
 		'total':''
 	}
@@ -31,25 +36,8 @@ class UserMana {
 			//console.log('cuole');
 		});
 		runInAction("request success", () => {
-			this.totalData.total=ret.meta.total;
-			ret.data.map( mana=>{
-				if(mana.name==null||mana.name==''){
-				return (
-					this.ManaList.push({
-						key:mana.id,
-						name:'无名氏',
-						id:mana.id,
-					})
-				);}else{
-					return (
-					this.ManaList.push({
-						key:mana.id,
-						name:mana.name,
-						id:mana.id,
-					})
-				);
-				}
-			});
+			// console.log(ret);
+			this.ManaList = Object.assign({}, this.ManaList, ret);
 		});
 	}
 
