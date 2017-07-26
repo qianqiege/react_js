@@ -1,6 +1,6 @@
 // 基本资料组件
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal } from 'antd';
+import { Form,  Input, Button, Row, Col, Select, Radio, Modal } from 'antd';
 import NewUser from "models/NewUser";
 import  User  from  'models/User';
 import  $ from  "jquery";
@@ -27,7 +27,8 @@ class NormalLoginForm extends React.Component {
     User.fetchUsers().then(() => {
       GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`); 
       const {idcard}=GetIdentityCard.Idcard;
-      if(idcard ==="no_id"){  
+      if(idcard ==="no_id"){ 
+       $(".getIdCard").val();
       }else{
         $(".getIdCard").val(idcard);
       }
@@ -44,9 +45,7 @@ class NormalLoginForm extends React.Component {
       }
     });
   }
-  handleChange(value) {
-   
-  }
+
   onChangeSex = (e) => {
     
     this.setState({

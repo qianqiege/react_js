@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal, Alert,message } from 'antd';
+import { Form,Input, Button, Row, Col, Select,  Alert,message } from 'antd';
 import UserPhysical from "models/UserPhysical";
 import	User	from	'models/User';
 import	$	from	"jquery";
@@ -8,11 +8,6 @@ import  GetIdentityCard from  "models/GetIdentityCard";
 import "../style.scss";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const confirm = Modal.confirm;
-
-
-
 
 @observer
 class FollowUpSurver extends React.Component {
@@ -20,7 +15,7 @@ class FollowUpSurver extends React.Component {
     super(props);
   }
   componentDidMount() {
-  	User.fetchUsers().then(() => {
+	User.fetchUsers().then(() => {
 		GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`);		
 	}); 
 	UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
@@ -49,13 +44,11 @@ class FollowUpSurver extends React.Component {
       statusBool: "true",
     });
   }
-  handleChange(value) {
-    //console.log(`selected ${value}`);
-  }
  
   render() {
-  	const {idcard}=GetIdentityCard.Idcard;
+	const {idcard}=GetIdentityCard.Idcard;
     if(idcard ==="no_id"){
+		$(".ant-form-item-control:first").text();
     }else{
       $(".ant-form-item-control:first").text(idcard);
     }

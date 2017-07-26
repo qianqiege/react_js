@@ -20,10 +20,10 @@ class	GetIdentityCard{
 			return	jsonData;
 		}).catch(function(){
 			// console.log("请求失败");
-		})
+		});
 		runInAction("success	GetIdentityCard",()=>{
 			this.Idcard.idcard=card;
-		})
+		});
 	}
 
 }

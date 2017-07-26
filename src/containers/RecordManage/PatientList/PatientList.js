@@ -24,6 +24,7 @@ class PatientList extends React.Component{
       GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`); 
       const {idcard}=GetIdentityCard.Idcard;
       if(idcard ==="no_id"){
+        $(".inpt-idcard .ant-input").val();
       }else{
         $(".inpt-idcard .ant-input").val(idcard);
       }
