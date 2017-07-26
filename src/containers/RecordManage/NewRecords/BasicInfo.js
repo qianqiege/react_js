@@ -1,7 +1,10 @@
 // 基本资料组件
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal } from 'antd';
+import { Form,  Input, Button, Row, Col, Select, Radio, Modal } from 'antd';
 import NewUser from "models/NewUser";
+import  User  from  'models/User';
+import  $ from  "jquery";
+import  GetIdentityCard from  "models/GetIdentityCard";
 import "../../style.scss";
 
 const FormItem = Form.Item;
@@ -20,6 +23,17 @@ class NormalLoginForm extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount(){
+    User.fetchUsers().then(() => {
+      GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`); 
+      const {idcard}=GetIdentityCard.Idcard;
+      if(idcard ==="no_id"){ 
+       $(".getIdCard").val();
+      }else{
+        $(".getIdCard").val(idcard);
+      }
+    });
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -31,9 +45,7 @@ class NormalLoginForm extends React.Component {
       }
     });
   }
-  handleChange(value) {
-   
-  }
+
   onChangeSex = (e) => {
     
     this.setState({
@@ -57,21 +69,21 @@ class NormalLoginForm extends React.Component {
                 {getFieldDecorator('userName', {
                   rules: [{ required: true, message: '请填写姓名!' }],
                 })(
-                  <Input className="inpt inpt-left-f" addonBefore={<span style={{fontSize: 16}}>姓　　名</span>} placeholder="" />
+                  <Input className="inpt inpt-left-f" addonBefore={<span style={{fontSize: 16}}>姓　　名</span>}/>
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('idCard', {
                   rules: [{ required: true, message: '请填写身份证号!' }],
                 })(
-                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t getIdCard" addonBefore={<span style={{fontSize: 16}}>身份证号</span>}/>
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('Birthday', {
                   rules: [{ required: true, message: '请填写生日!' }],
                 })(
-                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>出生日期</span>} placeholder="" />
+                  <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>出生日期</span>}/>
                 )}
               </FormItem>
               <FormItem>

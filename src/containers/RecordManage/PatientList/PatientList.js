@@ -5,6 +5,8 @@ import { Input,Icon,Button } from 'antd';
 import { Link } from 'react-router';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
+import  User  from  'models/User';
+import  GetIdentityCard from  "models/GetIdentityCard";
 import $ from "jquery";
 import TimeLine from './TimeLine';
 import "./PatientList.scss";
@@ -16,6 +18,20 @@ class PatientList extends React.Component{
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
   }
+
+  componentDidMount(){
+    User.fetchUsers().then(() => {
+      GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`); 
+      const {idcard}=GetIdentityCard.Idcard;
+      if(idcard ==="no_id"){
+        $(".inpt-idcard .ant-input").val();
+      }else{
+        $(".inpt-idcard .ant-input").val(idcard);
+      }
+    });
+  }
+
+
   handleSearch(value) {
     const reg = /^(\d{18,18}|\d{15,15}|\d{17,17}x)$/;
     if( reg.test(value) ) {
@@ -36,7 +52,7 @@ class PatientList extends React.Component{
       <div >
         <h1 style={{marginBottom:50}}>客户列表</h1>
         <span>
-          <Search className="search" style={{ width: 450,height:35,marginLeft:100,border:0,borderBottom:0}} 
+          <Search className="search inpt-idcard" style={{ width: 450,height:35,marginLeft:100,border:0,borderBottom:0}} 
           onSearch={this.handleSearch}/>  
         </span>
         <Button className="p-list-btn" style={{ height:35,marginTop:1,marginRight:50}}>
