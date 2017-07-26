@@ -11,6 +11,7 @@ import HeartRate from './Heart_rate';
 import Unine from './Unine';
 import BloodFat from './BloodFat';
 import Electro from './Electro';
+import TDS from './TDS';
 
 import "./PatientList.scss";
 
@@ -31,7 +32,7 @@ class HealthMonitor extends React.Component{
 					<TabPane tab="尿酸监测" key="6"><Unine/></TabPane>
 					<TabPane tab="血脂监测" key="7"><BloodFat/></TabPane>
 					<TabPane tab="心电图展示" key="8"><Electro/></TabPane>
-					<TabPane tab="TDS数字中医" key="9"><Electro/></TabPane>
+					<TabPane tab="TDS数字中医" key="9"><TDS/></TabPane>
 				</Tabs>
 			</div>
 		);

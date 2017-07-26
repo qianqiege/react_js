@@ -318,6 +318,100 @@ class UserList {
 			this.selfBloodFat = [...BloodFatArr];
 		});
 
+	}
+
+
+	//客户列表查看个人健康数据-心电
+
+	@observable selfEcg = [];
+	@observable secgTotal ={
+		total:"",
+	};
+
+	@action async selfEc(url) {
+		const selfEc = await fetch(url, {
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误！");
+		});
+		
+		runInAction('update users list after fetch', () => {
+			this.secgTotal.total = selfEc.meta.total;
+			const EcgArr = selfEc.data.map(data => { 		
+				data = Object.assign({}, {key: data.id},data);
+				return data;
+			});			
+			this.selfEcg = [...EcgArr];
+		});
+
+	}
+
+
+	//客户列表查看个人健康数据-TDS
+
+	@observable selfTDS = [];
+
+	@action async selfT(url) {
+		const selfT = await fetch(url, {
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误！");
+		});
+		
+		runInAction('update users list after fetch', () => {	
+			this.selfTDS = [...selfT];
+		});
+
+	}
+
+
+	//客户列表查看个人档案
+
+	@observable userBorder = {};
+
+	@action async getUserBorder(url) {
+		const uborder = await fetch(url, {
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
+		}).then( function(jsonData) {
+			console.log(jsonData);
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误！");
+		});
+		
+		runInAction('update users list after fetch', () => {	
+			this.userBorder = Object.assign({},uborder);
+			console.log(this.userBorder);
+		});
+
 	}	
 
 
