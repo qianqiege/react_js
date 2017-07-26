@@ -13,7 +13,9 @@ class User {
     },
     data: []
   };
+  @observable current_user_info = {
 
+  }
   @observable auth = {
     isFetching: false,
     isAuthenticated: cookie.get('access_token') ? true : false
@@ -22,6 +24,7 @@ class User {
     numbers: ""
   };
   @observable role_ids = []; //用户的角色权限；
+
   @action async fetchUsers(params = {page: 1, per_page: 10 }) {
     this.list.isFetching = true;
     const ret = await cFetch(API_CONFIG.users, { method: "GET", params: params });
@@ -66,6 +69,14 @@ class User {
   //通过id查询用户；
   @action update_user(id, values) {
     return cFetch(`${API_CONFIG.users}/${id}`, { method: "PUT", body: JSON.stringify(values) });
+  }
+
+  //获取当前登录的用户信息；
+  @action async fetchUsers() {
+    const ret = await cFetch(API_CONFIG.current_user, { method: "GET"});
+    runInAction('update users list after fetch', () => {
+      this.current_user_info = Object.assign({}, ret);
+    });
   }
 }
 

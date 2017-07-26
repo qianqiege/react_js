@@ -1,12 +1,20 @@
 // 基本资料组件
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio, Modal } from 'antd';
 import NewUser from "models/NewUser";
 import "../../style.scss";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
+
+function success() {
+  const modal = Modal.success({
+    title: '档案创建成功',
+  });
+  setTimeout(() => modal.destroy(), 1500);
+}
+
 
 class NormalLoginForm extends React.Component {
   constructor(props) {
@@ -15,10 +23,11 @@ class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        
-        //NewUser.getUserInfo("http://qolm.ybyt.cc/api/v1/patient_record/create", `name=${values.userName}&nation=${values.nation}&id_number=${values.idCard}&birthday=${values.Birthday}&phone=${values.phone}&occupation=${values.profession}&address=${values.postalAddress}&sex=${values.userSex}&marriage=${values.marrayState}&health_status={item_b1=null&item_b2=null&item_b3=null&item_b4=null&item_b5=null&item_b6=null&item_b7=null&item_b8=null&item_a =[]}&family_history={father=[]&mother=[]&brother=[]&child=[]}&health_status={item_b1=null&item_b2=null&item_b3=null&item_b4=null&item_b5=null&item_b6=null&item_b7=null&item_b8=null&item_a =[]}&family_history={father=[]&mother=[]&brother=[]&child=[]}&sleep_habit={item_1=null&item_2=null&item_3=null&item_4=null}&emotional_state={item_1=null&item_2=null&item_3=null&item_4=null}&environment_state={itemitemitem_3=null=item_4=null}&drink_history={dry_out_years=[]&item_1=[]&item_2=[]&item_3=[]&item_4=[]}&smoke_history={quit_smoking_years=[]&item_1=[]&item_2=[]&item_3=[]&item_4=[]}&eating_habit={item_1=[]&item_2=[]&item_3=[]&item_4=[]&item_5=[]&item_6=[]&item_7=[]&item_8=[]&item_9=[]&item_10=[]&item_11=[]}&exercise_habit={item_1=[]&item_2=[]&item_4=[]&item_3=[]}&professional_state={item_1=null&item_2=null&item_3=[]}&excretion={nocturnal_enuresis_times=""&constipation_times=""&item_1=null&item_2=null}&check_body={item_1=null&item_2=null&item_3=[]&item_4=[]}&physical_examination={height=""&weight=""&baric_index=""&hipline=""&waistline=""&waist_to_hipratio=""&min_BloodPressure=""&max_BloodPressure=""&total_cholesterol=""&triglyceride=""&high_density_lipoprotein=""&low_density_lipoprotein=""&b_BloodGlucose=""&glycosylated_hemoglobin=""&homocysteine=""&glutamic_oxaloacetic_transaminase=""&glutamic_pyruvic_transaminase=""&creatinine=""&usea_nitrogen=""&blood_uric_acid=""&ultrasound=""&electrocardiogram=""&image_analysis=""}`);
-        
+      if (!err) {        
+        NewUser.getUserInfo("http://qolm.ybyt.cc/api/v1/patient_record/create", `name=${values.userName}&nation=${values.nation}&id_number=${values.idCard}&birthday=${values.Birthday}&phone=${values.phone}&occupation=${values.profession}&address=${values.postalAddress}&sex=${values.userSex}&marriage=${values.marrayState}&health_status={item_b1=null&item_b2=null&item_b3=null&item_b4=null&item_b5=null&item_b6=null&item_b7=null&item_b8=null&item_a =[]}&family_history={father=[]&mother=[]&brother=[]&child=[]}&health_status={item_b1=null&item_b2=null&item_b3=null&item_b4=null&item_b5=null&item_b6=null&item_b7=null&item_b8=null&item_a =[]}&family_history={father=[]&mother=[]&brother=[]&child=[]}&sleep_habit={item_1=null&item_2=null&item_3=null&item_4=null}&emotional_state={item_1=null&item_2=null&item_3=null&item_4=null}&environment_state={itemitemitem_3=null=item_4=null}&drink_history={dry_out_years=[]&item_1=[]&item_2=[]&item_3=[]&item_4=[]}&smoke_history={quit_smoking_years=[]&item_1=[]&item_2=[]&item_3=[]&item_4=[]}&eating_habit={item_1=[]&item_2=[]&item_3=[]&item_4=[]&item_5=[]&item_6=[]&item_7=[]&item_8=[]&item_9=[]&item_10=[]&item_11=[]}&exercise_habit={item_1=[]&item_2=[]&item_4=[]&item_3=[]}&professional_state={item_1=null&item_2=null&item_3=[]}&excretion={nocturnal_enuresis_times=""&constipation_times=""&item_1=null&item_2=null}&check_body={item_1=null&item_2=null&item_3=[]&item_4=[]}&physical_examination={height=""&weight=""&baric_index=""&hipline=""&waistline=""&waist_to_hipratio=""&min_BloodPressure=""&max_BloodPressure=""&total_cholesterol=""&triglyceride=""&high_density_lipoprotein=""&low_density_lipoprotein=""&b_BloodGlucose=""&glycosylated_hemoglobin=""&homocysteine=""&glutamic_oxaloacetic_transaminase=""&glutamic_pyruvic_transaminase=""&creatinine=""&usea_nitrogen=""&blood_uric_acid=""&ultrasound=""&electrocardiogram=""&image_analysis=""}`).then(() => {
+          this.props.form.resetFields();
+          success();
+        });
       }
     });
   }
@@ -46,21 +55,21 @@ class NormalLoginForm extends React.Component {
             <Col span={10} style={{float: 'left'}}>
               <FormItem>
                 {getFieldDecorator('userName', {
-                  rules: [{ required: false, message: 'Please input your username!' }],
+                  rules: [{ required: true, message: '请填写姓名!' }],
                 })(
                   <Input className="inpt inpt-left-f" addonBefore={<span style={{fontSize: 16}}>姓　　名</span>} placeholder="" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('idCard', {
-                  rules: [{ required: false, message: 'Please input your username!' }],
+                  rules: [{ required: true, message: '请填写身份证号!' }],
                 })(
                   <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('Birthday', {
-                  rules: [{ required: false, message: 'Please input your username!' }],
+                  rules: [{ required: true, message: '请填写生日!' }],
                 })(
                   <Input className="inpt inpt-left-t" addonBefore={<span style={{fontSize: 16}}>出生日期</span>} placeholder="" />
                 )}
