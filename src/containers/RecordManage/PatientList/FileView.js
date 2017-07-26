@@ -3,7 +3,13 @@
 import React from "react";
 import { Button,Icon } from 'antd';
 import './fileview.css';
+import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
+
+
+
+@observer
+
 
 class FileView extends React.Component {
 	constructor(props) {
