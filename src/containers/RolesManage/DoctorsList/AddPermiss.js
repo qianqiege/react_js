@@ -1,64 +1,86 @@
 // 健康管理师页面 的添加权限组件
-import React from 'react';
-// import ReactDOM from 'react-dom';
-import { Checkbox,Modal, Button } from 'antd';
+import React, { PropTypes } from "react";
+//import ReactDOM from 'react-dom';
+import { Checkbox,Modal, Button,  Form} from 'antd';
 import { observer } from 'mobx-react';
+// import UserMana from 'models/UserMana';
+import RolesConfig from 'models/rolesConfig';
+import User from 'models/User';
+
+// import $ from "jquery";
+
 import '../CustomTable.scss';
+
+const FormItem = Form.Item;
+const CheckboxGroup = Checkbox.Group;
+
 @observer
 class AddRole extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+    store: PropTypes.number,
+  }
   state = { visible: false }
+
   showModal = () => {
     this.setState({
       visible: true,
     });
+    RolesConfig.getRolesList();
+    User.get_user(this.props.store);
   }
-  handleOk = () => {
-    this.setState({
-      visible: false,
+
+  handleSubmit = () => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        //console.log(values, this.props.store);
+        User.update_user(this.props.store, values);
+      }
+      this.setState({
+        visible: false,
+      });
     });
-
-   
-
-
-
   }
+
   handleCancel = () => {
+    //console.log(e);
     this.setState({
       visible: false,
     });
   }
-
-
   render() {
-    const CheckboxGroup = Checkbox.Group;
-
-    const options = [
-    { label: 'test3', value: 'test3' },
-    { label: 'test2', value: 'test2' },
-    { label: '村卫生室', value: '村卫生室' },
-    { label: '工作站管理员', value: '工作站管理员' },
-    { label: '健康管理师列表', value: '健康管理师列表' },
-    { label: '档案室', value: '档案室' },
-    { label: '管理师', value: '管理师' },
-    { label: '管理员', value: '管理员' },
-  ];
-
+    const { getFieldDecorator } = this.props.form;
+    const role_ids = User.role_ids.toJS();
+    const options = RolesConfig.rolesLists.data.toJS();
+    const arr = options.map((option) => {
+      return { label: option.name, value: option.id };
+    });
     return (
       <div>
-        <Button className="addrole" type="primary" style={{height:35}} onClick={this.showModal}>添加权限</Button>
+        <Button className="addrole" type="primary" style={{height:35}} 
+        onClick={this.showModal}>添加权限</Button>
         <Modal
           title="添加用户权限"
           visible={this.state.visible}
-          onOk={this.handleOk}
+          onOk={this.handleSubmit}
           onCancel={this.handleCancel}
           className="addrole"
         >
-    
         <br/>
         <br />
         <p className="choose">用户名</p>
         <br/>
-        <CheckboxGroup options={options} className="Checkbox"/>
+        
+        <Form onSubmit={this.handleSubmit}>        
+        <FormItem>
+          {getFieldDecorator('role_ids', {
+          rules: [{ required: false, message: '' }],
+          initialValue: role_ids,
+        })(
+          <CheckboxGroup options={arr} className="Checkbox" />
+        )}
+        </FormItem>
+        </Form>
         <br /> 
         <br/>
         <br/>
@@ -67,4 +89,4 @@ class AddRole extends React.Component {
     );
   }
 }
-export default AddRole;
+export default Form.create()(AddRole);

@@ -1,68 +1,70 @@
+import React from 'react';
 import { Table } from 'antd';
-import { PropTypes } from 'react';
+import { observer } from 'mobx-react';
+import AddRole from './AddRole';
+import DeleteRole from './DeleteRole';
+import EditRole from './EditRole';
+import './CustomTable.css';
 
-class CustomTable extends Table {
+@observer
+class CustomTable extends React.Component {
   constructor(props) {
     super(props);
-    this.handleCustomFilter = this.handleCustomFilter.bind(this);
-  }
-  getChildContext() {
-    return { handleCustomFilter: this.handleCustomFilter };
-  }
+    this.columns = [{
+      title: '编号',
+      dataIndex: 'number',
+      width: '30%',
+    }, {
+      title: '角色名称',
+      dataIndex: 'role',
+    }, {
+      title: '操作',
+      dataIndex: 'operation',
+      render: () => {
+        return (
+            <div>
+              <EditRole/>
+              <DeleteRole/>
+            </div>
+          );
+      },
+    }];
 
-  handleCustomFilter(key, nextFilter) {
-    let pagination = Object.assign({}, this.state.pagination);
-    const filters = Object.assign({}, this.state.filters, nextFilter);
-
-    // Remove filters not in current columns
-    const currentColumnKeys = this.props.columns.map(c => this.getColumnKey(c));
-    Object.keys(filters).forEach((columnKey) => {
-      if (currentColumnKeys.indexOf(columnKey) < 0) {
-        delete filters[columnKey];
-      }
-    });
-
-    if (this.props.pagination) {
-      // Reset current prop
-      pagination.current = 1;
-      pagination.onChange(pagination.current);
-    }
-
-    const newState = {
-      selectionDirty: false,
-      pagination
+    this.state = {
+      dataSource: [{
+        key: '0',
+        number: '1',
+        role: 'test1',
+      }, {
+        key: '1',
+        number: '2',
+        role: 'test2',
+      }],
+      count: 2,
     };
-    const filtersToSetState = Object.assign({}, filters);
-    // Remove filters which is controlled
-    this.getFilteredValueColumns().forEach(col => {
-      const columnKey = this.getColumnKey(col);
-      if (columnKey) {
-        delete filtersToSetState[columnKey];
-      }
-    });
-    if (Object.keys(filtersToSetState).length > 0) {
-      newState.filters = filtersToSetState;
-    }
-
-    // Controlled current prop will not respond user interaction
-    if (this.props.pagination && 'current' in this.props.pagination) {
-      newState.pagination = Object.assign({}, pagination, {
-        current: this.state.pagination.current
-      });
-    }
-
-    this.setState(newState, () => {
-      this.props.onChange(...this.prepareParamsArguments(Object.assign({}, this.state, {
-        selectionDirty: false,
-        filters,
-        pagination
-      })));
-    });
+  }
+  onCellChange = (index, key) => {
+    return (value) => {
+      const dataSource = [...this.state.dataSource];
+      dataSource[index][key] = value;
+      this.setState({ dataSource });
+    };
+  }
+  onDelete = (index) => {
+    const dataSource = [...this.state.dataSource];
+    dataSource.splice(index, 1);
+    this.setState({ dataSource });
+  }
+  render() {
+    const { dataSource } = this.state;
+    const columns = this.columns;
+    return (
+      <div>
+        <AddRole/>,
+        <Table bordered dataSource={dataSource} columns={columns}  className="table"/>
+      </div>
+    );
   }
 }
-
-CustomTable.childContextTypes = {
-  handleCustomFilter: PropTypes.func
-};
 
 export default CustomTable;

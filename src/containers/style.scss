@@ -4,12 +4,7 @@
 .font2 {
 	font-size: 14px;
 }
-.mar-b {
-	margin-bottom: 10px;
-}
-.mar-t {
-	margin-top: 20px;
-}
+
 
 .record-content {
 	// text-align: center;
@@ -26,7 +21,17 @@
 	display: block;
 	overflow: hidden;
 }
-
+.record-block .ant-input-group-addon{
+	background-color: #fff !important;
+	border: none;
+}
+.record-block .has-error .ant-input-group-addon {
+	color: #525252;
+}
+.record-block .has-error .ant-form-explain {
+	float: right;
+	margin-top: 3px;
+}
 .inpt.ant-input:not(:first-child), .border-none {
 	border: none;
 	box-shadow: none;
@@ -36,15 +41,19 @@
 	border-bottom: 1px solid #e1e1e1;
 	font-size: 16px;
 }
+.ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: 88px;
+}
 .inpt-left-f.ant-input:not(:first-child) {
-	padding-left: 50px;
+	// padding-left: 50px;
 	font-size: 15px;
 	color: #333;
+	border-bottom:1px solid #ccc;
 }
 .inpt-left-t.ant-input:not(:first-child) {
-	padding-left: 80px;
 	font-size: 15px;
 	color: #333;
+	border-bottom:1px solid #ccc;
 }
 .login-form-button {
 	width: 90%;
@@ -60,6 +69,10 @@
 	width: 100%;
 	text-align: left;
 }
+.inpt .ant-input.ant-input-lg {
+	border: none;
+}
+
 
 //随访记录；
 .border-none {

@@ -1,0 +1,61 @@
+
+
+.userBorder {
+	padding: 2% 5%;
+	border:1px solid #ccc;
+}
+
+.userBorder .modify {
+	width: 10%;
+}
+
+.userBorder h3 {
+	text-align: center;
+}
+
+.userBorder .basicInfo,.userBorder .healthStatus,.userBorder .eatStatus,.userBorder .sportsStatus,.userBorder .sleepStatus {
+	display: flex;
+	padding: 3% 5%;
+}
+
+.userBorder h4 {
+	flex: 1;
+}
+
+.userBorder .left,.userBorder .right{
+	flex: 2;
+}
+
+.userBorder p {
+	margin-bottom: 3%;
+}
+
+.userBorder .basicInfo {
+	display: flex;
+}
+
+
+.userBorder .basicInfo .idLeft {
+	font-size: 6rem;
+	flex: 1;
+	display: inline-block;
+}
+
+.userBorder .basicInfo .idRight {
+	flex: 2;
+	display: flex;
+}
+
+.userBorder .basicInfo .idRight p {
+	margin: 0;
+	flex: 1;
+	padding-top: 3%;
+}
+
+.userBorder .basicInfo .idRight p span{
+	display: block;
+}
+
+.userBorder .ubColor p span {
+	color: #108ee9;
+}

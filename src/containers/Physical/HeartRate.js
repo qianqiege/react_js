@@ -1,4 +1,6 @@
 import React from "react";
+// import { Form, Icon, Input, Button } from 'antd';
+// import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
 
 import "../style.scss";
@@ -12,6 +14,7 @@ class HeartRate extends React.Component {
 			title: "心率测量",
 			phyName: "心率",
 			unit: "次/分",
+			name: "heart_rate",
 		};
 	}
 	render() {
