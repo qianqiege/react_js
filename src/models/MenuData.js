@@ -1,8 +1,8 @@
-import cookie from 'js-cookie';
+// import cookie from 'js-cookie';
 import { observable, action, runInAction } from 'mobx';
 import cFetch from 'utils/cFetch';
 import { API_CONFIG } from 'config/api';
-import User from "./User";
+// import User from "./User";
 
 class Menu {
 	@observable menuList = {

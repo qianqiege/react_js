@@ -18,7 +18,7 @@ const columns = [{
   key:'3',
   title: '查看记录',
   dataIndex: 'get_jsonResult',
-  render: (text, record) => (
+  render: () => (
     <Button type="primary">查看记录</Button>
   ),
 }];

@@ -19,20 +19,20 @@ class AddRole extends React.Component {
     RoleConfig.fetchRoles();
     RoleConfig.getRole(this.props.store.id);    
   }
-  handleOk = (e) => {
+  handleOk = () => {
       // this.handleSubmit();   
       //console.log(this.props.store.id, RoleConfig.abilities.toJS());
       this.setState({
         visible: false,
       });
   }
-  handleCancel = (e) => {
+  handleCancel = () => {
     //console.log(e);
     this.setState({
       visible: false, 
     });
   }
-  handleChange(values) {
+  handleChange() {
     // RoleConfig.abilities = RoleConfig.abilities.concat(values);
     //console.log(values);
   }
@@ -40,7 +40,7 @@ class AddRole extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        RoleConfig.updateRoles(this.props.store.id, { "checked_features": values.rolePermission,"id": this.props.store.id })
+        RoleConfig.updateRoles(this.props.store.id, { "checked_features": values.rolePermission,"id": this.props.store.id });
       }
       this.setState({
         visible: false,

@@ -5,7 +5,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './containers/App/App';
 import HomePage from './containers/HomePage/HomePage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
-import Login from "./containers/Login/Login";
+// import Login from "./containers/Login/Login";
 import RolesConfig from "./containers/RolesManage/RolesConfig/RolesConfig"; //角色配置
 import ManageList from "./containers/RolesManage/DoctorsList/ManageList"; //健康管理师列表
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import createG2 from 'g2-react';
-import { Stat, Frame } from 'g2';
+// import { Stat, Frame } from 'g2';
 import PatientRecord from 'models/PatientRecord';
 
 @observer
@@ -15,13 +15,13 @@ class HigherChart extends Component {
         min: 0, 
         max: 300,
         alias: '血压值',
-      })
+      });
       chart.col('time', {
         alias: '时间',
-      })
+      });
       chart.col('stateType', {
         alias: '状态值',
-      })
+      });
       chart.line().position('time*max_blood_pressure').color("stateType", ["blue", "#525252"]).shape(props.shape).size(2);
       chart.render();
     });
@@ -53,7 +53,7 @@ class MyComponent extends Component {
       }
       d = Object.assign({}, { 'time': d.datetime, 'max_blood_pressure': d.max_blood_pressure,  'stateType': obj });
       return d;
-    }) 
+    }); 
     return (
       <div>
         <HigherChart

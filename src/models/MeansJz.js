@@ -1,9 +1,9 @@
 import React from "react";
 import cookie from "js-cookie";
-import { observable, action, runInAction, computed } from "mobx";
+import { observable, action, runInAction} from "mobx";
 import { Checkbox } from "antd";
-import JzSelect from 'containers/Means/jzSelect';
-import JzCheck from 'containers/Means/jzCheck';
+// import JzSelect from 'containers/Means/jzSelect';
+// import JzCheck from 'containers/Means/jzCheck';
 //import $ from "jquery";
 
 // let jizhu = [];
@@ -95,7 +95,7 @@ class MeansJz {
 	//放血总价的计算；
 	@action handleCount(count) {
 		this.isKaifang.allPrice = parseInt(this.isKaifang.bloodPrice) * count;
-		console.log(this.isKaifang.allPrice);
+		// console.log(this.isKaifang.allPrice);
 		this.isKaifang.prices = this.isKaifang.allPrice + this.isKaifang.jizhuPrice * this.isKaifang.treatmentCount;
 	}
 	//总价的计算；

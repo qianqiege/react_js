@@ -18,7 +18,7 @@ class AddRole extends React.Component {
     }); 
     RoleConfig.fetchRoles();    
   }
-  handleOk = (e) => {
+  handleOk = () => {
     if(!this.state.name) {
       alert("名称不能为空");
     }else if(!RoleConfig.abilities.toJS().length) {
@@ -30,7 +30,7 @@ class AddRole extends React.Component {
       });
     }
   }
-  handleCancel = (e) => {
+  handleCancel = () => {
     //console.log(e);
     this.setState({
       visible: false, 

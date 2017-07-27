@@ -1,7 +1,7 @@
 // TDS数字中医表格
 import React from 'react';
-import { Link } from 'react-router';
-import { Table, Input, Icon, Button} from 'antd';
+// import { Link } from 'react-router';
+import { Table} from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
 
@@ -20,8 +20,8 @@ class TDS extends React.Component {
     }, {
       title: '查看记录',
       dataIndex: 'record',
-      render: (text, record, index) => {
-        console.log(record.report_url);
+      render: (text, record) => {
+        // console.log(record.report_url);
         return (
           <a href={record.report_url} target="_blank">查看记录</a>
           );

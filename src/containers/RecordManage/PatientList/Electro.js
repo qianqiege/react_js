@@ -1,7 +1,7 @@
 // 心电图展示
 import React from 'react';
-import { Link } from 'react-router';
-import { Table, Input, Icon, Button} from 'antd';
+// import { Link } from 'react-router';
+import { Table} from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
 
@@ -20,7 +20,7 @@ class Electro extends React.Component {
     }, {
       title: '查看记录',
       dataIndex: 'record',
-      render: (text, record, index) => {
+      render: (text, record) => {
         return (
           <a href={record.value} target="_blank">查看记录</a>
           );

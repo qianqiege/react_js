@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Icon, Input, Button } from 'antd';
-import AddRecord from "./AddRecord";
+// import { Form, Icon, Input, Button } from 'antd';
+// import AddRecord from "./AddRecord";
 import PhysicalInfo from "./PhysicalInfo";
 
 import "../style.scss";

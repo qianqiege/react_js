@@ -26,7 +26,7 @@ class Spine extends React.Component{
 		e.preventDefault();
 		this.props.form.validateFieldsAndScroll((err, values) => {
 			if (!err) {
-				console.log(values, MeansJz.jizhu.slice(), MeansInfo.meansUser.id, MeansJz.isKaifang.levelVal);
+				//console.log(values, MeansJz.jizhu.slice(), MeansInfo.meansUser.id, MeansJz.isKaifang.levelVal);
 				MeansJz.postKaifang("http://qolm.ybyt.cc/api/v1/recipe/create_spine_recipe",
 					`patient_id=${MeansInfo.meansUser.id}&blood_letting_times=${values.blood_letting_times}&physical_condition=${values.physical_condition}&diagnostic_advice=${values.diagnostic_advice}&treatment_level=${MeansJz.isKaifang.levelVal}&treatment_times=${values.treatment_times}&single_amount=&total=${MeansJz.isKaifang.prices}&detail=${MeansJz.jizhu.slice()}`);
 				this.props.form.resetFields();

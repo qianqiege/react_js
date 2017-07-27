@@ -24,7 +24,7 @@ class EditRole extends React.Component {
 
   render() {
     const CheckboxGroup = Checkbox.Group;
-    function onChange(checkedValues) {
+    function onChange() {
       
     }
 
