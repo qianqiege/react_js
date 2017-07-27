@@ -102,7 +102,7 @@ class UserMana {
 
 
 	@action async putUser(url) {
-		const addPermiss = await fetch(url, {
+		fetch(url, {
 			mode: "cors",
 			method: "PUT",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -116,9 +116,6 @@ class UserMana {
 			return jsonData;
 		}).catch( function() {
 			//console.log('cuole');
-		});
-		runInAction("request success", () => {
-			
 		});
 	}
 }

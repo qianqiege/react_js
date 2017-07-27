@@ -1,5 +1,5 @@
 // 角色配置页面的添加角色按钮弹出来的组件模块
-import React from 'react';
+import React, { PropTypes } from "react";
 //import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button, Input, Form } from 'antd';
 import { observer } from 'mobx-react';
@@ -11,6 +11,10 @@ const CheckboxGroup = Checkbox.Group;
 
 @observer
 class AddRole extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+    store: PropTypes.string,
+  }
   state = { visible: false, name: "" }
   showModal = () => {
     this.setState({

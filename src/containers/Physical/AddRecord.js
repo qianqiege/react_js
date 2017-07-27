@@ -1,4 +1,4 @@
-import	React from "react";
+import React, { PropTypes } from "react";
 import	{ Form, Input, Row, Col, Radio } from 'antd';
 import	{ observer } from "mobx-react";
 import	PhysicalData from "models/PhysicalData";
@@ -12,6 +12,9 @@ const RadioGroup = Radio.Group;
 
 @observer
 class NormalLoginForm extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  }
   constructor(props) {
     super(props);
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "antd";
+import { observer } from "mobx-react";
 import PatientRecord from 'models/PatientRecord';
 
 const columns = [{
@@ -14,14 +15,14 @@ const columns = [{
   key:'2',
   title: '查看记录',
   dataIndex: 'status1',
-  render: (text, record) => {
+  render: (record) => {
       return (
         <a href={record.value}>查看记录</a>
       );
   },
 }];
 
-
+@observer
 class Ecg extends React.Component {
   constructor(props) {
     super(props);

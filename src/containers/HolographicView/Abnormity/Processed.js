@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Table, Row, Col} from "antd";
 import { observer } from "mobx-react";
 import HolographyData from "models/HolographyData";
@@ -8,11 +8,6 @@ import "../HolographicView.scss";
 const columns = [{
   title: '时间',
   dataIndex: 'updated_at',
-  render:  (text) => {
-    return (
-      <a href="#">{text}</a>
-    );
-  },
 }, {
   title: '居家健康项目',
   dataIndex: 'test_item',
@@ -81,13 +76,13 @@ const columns = [{
 
 @observer
 class Holo extends React.Component {
+  static propTypes = {
+    store: PropTypes.string,
+  }
 	constructor(props) {
 		super(props);
-		this.handleChange = this.handleChange.bind(this);
 	}
-	// handleChange(e) {
-		
-	// }
+
   componentDidMount() {
     const id = this.props.store;
     HolographyData.get(`http://qolm.ybyt.cc/api/v1/exception/by_id?id=${id}&is_handle=1&page=1&per_page=10`);

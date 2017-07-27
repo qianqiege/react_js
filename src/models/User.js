@@ -25,7 +25,7 @@ class User {
   };
   @observable role_ids = []; //用户的角色权限；
 
-  @action async fetchUsers(params = {page: 1, per_page: 10 }) {
+  @action async fetchUsersList(params = {page: 1, per_page: 10 }) {
     this.list.isFetching = true;
     const ret = await cFetch(API_CONFIG.users, { method: "GET", params: params });
     runInAction('update users list after fetch', () => {
@@ -49,13 +49,13 @@ class User {
 
   @action create(values) {
     return cFetch(API_CONFIG.users, { method: "POST", body: JSON.stringify(values)}).then(() => {
-      this.fetchUsers();
+      this.fetchUsersList();
     });
   }
 
   @action destroy(id) {
     return cFetch(`${API_CONFIG.users}/${id}`, { method: "DELETE" }).then(() => {
-      this.fetchUsers();
+      this.fetchUsersList();
     });
   }
   //通过id查询用户；

@@ -1,5 +1,5 @@
 import cookie from 'js-cookie';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 
 import { Layout  } from 'antd';
@@ -14,6 +14,9 @@ const { Header, Sider, Content } = Layout;
 
 @observer
 class App extends Component {
+  static propTypes = {
+    children: PropTypes.element,
+  };
   constructor(props) { 
     super(props);
     this.state = {

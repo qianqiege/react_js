@@ -1,6 +1,6 @@
 //这是方案室的记录查询
+import React, { PropTypes } from "react";
 import { Input,Table,Button } from 'antd';
-import React from 'react';
 import { Link } from 'react-router';
 import { observer } from 'mobx-react';
 import MeansInfo from 'models/MeansInfo';
@@ -12,6 +12,9 @@ const Search = Input.Search;
 
 @observer
 class HealthSearch extends React.Component {
+	static propTypes = {
+		location: PropTypes.string,
+	}
 	constructor(props){
 		super(props);
 		this.columns = [{

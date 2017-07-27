@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Tabs, Row, Col } from 'antd';
 import { observer } from "mobx-react";
 import HolographicInfo from "./HolographicInfo";
@@ -18,13 +18,16 @@ import HeartRate from "./ERecord/HeartRate";//心率监测
 import Unine from "./ERecord/Unine";//尿酸监测
 import BloodFat from "./ERecord/BloodFat";//血脂监测
 import Ecg from "./ERecord/Ecg";//心电图监测
-import TDS from "./ERecord/TDS";//tds监测
+import TDSd from "./ERecord/TDS";//tds监测
 import "./HolographicView.scss";
 
 const TabPane = Tabs.TabPane;
 
 @observer
 class HolographicView extends React.Component {
+	static propTypes = {
+		location: PropTypes.object,
+	}
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -45,7 +48,7 @@ class HolographicView extends React.Component {
 					{name: "尿酸检测", componentObj: <Unine />},
 					{name: "血脂检测", componentObj: <BloodFat />},
 					{name: "心电图展示", componentObj: <Ecg />},
-					{name: "TDS数字中医", componentObj: <TDS />},
+					{name: "TDS数字中医", componentObj: <TDSd />},
 				]},
 				{title: "电子医疗档案", child: []},
 				{title: "健康评估", child: []},
@@ -54,20 +57,6 @@ class HolographicView extends React.Component {
 		};
 		// this.handleChange = this.handleChange.bind(this);
 
-	}
-	
-	renderHolographi() {
-		const holoProjects = this.state.holoProject;
-		return (
-			holoProjects.map( (holoProject, index) => {
-				return (
-					<TabPane tab={holoProject.title} key={index+1}>
-						<HolographicInfo store={holoProject.child} />
-					</TabPane>
-				);
-				
-			})
-		);
 	}
 	componentDidMount() {
 		const id = this.props.location.query.id;
@@ -85,6 +74,19 @@ class HolographicView extends React.Component {
 		PatientRecord.getBlooFat(`http://qolm.ybyt.cc/api/v1/examination_check/blood_fat?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 		PatientRecord.getEcg(`http://qolm.ybyt.cc/api/v1/examination_check/ecg?patient_id=${id}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 		PatientRecord.getTDS(`http://qolm.ybyt.cc/api/v1/tds/check?patient_id=${id}`);
+	}
+	renderHolographi() {
+		const holoProjects = this.state.holoProject;
+		return (
+			holoProjects.map( (holoProject, index) => {
+				return (
+					<TabPane tab={holoProject.title} key={index+1}>
+						<HolographicInfo store={holoProject.child} />
+					</TabPane>
+				);
+				
+			})
+		);
 	}	
 	render() {
 		const userInfo = HolographyData.userInfo;

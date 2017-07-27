@@ -108,8 +108,8 @@ class HolographyData {
 		});
 	}
 	//提交‘处理异常’信息
-	@action async putMessage(url, data) {
-		const products= await fetch(url, {
+	@action putMessage(url, data) {
+		fetch(url, {
 			mode: "cors",
 			method: "PUT",
 			headers: {"Content-Type": "application/json",
@@ -127,9 +127,6 @@ class HolographyData {
 		}).catch( function() {
 			//console.log("出现错误!");
 		}); 
-		runInAction("request success", () => {
-			alert("请求");
-		});
 	}
 }
 export default new HolographyData();

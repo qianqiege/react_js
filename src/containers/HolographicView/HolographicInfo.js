@@ -1,9 +1,12 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
 class HolographicInfo extends React.Component {
+	static propTypes = {
+		store: PropTypes.array,
+	}
 	constructor(props) {
 		super(props);
 	}
