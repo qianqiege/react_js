@@ -1,5 +1,5 @@
 // 健康管理师页面 的添加权限组件
-import React from 'react';
+import React, { PropTypes } from "react";
 //import ReactDOM from 'react-dom';
 import { Checkbox,Modal, Button,  Form} from 'antd';
 import { observer } from 'mobx-react';
@@ -16,6 +16,10 @@ const CheckboxGroup = Checkbox.Group;
 
 @observer
 class AddRole extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+    store: PropTypes.number,
+  }
   state = { visible: false }
 
   showModal = () => {

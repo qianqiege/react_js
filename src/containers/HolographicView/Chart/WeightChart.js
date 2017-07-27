@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { observer } from "mobx-react";
 import createG2 from 'g2-react';
 // import { Stat, Frame } from 'g2';
@@ -6,6 +6,9 @@ import PatientRecord from 'models/PatientRecord';
 
 @observer
 class HigherChart extends Component {
+  static propTypes = {
+    shape: PropTypes.string,
+  }
   constructor(props, ...others) {
     super(props, ...others);
     this.Chart = createG2(chart => {

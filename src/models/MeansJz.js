@@ -152,8 +152,8 @@ class MeansJz {
 
 	}
 	//提交开方；
-	@action async postKaifang(url, data) {
-		const proInfos= await fetch(url, {
+	@action postKaifang(url, data) {
+		fetch(url, {
 			mode: "cors",
 			method: "POST",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -169,9 +169,6 @@ class MeansJz {
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误!");
-		});
-		runInAction("success post kaifang", () => {
-			//console.log("success");
 		});
 	}
 	//获取放血排毒的价格；

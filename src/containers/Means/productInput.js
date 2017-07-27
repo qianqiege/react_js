@@ -1,6 +1,6 @@
 //产品方案选择框组件
+import React, { PropTypes } from "react";
 import { Form, Input, Button, Select, Row, Col } from 'antd';
-import React from 'react';
 import { observer } from 'mobx-react';
 import './meansTable.css';
 import MeansInfo from 'models/MeansInfo';
@@ -10,6 +10,9 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 @observer
 class Means extends React.Component{
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  }
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

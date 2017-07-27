@@ -194,7 +194,7 @@ class MeansInfo {
 			this.totalData.total=unNormal.meta.total;
 			unNormal.data = unNormal.data.map((d) => {
 				return d = Object.assign({}, { key: d.id, dataNum: d.patient["id"], name: d.patient["name"], number: d.value2 ? `${d.value1}/${d.value2}`: d.value1, prog: d.test_item, abnormal: d.status2 ? `${d.status1}/${d.status2}`: d.status1, date: d.created_at});
-			})
+			});
 			this.exceptionInfo = Object.assign({}, this.exceptionInfo, unNormal);
 		});
 	}
@@ -216,8 +216,8 @@ class MeansInfo {
 		dataSource.splice(index, 1);
 	}
 	//提交开方；
-	@action async postKaifang(url, data) {
-		const proInfos= await fetch(url, {
+	@action postKaifang(url, data) {
+		fetch(url, {
 			mode: "cors",
 			method: "POST",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -233,9 +233,6 @@ class MeansInfo {
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误!");
-		});
-		runInAction("success post kaifang", () => {
-			//console.log("success");
 		});
 	}
 

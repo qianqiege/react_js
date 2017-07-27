@@ -1,5 +1,5 @@
 //这是健康管理模块页面
-import React from 'react';
+import React, { PropTypes } from "react";
 import { Icon,Button,Form,Input,message } from 'antd';
 import {observer} from "mobx-react";
 import MeanInfo from './meanInfo';
@@ -12,6 +12,9 @@ const FormItem = Form.Item;
 
 @observer
 class HealthManagement extends React.Component{
+	static propTypes = {
+		form: PropTypes.object.isRequired,
+	}
 	constructor(props) {
 		super(props);
 	}

@@ -34,8 +34,8 @@ class UserPhysical {
 	}
 
 
-	@action async checkDevice(url, data) {
-		const ret = await fetch(url, {
+	@action checkDevice(url, data) {
+		fetch(url, {
 			mode: "cors",
 			method: "POST",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -49,7 +49,7 @@ class UserPhysical {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			//console.log("出现错误!");
+			alert("出现错误!");
 		});
 	}
 }

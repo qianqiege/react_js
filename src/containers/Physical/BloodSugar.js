@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Form, Input, Button, Row, Col, Select,message } from 'antd';
 import {observer} from "mobx-react";
 import AddRecord from "./AddRecord";
@@ -9,6 +9,9 @@ const FormItem = Form.Item;
 
 @observer
 class BloodPressure extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  }
 	constructor(props) {
 		super(props);
 	}

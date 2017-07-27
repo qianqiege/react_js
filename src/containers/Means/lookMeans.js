@@ -1,7 +1,6 @@
 //查看记录每条挂号的详细记录
-
+import React, { PropTypes } from "react";
 import { Table,Icon } from 'antd';
-import React from 'react';
 import { observer } from 'mobx-react';
 import MeansInfo from 'models/MeansInfo';
 import './lookMeans.css';
@@ -10,6 +9,9 @@ import './lookMeans.css';
 @observer
 
 class LookMeans extends React.Component {
+	static propTypes = {
+		location: PropTypes.string,
+	}
 	constructor(props){
 		super(props);
 

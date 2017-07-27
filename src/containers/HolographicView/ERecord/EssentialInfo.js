@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { Form, Input, Row, Col, Select, Radio } from 'antd';
 import PatientRecord from 'models/PatientRecord';
 import "../../style.scss";
@@ -8,10 +8,12 @@ const Option = Select.Option;
 const RadioGroup = Radio.Group;
 
 class NormalLoginForm extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.required,
+  }
   constructor(props) {
     super(props);
   }
-
   render() {
     const { getFieldDecorator } = this.props.form;
     const dataRecord=PatientRecord.record;

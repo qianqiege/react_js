@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from "react";
 // import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import { Icon,Modal, Button } from 'antd';
@@ -7,6 +7,9 @@ import RoleConfig from 'models/rolesConfig';
 
 @observer
 class DeleteRole extends React.Component {
+  static propTypes = {
+    store: PropTypes.string,
+  }
   state = { visible: false }
   showModal = () => {
     this.setState({

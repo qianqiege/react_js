@@ -17,7 +17,7 @@ class TimeLine extends React.Component{
     return (
       record_number.map(num => {
         return (
-          <div className="timeline-item">
+          <div className="timeline-item" key={num.number}>
             <div className="timeline-content">
               <h3>{ num.number }</h3>
               <p> 
@@ -40,7 +40,6 @@ class TimeLine extends React.Component{
     
   }
   render(){
-    console.log(UserList.check_date.created_at);
     const { created_at } = UserList.check_date;
     return (
         <div className="container" style={{width: "100%"}}>

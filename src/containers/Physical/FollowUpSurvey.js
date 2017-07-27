@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { observer } from "mobx-react";
 import { Form,Input, Button, Row, Col, Select,  Alert,message } from 'antd';
 import UserPhysical from "models/UserPhysical";
@@ -11,6 +11,9 @@ const FormItem = Form.Item;
 
 @observer
 class FollowUpSurver extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  }
   constructor(props) {
     super(props);
   }

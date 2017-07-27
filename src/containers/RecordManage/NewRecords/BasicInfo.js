@@ -1,5 +1,5 @@
 // 基本资料组件
-import React from "react";
+import React, { PropTypes } from "react";
 import { Form,  Input, Button, Row, Col, Select, Radio, Modal } from 'antd';
 import NewUser from "models/NewUser";
 import  User  from  'models/User';
@@ -20,6 +20,9 @@ function success() {
 
 
 class NormalLoginForm extends React.Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  }
   constructor(props) {
     super(props);
   }
