@@ -1,7 +1,7 @@
 //这是筑脊模块页面
 
 import React from 'react';
-import { Icon,Checkbox,Input,Table, Select } from 'antd';
+import { Table, Select } from 'antd';
 import MeansJz from 'models/MeansJz';
 import { observer } from "mobx-react";
 import './spine.css';
@@ -31,15 +31,16 @@ class SpineSelect extends React.Component{
     };
 
   }
-  onChange (e){
-    this.setState({
-      disable:e.target.checked,
-    }); 
-  }
+ 
   componentDidMount() {
     MeansJz.getJibie("http://qolm.ybyt.cc/api/v1/spine/spine_level");
     MeansJz.getPay(`http://qolm.ybyt.cc/api/v1/spine/spine_level_charge?spine_level_id=4`);
 
+  }
+  onChange (e){
+    this.setState({
+      disable:e.target.checked,
+    }); 
   }
   handleChange(value, option) {
     MeansJz.price.length = 0;
@@ -51,7 +52,7 @@ class SpineSelect extends React.Component{
 
   }
   render(){
-    const {jiZhuBtn} = MeansJz.isKaifang;
+    // const {jiZhuBtn} = MeansJz.isKaifang;
     const columns = this.columns;
     const price = MeansJz.price.toJS();
     const levelPer = MeansJz.jzArr.map(a => <Option key={a.id} dataId={a.id} value={a.treatment_level} style={{width: "100%"}}>{a.treatment_level}</Option>);

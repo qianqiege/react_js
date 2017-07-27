@@ -27,7 +27,7 @@ class Means extends React.Component{
 
   }
   handleSubmit = (e) => {
-    let proUse = MeansInfo.proUse[0];
+    // let proUse = MeansInfo.proUse[0];
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if(err) {
@@ -45,7 +45,7 @@ class Means extends React.Component{
   render() {
     const { getFieldDecorator } = this.props.form;
     const proArrOptions = MeansInfo.proArr.map(p => <Option key={p.id} dataId={p.id} value={p.name} style={{width: "100%"}}>{p.name}</Option>);
-    const proUse = MeansInfo.proUse[0];
+    // const proUse = MeansInfo.proUse[0];
     return (
       <div>
       <Form onSubmit={this.handleSubmit}>

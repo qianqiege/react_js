@@ -25,7 +25,6 @@ class BloodGlucose extends React.Component {
 
   render() {
     const data=PatientRecord.bloodGlu.data.slice();
-    console.log(data);
     return ( <div style={{}}>
       <Row>
         <Col xs={{ span: 12}}>

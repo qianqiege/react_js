@@ -3,12 +3,12 @@
 
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Select,Table, Input, Icon, Popconfirm,Form, Button } from 'antd';
+// import { Select,Table, Input, Icon, Popconfirm,Form, Button } from 'antd';
 import './meansTable.css';
 import WrappedHorizontalLoginForm from './productInput';
 
 
-const Option = Select.Option;
+// const Option = Select.Option;
 
 class MeansTable extends React.Component{
 	constructor(props) {

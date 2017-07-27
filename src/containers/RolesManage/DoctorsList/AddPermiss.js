@@ -1,13 +1,13 @@
 // 健康管理师页面 的添加权限组件
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Checkbox,Modal, Button, Input, Form} from 'antd';
+import { Checkbox,Modal, Button,  Form} from 'antd';
 import { observer } from 'mobx-react';
-import UserMana from 'models/UserMana';
+// import UserMana from 'models/UserMana';
 import RolesConfig from 'models/rolesConfig';
 import User from 'models/User';
 
-import $ from "jquery";
+// import $ from "jquery";
 
 import '../CustomTable.scss';
 
@@ -26,10 +26,10 @@ class AddRole extends React.Component {
     User.get_user(this.props.store);
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log(values, this.props.store);
+        //console.log(values, this.props.store);
         User.update_user(this.props.store, values);
       }
       this.setState({
@@ -38,7 +38,7 @@ class AddRole extends React.Component {
     });
   }
 
-  handleCancel = (e) => {
+  handleCancel = () => {
     //console.log(e);
     this.setState({
       visible: false,

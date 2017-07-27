@@ -1,7 +1,7 @@
 // 客户列表页的客户信息的时间轴
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Timeline } from 'antd';
+// import { Timeline } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
 import { Link } from 'react-router';

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Row, Col, Select, Radio,message } from 'antd';
+import { Form, Input, Button, Row, Col,message } from 'antd';
 import AddRecord from "./AddRecord";
 import {observer} from "mobx-react";
 import PhysicalData from "models/PhysicalData";
@@ -31,7 +31,7 @@ class BloodPressure extends React.Component {
 	}
 	render() {
 		const { getFieldDecorator } = this.props.form;
-		return <div className="record-content">
+		return (<div className="record-content">
 			<h1>{this.props.store.title}</h1>
 			<AddRecord />
 			<div style={{clear: 'both', marginTop: 30}}>
@@ -54,7 +54,7 @@ class BloodPressure extends React.Component {
 				</Form>
 			</div>
 			
-		</div>;
+		</div>);
 	}
 }
 

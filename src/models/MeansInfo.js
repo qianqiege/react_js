@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import cookie from "js-cookie";
 import { observable, action, runInAction } from "mobx";
 import $ from "jquery";
@@ -334,8 +334,8 @@ class MeansInfo {
 		});
 		runInAction("success", () => {
 			this.userXxData = Object.assign({}, xxData);
-			console.log(this.userXxData);
-			console.log(this.userXxData.health_manage_recipes[0].detail);
+			// console.log(this.userXxData);
+			// console.log(this.userXxData.health_manage_recipes[0].detail);
 			// const drug = eval(this.userXxData.health_manage_recipes[0].detail);
 			// for(var i = 0; i<drug.length; i++){
 			// 	const item = [];

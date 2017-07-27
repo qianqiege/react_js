@@ -1,8 +1,7 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router';
-import { Layout, Menu, Icon, Breadcrumb,  } from 'antd';
-import User from 'models/User';
+import { Menu, Icon  } from 'antd';
 import MenuData from "models/MenuData";
 
 import './App.scss';

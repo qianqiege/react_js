@@ -4,8 +4,6 @@ import MeansJz from 'models/MeansJz';
 import { observer } from "mobx-react";
 
 
-const Option = Select.Option;
-
 @observer
 class JzSelect extends React.Component{
 

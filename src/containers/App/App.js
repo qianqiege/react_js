@@ -1,8 +1,8 @@
 import cookie from 'js-cookie';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router';
-import { Layout, Menu, Icon, Breadcrumb,  } from 'antd';
+
+import { Layout  } from 'antd';
 import User from 'models/User';
 import Menus from "./Menus";
 
@@ -10,7 +10,6 @@ import './App.scss';
 
 import Login from "../Login/Login";
 
-const SubMenu = Menu.SubMenu;
 const { Header, Sider, Content } = Layout;
 
 @observer
@@ -30,7 +29,7 @@ class App extends Component {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
+          onCollapse={() => {}}
           width={270}
         >
           <div className="logo">
@@ -52,7 +51,7 @@ class App extends Component {
   }
   //登出；
   handleOut() {
-    const { isAuthenticated } = User.auth;
+  
     cookie.set("access_token", "");
     location.href = "/";
   }

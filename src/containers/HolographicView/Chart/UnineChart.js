@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import createG2 from 'g2-react';
-import { Stat, Frame } from 'g2';
+// import { Stat, Frame } from 'g2';
 import PatientRecord from 'models/PatientRecord';
 
 @observer
@@ -15,13 +15,13 @@ class HigherChart extends Component {
         min: 0, 
         max: 120,
         alias: '尿酸值 (mmol/L)',
-      })
+      });
       chart.col('time', {
         alias: '时间',
-      })
+      });
       chart.col('stateType', {
         alias: '状态值',
-      })
+      });
       chart.line().position('time*value').color("#FFCA00").shape(props.shape).size(2);
       chart.render();
     });
@@ -44,12 +44,12 @@ class MyComponent extends Component {
   }
   render() {
     let data = PatientRecord.unine.data.slice();
-    console.log(data);
-    let obj = "";
+    // console.log(data);
+    // let obj = "";
     data = data.map(d => {
       d = Object.assign({}, { 'time': d.datetime, 'value': d.value});
       return d;
-    }) 
+    }); 
     return (
       <div>
         <HigherChart
