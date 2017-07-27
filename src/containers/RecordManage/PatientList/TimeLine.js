@@ -27,9 +27,10 @@ class TimeLine extends React.Component{
                 <Link className="btn" to={'/recordManage/evaluate'}>管理评价</Link>
               </p>
               <p> 
-                {num.disease_location_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>疾病谱定位</Link> : null}
-                {num.health_manage_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>健康管理</Link> : null}
-                {num.spine_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>脊柱开方</Link> : null}
+                {num.disease_location_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>查看疾病谱定位报告</Link> : null}
+                {num.health_manage_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>查看健康管理方案报告</Link> : null}
+                {num.spine_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>查看龙氏脊柱方案报告</Link> : null}
+                {num.tds_tables.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>TDS检测报告</Link> : null}
               </p>              
             </div>
           </div>
