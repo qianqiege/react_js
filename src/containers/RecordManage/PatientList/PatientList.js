@@ -36,6 +36,8 @@ class PatientList extends React.Component{
     const reg = /^(\d{18,18}|\d{15,15}|\d{17,17}x)$/;
     if( reg.test(value) ) {
       UserList.getRecord(`http://qolm.ybyt.cc/api/v1/patient/get_by_id_number?id_number=${value}`);
+      UserList.checkDate(`http://qolm.ybyt.cc/api/v1/patient_record/check_date?id_number=${value}`);
+
       $(".showList").slideDown();
     }else{
       alert("身份证格式不正确");
@@ -85,7 +87,7 @@ class PatientList extends React.Component{
                     <Link to={`/fileview?id=${uid}`}>档案查看/修改</Link>
                   </Button>
               </li>
-            </ul> ,
+            </ul>
             <p className="clear">健康管理动态</p>
             <TimeLine />
           </div>
