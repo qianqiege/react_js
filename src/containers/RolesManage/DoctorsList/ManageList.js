@@ -70,7 +70,6 @@ class ManageList extends React.Component {
       }
     const columns = this.columns;
     const dataSource = UserMana.ManaList.data.toJS();
-    console.log(UserMana.ManaList.meta.total);
     return (
       <div>
         <h1>健康管理师列表</h1>
@@ -85,7 +84,6 @@ class ManageList extends React.Component {
           total:UserMana.ManaList.meta.total,
           pageSize:8,
           onChange(pageNumber) {
-              console.log('Page: ', pageNumber);
               UserMana.getManaList(
                 `http://qolm.ybyt.cc/api/v1/users/all_users?page=${pageNumber}&per_page=8`);
           }

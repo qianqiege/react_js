@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button } from "antd";
+import { Table } from "antd";
 import PatientRecord from 'models/PatientRecord';
 
 const columns = [{

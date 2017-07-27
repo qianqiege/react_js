@@ -1,8 +1,8 @@
 // 角色配置页面
-import cookie from 'js-cookie';
+// import cookie from 'js-cookie';
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table, } from 'antd';
 import { observer } from 'mobx-react';
 import AddRole from './AddRole';
 import DeleteRole from './DeleteRole';
@@ -30,7 +30,7 @@ class CustomTable extends React.Component {
       title: '操作',
       dataIndex: 'operation',
       key:'2',
-      render: (text, record, index) => {
+      render: (text, record) => {
         return (
           <span className="inline">
             <EditRole store={record} />&nbsp;<DeleteRole store={record} />

@@ -81,7 +81,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -118,7 +117,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -155,7 +153,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -192,7 +189,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -229,7 +225,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -266,7 +261,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -303,7 +297,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -401,7 +394,6 @@ class UserList {
 		}).then( function(response) {
 			return response.json();
 		}).then( function(jsonData) {
-			console.log(jsonData);
 			return jsonData;
 		}).catch( function() {
 			//console.log("出现错误！");
@@ -409,7 +401,6 @@ class UserList {
 		
 		runInAction('update users list after fetch', () => {	
 			this.userBorder = Object.assign({},uborder);
-			console.log(this.userBorder);
 		});
 
 	}	

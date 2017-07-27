@@ -1,7 +1,7 @@
 // 心率检测的检测日志的表格组件
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
 

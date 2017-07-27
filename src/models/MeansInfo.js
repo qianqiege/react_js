@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import cookie from "js-cookie";
 import { observable, action, runInAction } from "mobx";
 import $ from "jquery";
@@ -194,7 +194,7 @@ class MeansInfo {
 			this.totalData.total=unNormal.meta.total;
 			unNormal.data = unNormal.data.map((d) => {
 				return d = Object.assign({}, {name: d.patient["name"], number: d.value2 ? `${d.value1}/${d.value2}`: d.value1, prog: d.test_item, abnormal: d.status2 ? `${d.status1}/${d.status2}`: d.status1, date: d.created_at});
-			})
+			});
 			this.exceptionInfo = Object.assign({}, this.exceptionInfo, unNormal);
 		});
 	}
@@ -334,8 +334,8 @@ class MeansInfo {
 		});
 		runInAction("success", () => {
 			this.userXxData = Object.assign({}, xxData);
-			console.log(this.userXxData);
-			console.log(this.userXxData.health_manage_recipes[0].detail);
+			// console.log(this.userXxData);
+			// console.log(this.userXxData.health_manage_recipes[0].detail);
 			// const drug = eval(this.userXxData.health_manage_recipes[0].detail);
 			// for(var i = 0; i<drug.length; i++){
 			// 	const item = [];

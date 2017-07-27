@@ -20,7 +20,7 @@ class CustomTable extends React.Component {
     }, {
       title: '操作',
       dataIndex: 'operation',
-      render: (text, record) => {
+      render: () => {
         return (
             <div>
               <EditRole/>

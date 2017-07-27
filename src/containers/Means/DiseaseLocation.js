@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Icon,Button,Form,Input,message } from 'antd';
-import cookie from 'js-cookie';
+// import cookie from 'js-cookie';
 import MeanInfo from './meanInfo';
 import MeanSearch from './meanSearch';
 import UserInfo from './userInfo';

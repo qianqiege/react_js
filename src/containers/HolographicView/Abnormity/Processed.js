@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Row, Col, Input, Checkbox, Button } from "antd";
+import { Table, Row, Col} from "antd";
 import { observer } from "mobx-react";
 import HolographyData from "models/HolographyData";
 
@@ -8,7 +8,7 @@ import "../HolographicView.scss";
 const columns = [{
   title: '时间',
   dataIndex: 'updated_at',
-  render:  (text, record, index) => {
+  render:  (text) => {
     return (
       <a href="#">{text}</a>
     );
@@ -45,38 +45,38 @@ const columns = [{
 }];
 
 
-const data = [{
-  key: '1',
-  time: '2017-06-20',
-  healthObj: '心率',
-  surveyData: 56,
-  Condition: '偏低',
-  dealingStatus: '已处理'
+// const data = [{
+//   key: '1',
+//   time: '2017-06-20',
+//   healthObj: '心率',
+//   surveyData: 56,
+//   Condition: '偏低',
+//   dealingStatus: '已处理'
 
-}, {
-  key: '2',
-  time: '2017-06-20',
-  healthObj: '心率',
-  surveyData: 56,
-  Condition: '偏低',
-  dealingStatus: '已处理',
+// }, {
+//   key: '2',
+//   time: '2017-06-20',
+//   healthObj: '心率',
+//   surveyData: 56,
+//   Condition: '偏低',
+//   dealingStatus: '已处理',
 
-}, {
-  key: '3',
-  time: '2017-06-20',
-  dealingStatus: '已处理',
-  healthObj: '心率',
-  surveyData: 56,
-  Condition: '偏低',
-  dealingStatus: '未处理',
+// }, {
+//   key: '3',
+//   time: '2017-06-20',
+//   dealingStatus: '已处理',
+//   healthObj: '心率',
+//   surveyData: 56,
+//   Condition: '偏低',
+//   dealingStatus: '未处理',
 
-}];
+// }];
 // rowSelection object indicates the need for row selection
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
+// const rowSelection = {
+//   onChange: (selectedRowKeys, selectedRows) => {
     
-  },
-};
+//   },
+// };
 
 
 @observer
@@ -85,9 +85,9 @@ class Holo extends React.Component {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
 	}
-	handleChange(e) {
+	// handleChange(e) {
 		
-	}
+	// }
   componentDidMount() {
     const id = this.props.store;
     HolographyData.get(`http://qolm.ybyt.cc/api/v1/exception/by_id?id=${id}&is_handle=1&page=1&per_page=10`);

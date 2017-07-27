@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox, Row, Col, Select, Radio,message } from 'antd';
+import { Form, Input, Button,Row, Col,message } from 'antd';
 import {observer} from "mobx-react";
 import PhysicalData from "models/PhysicalData";
 import AddRecord from "./AddRecord";

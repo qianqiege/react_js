@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table,  Popconfirm } from 'antd';
 import { observer } from "mobx-react";
 import MeansInfo from 'models/MeansInfo';
 

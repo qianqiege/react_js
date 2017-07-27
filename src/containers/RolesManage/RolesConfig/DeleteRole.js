@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import { Icon,Modal, Button } from 'antd';
 import RoleConfig from 'models/rolesConfig';
@@ -13,13 +13,13 @@ class DeleteRole extends React.Component {
       visible: true,
     });
   }
-  handleOk = (e) => {
+  handleOk = () => {
     this.setState({
       visible: false,
     });
     RoleConfig.deleteRoles(this.props.store.id);
   }
-  handleCancel = (e) => {
+  handleCancel = () => {
     //console.log(e);
     this.setState({
       visible: false,

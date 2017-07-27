@@ -1,7 +1,7 @@
 import { Checkbox } from 'antd';
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import MeansJz from 'models/MeansJz';
+// import MeansJz from 'models/MeansJz';
 import { observer } from "mobx-react";
 
 
