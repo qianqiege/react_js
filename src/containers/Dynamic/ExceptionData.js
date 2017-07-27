@@ -29,9 +29,10 @@ class ExceptionData extends React.Component {
       title: '操作',
       dataIndex: 'operation',
       render: (text, record) => {
+        console.log(record);
         return (
             <Button type="primary">
-              <Link to={`/holographicView?id=${record.data}`}>处理异常</Link>
+              <Link to={`/holographicView?id=${record.dataNum}`}>处理异常</Link>
             </Button>
           );
       },

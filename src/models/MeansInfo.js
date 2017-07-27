@@ -193,7 +193,7 @@ class MeansInfo {
 		runInAction("request success", () =>{
 			this.totalData.total=unNormal.meta.total;
 			unNormal.data = unNormal.data.map((d) => {
-				return d = Object.assign({}, {name: d.patient["name"], number: d.value2 ? `${d.value1}/${d.value2}`: d.value1, prog: d.test_item, abnormal: d.status2 ? `${d.status1}/${d.status2}`: d.status1, date: d.created_at});
+				return d = Object.assign({}, { key: d.id, dataNum: d.patient["id"], name: d.patient["name"], number: d.value2 ? `${d.value1}/${d.value2}`: d.value1, prog: d.test_item, abnormal: d.status2 ? `${d.status1}/${d.status2}`: d.status1, date: d.created_at});
 			})
 			this.exceptionInfo = Object.assign({}, this.exceptionInfo, unNormal);
 		});

@@ -413,7 +413,30 @@ class UserList {
 		});
 
 	}	
+	//查询建档日期；
+	@observable check_date = {};
+	@action async checkDate(url) {
+		const ret = await fetch(url, {
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误！");
+		});
+		
+		runInAction('update users list after fetch', () => {	
+			this.check_date = Object.assign({},ret);
+		});
 
+	}	
 
 }
 export default new UserList();

@@ -18,16 +18,18 @@ class TimeLine extends React.Component{
       record_number.map(num => {
         return (
           <div className="timeline-item">
-            <div className="timeline-icon">
-             
-            </div>
             <div className="timeline-content">
               <h3>{ num.number }</h3>
               <p> 
                 <Link className="btn" to={`/recordManage/healthmonitor?id=${uid}`}>查看健康体检数据</Link>
               </p>
               <p> 
-                <Link className="pj" to={'/recordManage/evaluate'}>✿管理评价✿</Link>
+                <Link className="btn" to={'/recordManage/evaluate'}>管理评价</Link>
+              </p>
+              <p> 
+                {num.disease_location_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>疾病谱定位</Link> : null}
+                {num.health_manage_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>健康管理</Link> : null}
+                {num.spine_recipes.length != 0 ? <Link className="btn" to={`/means/lookMeans?id=${num.number}`}>脊柱开方</Link> : null}
               </p>              
             </div>
           </div>
@@ -37,11 +39,16 @@ class TimeLine extends React.Component{
     
   }
   render(){
+    console.log(UserList.check_date.created_at);
+    const { created_at } = UserList.check_date;
     return (
-        <div className="container">
+        <div className="container" style={{width: "100%"}}>
           <div id="timeline">
             { this.renderYB() }
           </div>
+          <p className="firstRecord">
+            首次建档于：{ created_at }
+          </p>
         </div>
     );
   }
