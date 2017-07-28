@@ -6,6 +6,8 @@ import React from 'react';
 import { Table} from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
+import PatientRecord from 'models/PatientRecord';
+import BloodFatChart from '../../HolographicView/Chart/BloodFatChart';
 
 
 @observer
@@ -29,7 +31,9 @@ class BloodFat extends React.Component {
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
+    const staDate="2016-12-1";
     UserList.selfBf(`http://qolm.ybyt.cc/api/v1/examination_check/blood_fat?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
+    PatientRecord.getBlooFat(`http://qolm.ybyt.cc/api/v1/examination_check/blood_fat?patient_id=${uid}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 
   }
 
@@ -48,6 +52,7 @@ class BloodFat extends React.Component {
     const currDates =new Date().toLocaleDateString();
     return (
       <div>
+        <BloodFatChart />
         <Table bordered 
         dataSource={dataSource} 
         columns={columns}  

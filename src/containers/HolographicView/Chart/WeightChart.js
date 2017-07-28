@@ -38,7 +38,7 @@ class HigherChart extends Component {
 @observer
 class MyComponent extends Component {
   state = {
-    shape: 'spline',
+    shape: 'line',
     width: 1100,
     height: 500,
     plotCfg: {

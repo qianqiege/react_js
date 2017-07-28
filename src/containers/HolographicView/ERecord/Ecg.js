@@ -15,11 +15,11 @@ const columns = [{
   key:'2',
   title: '查看记录',
   dataIndex: 'status1',
-  render: (record) => {
+  render: (text, record) => {
       return (
         <a href={record.value}>查看记录</a>
       );
-  },
+    },
 }];
 
 @observer

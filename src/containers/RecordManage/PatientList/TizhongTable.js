@@ -4,7 +4,8 @@ import React from 'react';
 import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
-
+import PatientRecord from 'models/PatientRecord';
+import WeightChart from '../../HolographicView/Chart/WeightChart';
 
 @observer
 class TizhongTable extends React.Component {
@@ -27,8 +28,10 @@ class TizhongTable extends React.Component {
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
+    const staDate="2016-12-1";
     UserList.selfTz(`http://qolm.ybyt.cc/api/v1/examination_check/weight?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
-
+    PatientRecord.getWeight(`http://qolm.ybyt.cc/api/v1/examination_check/weight?patient_id=${uid}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
+        
   }
 
   onCellChange = (index, key) => {
@@ -46,6 +49,7 @@ class TizhongTable extends React.Component {
     const currDates =new Date().toLocaleDateString();
     return (
       <div>
+        <WeightChart />
         <Table bordered 
         dataSource={dataSource} 
         columns={columns}  

@@ -84,7 +84,6 @@ class HolographicView extends React.Component {
 						<HolographicInfo store={holoProject.child} />
 					</TabPane>
 				);
-				
 			})
 		);
 	}	

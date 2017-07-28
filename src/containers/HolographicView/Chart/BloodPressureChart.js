@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { observer } from "mobx-react";
 import createG2 from 'g2-react';
-// import { Stat, Frame } from 'g2';
+import { Frame } from 'g2';
 import PatientRecord from 'models/PatientRecord';
 
 @observer
@@ -13,19 +13,16 @@ class HigherChart extends Component {
     super(props, ...others);
     this.Chart = createG2(chart => {
       this.chart = chart;
-      chart.col('max_blood_pressure', {
-        type: 'linear',
-        min: 0, 
-        max: 300,
-        alias: '血压值',
+      chart.col('date', {
+        alias: '日期'
       });
-      chart.col('time', {
-        alias: '时间',
+      chart.col('value', {
+        alias: '血压值'
       });
-      chart.col('stateType', {
-        alias: '状态值',
+      chart.legend({
+        position: 'right',
       });
-      chart.line().position('time*max_blood_pressure').color("stateType", ["blue", "#525252"]).shape(props.shape).size(2);
+      chart.line().position('date*value').color('类型', ['#FF4427', '#72FF86']).shape('line').size(2);
       chart.render();
     });
   }
@@ -37,8 +34,10 @@ class HigherChart extends Component {
 
 @observer
 class MyComponent extends Component {
+  static propTypes = {
+    shape: PropTypes.string,
+  }
   state = {
-    shape: 'spline',
     width: 1100,
     height: 500,
     plotCfg: {
@@ -47,21 +46,17 @@ class MyComponent extends Component {
   }
   render() {
     let data = PatientRecord.bloodPre.data.slice();
-    let obj = "";
     data = data.map(d => {
-      if(d.max_blood_pressure) {
-        obj = "舒张压";
-      }else if(d.min_blood_pressure) {
-        obj = "收缩压";
-      }
-      d = Object.assign({}, { 'time': d.datetime, 'max_blood_pressure': d.max_blood_pressure,  'stateType': obj });
+      d = Object.assign({}, { 'date': d.datetime, '收缩压': d.min_blood_pressure, '舒张压': d.max_blood_pressure});
       return d;
-    }); 
+    });
+    let frame = new Frame(data);
+    frame = Frame.combinColumns(frame, ['收缩压', '舒张压'], 'value', '类型', 'date');
     return (
       <div>
         <HigherChart
           shape={this.state.shape}
-          data={data}
+          data={frame}
           width={this.state.width}
           height={this.state.height}
           plotCfg={this.state.plotCfg}
