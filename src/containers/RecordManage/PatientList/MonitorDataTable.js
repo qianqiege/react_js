@@ -4,7 +4,8 @@ import React from 'react';
 import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
-
+import PatientRecord from 'models/PatientRecord';
+import BloodPressureChart from '../../HolographicView/Chart/BloodPressureChart';
 
 @observer
 class MonitorDataTable extends React.Component {
@@ -30,8 +31,10 @@ class MonitorDataTable extends React.Component {
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
+    const staDate="2016-12-1";
     UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
-
+    PatientRecord.getBloodPre(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
+    
   }
 
   onCellChange = (index, key) => {
@@ -49,6 +52,7 @@ class MonitorDataTable extends React.Component {
     const currDates =new Date().toLocaleDateString();
     return (
       <div>
+        <BloodPressureChart />
         <Table bordered 
         dataSource={dataSource} 
         columns={columns}  

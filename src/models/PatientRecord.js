@@ -335,34 +335,30 @@ class	PatientRecord{
 	}
 
 	//TDS检测数据
-	@observable	tds={
-		id:"",
-		report_url:"",
-		get_jsonResult:"[]",
-		created_at:""
-	}
+	@observable selfTDS = [];
 
-	@action	async	getTDS(url){
-		const	Tds=await	fetch(url,{
-			mode:"cors",
-			method:"GET",
-			headers:{"Content-Type":"application/x-www-form-urlencoded",
-				"Access-Control-Allow-Headers":"Authorization",
-				"Access-Control-Allow-Origin":"*",
-				"Access-Control-Allow-Credentials":true,
-				"Access-Authorization":`${cookie.get("access_token")}`},
-		}).then(function(response){
-			return	response.json();
-		}).then(function(jsonData){
-			return	jsonData;
-		}).catch(function(){
-			// console.log("请求失败");
+	@action async getTDS(url) {
+		const selfT = await fetch(url, {
+			mode: "cors",
+			method: "GET",
+			headers: {"Content-Type": "application/x-www-form-urlencoded",
+				"Access-Control-Allow-Headers": "Authorization",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+				"Access-Authorization": `${cookie.get("access_token")}`},
+		}).then( function(response) {
+			return response.json();
+		}).then( function(jsonData) {
+			return jsonData;
+		}).catch( function() {
+			//console.log("出现错误！");
+		});
+		
+		runInAction('update users list after fetch', () => {	
+			this.selfTDS = [...selfT];
 		});
 
-		runInAction("success	tds",()=>{
-			this.tds=Object.assign({},Tds);
-		});
-	}
+	}	
 }
 
 

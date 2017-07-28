@@ -10,7 +10,7 @@ import UserList from 'models/UserList';
 @observer
 class FileView extends React.Component {
 	static propTypes = {
-		location: PropTypes.string,
+		location: PropTypes.object,
 	}
 	constructor(props) {
 		super(props);
@@ -37,46 +37,46 @@ class FileView extends React.Component {
 					<div className="healthStatus ubColor">
 						<h4>基本健康状况</h4>
 						<div className="hsLfet left">
-							<p>您在过去的一段时间感觉疲劳吗：{undefined?null:<span>{UserList.userBorder.health_status.item_b1}</span>}</p>
-							<p>您近半年内测过血压吗：{undefined?null:<span>{UserList.userBorder.health_status.item_b4}</span>}</p>
-							<p>您近半年内测过血脂吗：{undefined?null:<span>{UserList.userBorder.health_status.item_b5}</span>}</p>
+							<p>您在过去的一段时间感觉疲劳吗：</p>
+							<p>您近半年内测过血压吗：</p>
+							<p>您近半年内测过血脂吗：</p>
 						</div>
 						<div className="hsRight right">
-							<p>您是否经常有颈部、腰部、骨关节疼痛：{undefined?null:<span>{UserList.userBorder.health_status.item_b6}</span>}</p>
-							<p>您近一年住过医院吗：{undefined?null:<span>{UserList.userBorder.health_status.item_b7}</span>}</p>
-							<p>您不歇气一次可以爬几层楼梯：{undefined?null:<span>{UserList.userBorder.health_status.item_b8}</span>}</p>
+							<p>您是否经常有颈部、腰部、骨关节疼痛：</p>
+							<p>您近一年住过医院吗：</p>
+							<p>您不歇气一次可以爬几层楼梯：</p>
 						</div>						
 					</div>
 					<div className="eatStatus ubColor">
 						<h4>饮食习惯</h4>
 						<div className="eatLfet left">
-							<p>每日的主副食比例：{undefined?null:<span>{UserList.userBorder.eating_habit.item_1}</span>}</p>
-							<p>平均每天吃蔬菜：{undefined?null:<span>{UserList.userBorder.eating_habit.item_3}</span>}</p>
+							<p>每日的主副食比例：</p>
+							<p>平均每天吃蔬菜：</p>
 						</div>
 						<div className="eatRight right">
-							<p>平均每天吃水果：{undefined?null:<span>{UserList.userBorder.eating_habit.item_4}</span>}</p>
-							<p>平均每天吃鸡蛋：{undefined?null:<span>{UserList.userBorder.eating_habit.item_5}</span>}</p>
+							<p>平均每天吃水果：</p>
+							<p>平均每天吃鸡蛋：</p>
 						</div>						
 					</div>	
 					<div className="sportsStatus ubColor">
 						<h4>运动习惯</h4>
 						<div className="eatLfet left">
-							<p>您每周的运动次数是：{undefined?null:<span>{UserList.userBorder.exercise_habit.item_1}</span>}</p>
-							<p>您每次的运动时间是：{undefined?null:<span>{UserList.userBorder.exercise_habit.item_2}</span>}</p>
+							<p>您每周的运动次数是：</p>
+							<p>您每次的运动时间是：</p>
 						</div>
 						<div className="eatRight right">
-							<p>您目前运动方式是：{undefined?null:<span>{UserList.userBorder.exercise_habit.item_4}</span>}</p>
+							<p>您目前运动方式是：</p>
 						</div>						
 					</div>
 					<div className="sleepStatus ubColor">
 						<h4>睡眠</h4>
 						<div className="spLfet left">
-							<p>请问您是否有：{undefined?null:<span>{UserList.userBorder.sleep_habit.item_1}</span>}</p>
-							<p>每天睡眠时间：{undefined?null:<span>{UserList.userBorder.sleep_habit.item_2}</span>}</p>
+							<p>请问您是否有：</p>
+							<p>每天睡眠时间：</p>
 						</div>
 						<div className="spRight right">
-							<p>午睡时间：{undefined?null:<span>{UserList.userBorder.sleep_habit.item_3}</span>}</p>
-							<p>您经常熬夜吗：{undefined?null:<span>{UserList.userBorder.sleep_habit.item_4}</span>}</p>
+							<p>午睡时间：</p>
+							<p>您经常熬夜吗：</p>
 						</div>						
 					</div>			
 				</div>

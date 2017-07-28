@@ -4,7 +4,8 @@ import React from 'react';
 import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
-
+import PatientRecord from 'models/PatientRecord';
+import BloodGlucoseChart from '../../HolographicView/Chart/BloodGlucoseChart';
 
 @observer
 class BloodSugarData extends React.Component {
@@ -46,8 +47,10 @@ class BloodSugarData extends React.Component {
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
+    const staDate="2016-12-1";
     UserList.selfXt(`http://qolm.ybyt.cc/api/v1/examination_check/blood_glucose?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
-
+    PatientRecord.getBloodGlu(`http://qolm.ybyt.cc/api/v1/examination_check/blood_glucose?patient_id=${uid}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
+    
   }
 
   onCellChange = (index, key) => {
@@ -65,6 +68,7 @@ class BloodSugarData extends React.Component {
     const currDates =new Date().toLocaleDateString();
     return (
       <div>
+        <BloodGlucoseChart />
         <Table bordered 
         dataSource={dataSource} 
         columns={columns}  

@@ -41,7 +41,7 @@ class MyComponent extends Component {
     shape: PropTypes.string,
   }
   state = {
-    shape: 'spline',
+    shape: 'line',
     width: 550,
     height: 500,
     plotCfg: {
@@ -61,7 +61,7 @@ class MyComponent extends Component {
       }else if(d.item_type == 4) {
         obj = "睡后血糖";
       }else {
-        obj = "没有状态";
+        obj = "血糖状态";
       }
       d = Object.assign({}, { 'time': d.datetime, 'value': d.value, 'stateType': obj });
       return d;
