@@ -48,7 +48,7 @@ class HolographicView extends React.Component {
 					{name: "尿酸检测", componentObj: <Unine />},
 					{name: "血脂检测", componentObj: <BloodFat />},
 					{name: "心电图展示", componentObj: <Ecg />},
-					{name: "TDS数字中医", componentObj: <TDSd />},
+					{name: "TDS数字中医", componentObj: <TDSd store={this.props.location.query.id} />},
 				]},
 				{title: "电子医疗档案", child: []},
 				{title: "健康评估", child: []},
