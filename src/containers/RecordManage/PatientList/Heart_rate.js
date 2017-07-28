@@ -4,7 +4,8 @@ import React from 'react';
 import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import UserList from 'models/UserList';
-
+import PatientRecord from 'models/PatientRecord';
+import HeartRateChart from '../../HolographicView/Chart/HeartRateChart';
 
 @observer
 class HeartRate extends React.Component {
@@ -27,7 +28,9 @@ class HeartRate extends React.Component {
   componentDidMount(){
     const { uid } = UserList.userInfo;
     const currDate =new Date().toLocaleDateString();
+    const staDate="2016-12-1";
     UserList.selfHr(`http://qolm.ybyt.cc/api/v1/examination_check/heart_rate?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
+    PatientRecord.getHeartRate(`http://qolm.ybyt.cc/api/v1/examination_check/heart_rate?patient_id=${uid}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
 
   }
 
@@ -46,6 +49,7 @@ class HeartRate extends React.Component {
     const currDates =new Date().toLocaleDateString();
     return (
       <div>
+        <HeartRateChart />
         <Table bordered 
         dataSource={dataSource} 
         columns={columns}  

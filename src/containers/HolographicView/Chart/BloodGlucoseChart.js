@@ -41,7 +41,7 @@ class MyComponent extends Component {
     shape: PropTypes.string,
   }
   state = {
-    shape: 'spline',
+    shape: 'line',
     width: 550,
     height: 500,
     plotCfg: {

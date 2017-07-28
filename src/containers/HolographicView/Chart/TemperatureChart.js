@@ -16,7 +16,7 @@ class HigherChart extends Component {
       chart.col('value', {
         type: 'linear',
         min: 0, 
-        max: 53,
+        max: 45,
         alias: '体温 (°C)',
       });
       chart.col('time', {
@@ -25,7 +25,7 @@ class HigherChart extends Component {
       chart.col('stateType', {
         alias: '状态值',
       });
-      chart.line().position('time*value').color("#525252").shape(props.shape).size(2);
+      chart.line().position('time*value').color("#FF9652").shape(props.shape).size(2);
       chart.render();
     });
   }
@@ -38,7 +38,7 @@ class HigherChart extends Component {
 @observer
 class MyComponent extends Component {
   state = {
-    shape: 'spline',
+    shape: 'line',
     width: 1100,
     height: 500,
     plotCfg: {

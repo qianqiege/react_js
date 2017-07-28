@@ -9,7 +9,7 @@ const RadioGroup = Radio.Group;
 
 class NormalLoginForm extends React.Component {
   static propTypes = {
-    form: PropTypes.object.required,
+    form: PropTypes.oneOfType([React.PropTypes.func, React.PropTypes.object])
   }
   constructor(props) {
     super(props);
