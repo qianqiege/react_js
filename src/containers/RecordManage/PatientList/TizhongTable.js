@@ -43,7 +43,7 @@ class TizhongTable extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfTizhong;
+    const dataSource = UserList.selfTizhong.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();

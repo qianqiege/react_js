@@ -24,6 +24,9 @@ class Spine extends React.Component{
 			disable:false,
 		};
 	}
+	componentDidMount() {
+		MeansInfo.footerInfo = {userName: "", registration: "", dateTime: ""};
+	}
 	//开方提交；
 	handleSubmit = (e) => {
 		e.preventDefault();

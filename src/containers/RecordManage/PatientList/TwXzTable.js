@@ -43,7 +43,7 @@ class TwXzTable extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfTiwen;
+    const dataSource = UserList.selfTiwen.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();
