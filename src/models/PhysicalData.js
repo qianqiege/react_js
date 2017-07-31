@@ -21,14 +21,15 @@ class PhysicalData {
 		}).then( function(jsonData) {
 			return jsonData;
 		}).catch( function() {
-			alert("出现错误!");
+			//console.log("出现错误!");
 		});
 		if( ret ) {
-		this.userInfo = Object.assign({}, this.userInfo, { name: `${ret.name}`, phone: `${ret.phone}`, sex: `${ret.sex}`, idCard: `${ret.id_number}` });
+			this.userInfo = Object.assign({}, this.userInfo, { name: `${ret.name}`, phone: `${ret.phone}`, sex: `${ret.sex}`, idCard: `${ret.id_number}` });
 		}
+
 	}
-	@action async SubmitPhysical(url, data) {
-		await fetch(url, {
+	@action SubmitPhysical(url, data) {
+		fetch(url, {
 			mode: "cors",
 			method: "POST",
 			headers: {"Content-Type": "application/x-www-form-urlencoded",
@@ -45,6 +46,7 @@ class PhysicalData {
 			alert("出现错误!");
 		});
 	}
+
 	@action clearInfo() {
 		this.userInfo = Object.assign( {}, {name: "", phone: "", sex: ""} );
 	}

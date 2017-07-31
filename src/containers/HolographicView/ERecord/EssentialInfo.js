@@ -1,32 +1,22 @@
-import React, {Component, PropTypes} from "react";
+import React, { PropTypes } from "react";
 import { Form, Input, Row, Col, Select, Radio } from 'antd';
-
+import PatientRecord from 'models/PatientRecord';
 import "../../style.scss";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
 
-class NormalLoginForm extends Component {
+class NormalLoginForm extends React.Component {
   static propTypes = {
-    form: PropTypes.object.required,
+    form: PropTypes.oneOfType([React.PropTypes.func, React.PropTypes.object])
   }
   constructor(props) {
     super(props);
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const userInfo = {
-      name: "zhangsna",
-      idCard: "331252155236553215",
-      birthday: "2017-02-21",
-      contactWay: 15735212325,
-      postalAddress: "深圳市南山区",
-      nation: "汉族",
-      sexValue: "男",
-      marrayValue: "未婚",
-      occupation: "软件工程师",
-    };
+    const dataRecord=PatientRecord.record;
     return (
       <div style={{marginTop: 80}}>
         <Form className="login-form record-block" >
@@ -35,7 +25,7 @@ class NormalLoginForm extends Component {
               <FormItem>
                 {getFieldDecorator('userName', {
                   rules: [{ required: false, message: 'Please input your username!' }],
-                  initialValue: userInfo.name,
+                  initialValue: dataRecord.name,
                 })(
                   <Input className="inpt inpt-left-f" prefix={<span style={{fontSize: 16}}>姓名</span>} placeholder="" disabled />
                 )}
@@ -43,7 +33,7 @@ class NormalLoginForm extends Component {
               <FormItem>
                 {getFieldDecorator('idCard', {
                   rules: [{ required: false, message: 'Please input your username!' }],
-                  initialValue: userInfo.idCard,
+                  initialValue: dataRecord.idCard,
                 })(
                   <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" disabled />
                 )}
@@ -51,7 +41,7 @@ class NormalLoginForm extends Component {
               <FormItem>
                 {getFieldDecorator('Birthday', {
                   rules: [{ required: false, message: 'Please input your username!' }],
-                  initialValue: userInfo.birthday,
+                  initialValue: dataRecord.birthday,
                 })(
                   <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>出生日期</span>} placeholder="" disabled />
                 )}
@@ -59,7 +49,7 @@ class NormalLoginForm extends Component {
               <FormItem>
                 {getFieldDecorator('contactWay', {
                   rules: [{ required: false, message: 'Please input your username!' }],
-                  initialValue: userInfo.contactWay,
+                  initialValue: dataRecord.contactWay,
                 })(
                   <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>联系方式</span>} placeholder="" disabled />
                 )}
@@ -67,7 +57,7 @@ class NormalLoginForm extends Component {
               <FormItem>
                 {getFieldDecorator('postalAddress', {
                   rules: [{ required: false, message: 'Please input your username!' }],
-                  initialValue: userInfo.postalAddress,
+                  initialValue: dataRecord.postalAddress,
                 })(
                   <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>通讯地址</span>} placeholder="" disabled />
                 )}
@@ -80,7 +70,7 @@ class NormalLoginForm extends Component {
                   showSearch
                   style={{ width: 200 }}
                   placeholder="请输入民族"
-                  defaultValue={userInfo.nation}
+                  defaultValue={dataRecord.nation}
                   optionFilterProp="children"
                   disabled
                 >
@@ -89,14 +79,14 @@ class NormalLoginForm extends Component {
               </div>
               <div className="mar-b mar-t">
                 <p>性别</p>
-                  <RadioGroup value={userInfo.sexValue} disabled>
+                  <RadioGroup value={dataRecord.sexValue} disabled>
                     <Radio value={"男"}>男</Radio>
                     <Radio value={"女"}>女</Radio>
                   </RadioGroup>
               </div>
               <div className="mar-b mar-t">
                 <p>婚姻状况</p>
-                  <RadioGroup value={userInfo.marrayValue} disabled>
+                  <RadioGroup value={dataRecord.marrayValue} disabled>
                     <Radio value={"未婚"}>未婚</Radio>
                     <Radio value={"已婚"}>已婚</Radio>
                     <Radio value={"离异"}>离异</Radio>
@@ -107,7 +97,7 @@ class NormalLoginForm extends Component {
                 <FormItem>
                   {getFieldDecorator('profession', {
                     rules: [{ required: false, message: 'Please input your username!' }],
-                    initialValue: userInfo.occupation,
+                    initialValue: dataRecord.occupation,
                   })(
                     <Input className="inpt inpt-left-f" prefix={<span style={{fontSize: 16}}>职业</span>} placeholder="" disabled />
                   )}

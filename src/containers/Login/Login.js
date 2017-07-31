@@ -26,9 +26,9 @@ class Login extends Component {
       if (errors) {
         return false;
       }
+    });
       const creds = (this.props.form.getFieldsValue());
       User.login(creds, this.loginFaileCallback);
-    });
   }
 
   loginFaileCallback = (email, message) => {
@@ -69,6 +69,7 @@ class Login extends Component {
     return (
       <div className="login-container">
         <Form className="login-content" layout="horizontal" onSubmit={this.handleSubmit}>
+        <img src="/images/logo-blue.png" alt="" style={{marginTop: 15,marginBottom: 8,marginLeft: "32.8%" }} />
           <FormItem label="邮箱" hasFeedback>
             {emailProps(
               <Input

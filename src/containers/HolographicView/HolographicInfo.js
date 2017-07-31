@@ -1,11 +1,11 @@
-import React, {PropTypes} from "react";
+import React, { PropTypes } from "react";
 import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
 class HolographicInfo extends React.Component {
 	static propTypes = {
-		store: PropTypes.object.required,
+		store: PropTypes.array,
 	}
 	constructor(props) {
 		super(props);
@@ -23,12 +23,17 @@ class HolographicInfo extends React.Component {
 			})
 		);
 	}
+	handleChange() {
+		//console.log(1);
+	}
 	render() {
-		return (	
-			<div className="card-container">
-				<Tabs type="card">
-					{this.renderInfo()}
-				</Tabs>
+		return (
+			<div>
+				<div className="card-container">
+					<Tabs type="card">
+						{this.renderInfo()}
+					</Tabs>
+				</div>
 			</div>
 		);
 	}

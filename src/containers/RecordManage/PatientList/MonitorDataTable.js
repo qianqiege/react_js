@@ -1,8 +1,11 @@
-// 血压检测/血糖检测的检测日志的表格组件
+// 血压检测的检测日志的表格组件
 import React from 'react';
+//import ReactDOM from 'react-dom';
 import { Table } from 'antd';
 import { observer } from 'mobx-react';
-
+import UserList from 'models/UserList';
+import PatientRecord from 'models/PatientRecord';
+import BloodPressureChart from '../../HolographicView/Chart/BloodPressureChart';
 
 @observer
 class MonitorDataTable extends React.Component {
@@ -10,36 +13,30 @@ class MonitorDataTable extends React.Component {
     super(props);
     this.columns = [{
       title: '监测日期',
-      dataIndex: 'date',
+      dataIndex: 'datetime',
       width: '40%',
     }, {
       title: '收缩压',
-      dataIndex: 'sblood',
+      dataIndex: 'max_blood_pressure',
     }, {
       title: '舒张压',
-      dataIndex: 'dblood',
+      dataIndex: 'min_blood_pressure',
     }, {
       title: '是否异常',
       dataIndex: 'abnormal',
     }];
 
-    this.state = {
-      dataSource: [{
-        key: '0',
-        date: '2017-06-14 16:04:58',
-        sblood: '89',
-        dblood: '55',
-        abnormal: '正常/偏低',
-      }, {
-        key: '1',
-        date: '2017-06-09 16:03:22',
-        sblood: '90',
-        dblood: '55',
-        abnormal: '正常/偏低',
-      }],
-      count: 2,
-    };
   }
+
+  componentDidMount(){
+    const { uid } = UserList.userInfo;
+    const currDate =new Date().toLocaleDateString();
+    const staDate="2016-12-1";
+    UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDate}&page=1&per_page=10`);
+    PatientRecord.getBloodPre(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=${staDate}&end_date=${currDate}&page=1&per_page=10`);
+    
+  }
+
   onCellChange = (index, key) => {
     return (value) => {
       const dataSource = [...this.state.dataSource];
@@ -47,17 +44,26 @@ class MonitorDataTable extends React.Component {
       this.setState({ dataSource });
     };
   }
-  onDelete = (index) => {
-    const dataSource = [...this.state.dataSource];
-    dataSource.splice(index, 1);
-    this.setState({ dataSource });
-  }
+
   render() {
-    const { dataSource } = this.state;
+    const dataSource = UserList.selfXueya;
     const columns = this.columns;
+    const { uid } = UserList.userInfo;
+    const currDates =new Date().toLocaleDateString();
     return (
       <div>
-        <Table bordered dataSource={dataSource} columns={columns}  className="table"/>
+        <BloodPressureChart />
+        <Table bordered 
+        dataSource={dataSource} 
+        columns={columns}  
+        className="table"
+        pagination={{
+          total:UserList.sxyTotal.total,
+          onChange(pageNumber) {
+              UserList.selfXy(`http://qolm.ybyt.cc/api/v1/examination_check/blood_pressure?patient_id=${uid}&start_date=2016-01-01&end_date=${currDates}&page=${pageNumber}&per_page=10`);
+          }
+        }}        
+        />
       </div>
     );
   }

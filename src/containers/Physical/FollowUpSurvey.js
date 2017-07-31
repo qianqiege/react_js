@@ -1,24 +1,27 @@
-import React, {PropTypes} from "react";
+import React, { PropTypes } from "react";
 import { observer } from "mobx-react";
-import { Form, Input, Button, Row, Col, Select, Alert } from 'antd';
+import { Form,Input, Button, Row, Col, Select,  Alert,message } from 'antd';
 import UserPhysical from "models/UserPhysical";
+import	User	from	'models/User';
+import	$	from	"jquery";
+import  GetIdentityCard from  "models/GetIdentityCard";
 import "../style.scss";
 
 const FormItem = Form.Item;
 
-
-
-
 @observer
 class FollowUpSurver extends React.Component {
   static propTypes = {
-    form: PropTypes.object.required,
+    form: PropTypes.object.isRequired,
   }
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
+	User.fetchUsers().then(() => {
+		GetIdentityCard.getCard(`http://qolm.ybyt.cc/api/v1/examination_input/get_auto_identity_card?id=${User.current_user_info.id}`);		
+	}); 
+	UserPhysical.getDevice("http://qolm.ybyt.cc/api/v1/examination_input/number");
   }
   handleSubmit = (e) => {
     const { validateFields, resetFields } = this.props.form;
@@ -26,11 +29,16 @@ class FollowUpSurver extends React.Component {
     validateFields((err, values) => {
       if (!err) {
             UserPhysical.checkDevice("http://qolm.ybyt.cc/api/v1/examination_input/check", `id_number=${values.idCord}&phone=${values.deviceNum}`);
+            //console.log(values.idCord);
             resetFields();
             UserPhysical.statusBool.display = "block";
             setTimeout( function() {
               UserPhysical.statusBool.display = "none";
             }, 3000);
+        message.success('提交成功');
+      }else {
+        message.error('遇到一些问题，请重新提交');
+        
       }
     });
   }
@@ -39,10 +47,14 @@ class FollowUpSurver extends React.Component {
       statusBool: "true",
     });
   }
-  // handleChange(value) {
-  //   console.log(`selected ${value}`);
-  // }
+ 
   render() {
+	const {idcard}=GetIdentityCard.Idcard;
+    if(idcard ==="no_id"){
+		$(".ant-form-item-control:first").text();
+    }else{
+      $(".ant-form-item-control:first").text(idcard);
+    }
     const { getFieldDecorator } = this.props.form;
     const { display } = UserPhysical.statusBool;
     return (
@@ -57,7 +69,9 @@ class FollowUpSurver extends React.Component {
                 {getFieldDecorator('idCord', {
                   rules: [{ required: true, message: '请输入身份证号码!' }],
                 })(
-                  <Input style={{border: 'none', borderBottom: '1px solid #e1e1e1', boxShadown: 'none', borderRadius: 'none'}} className="" placeholder="" />
+                  <Input className="inpt-idcard" 
+                  style={{border: 'none', borderBottom: '1px solid #e1e1e1', 
+                  boxShadown: 'none', borderRadius: 'none'}}/>
                 )}
               </FormItem>
             </Col>

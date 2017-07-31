@@ -7,6 +7,19 @@ html,body {
   height: 100%;
   width: 100%;
 }
+.apps .ant-layout-sider {
+  position: fixed;
+  height: 100%;
+}
+.apps .ant-layout {
+  padding-left: 270px;
+}
+
+@media screen and (max-width: 1200px){
+  .apps .ant-layout {
+    padding-left: 0;
+  }
+}
 
 .trigger {
   font-size: 18px;

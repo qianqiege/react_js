@@ -13,15 +13,19 @@ class User {
     },
     data: []
   };
+  @observable current_user_info = {
 
+  }
   @observable auth = {
     isFetching: false,
     isAuthenticated: cookie.get('access_token') ? true : false
-  }
+  };
   @observable record = {
-    numbers: "11"
-  }
-  @action async fetchUsers(params = {page: 1, per_page: 10 }) {
+    numbers: ""
+  };
+  @observable role_ids = []; //用户的角色权限；
+
+  @action async fetchUsersList(params = {page: 1, per_page: 10 }) {
     this.list.isFetching = true;
     const ret = await cFetch(API_CONFIG.users, { method: "GET", params: params });
     runInAction('update users list after fetch', () => {
@@ -45,13 +49,33 @@ class User {
 
   @action create(values) {
     return cFetch(API_CONFIG.users, { method: "POST", body: JSON.stringify(values)}).then(() => {
-      this.fetchUsers();
+      this.fetchUsersList();
     });
   }
 
   @action destroy(id) {
     return cFetch(`${API_CONFIG.users}/${id}`, { method: "DELETE" }).then(() => {
-      this.fetchUsers();
+      this.fetchUsersList();
+    });
+  }
+  //通过id查询用户；
+  @action async get_user(id) {
+    const ret = await cFetch(`${API_CONFIG.get_user_by_id}?id=${id}`, { method: "GET" });
+    runInAction("success require fetch", () => {
+      this.role_ids = ret.role_ids;
+
+    });
+  }
+  //通过id查询用户；
+  @action update_user(id, values) {
+    return cFetch(`${API_CONFIG.users}/${id}`, { method: "PUT", body: JSON.stringify(values) });
+  }
+
+  //获取当前登录的用户信息；
+  @action async fetchUsers() {
+    const ret = await cFetch(API_CONFIG.current_user, { method: "GET"});
+    runInAction('update users list after fetch', () => {
+      this.current_user_info = Object.assign({}, ret);
     });
   }
 }
