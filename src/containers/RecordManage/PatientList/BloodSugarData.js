@@ -62,7 +62,7 @@ class BloodSugarData extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfXuetang;
+    const dataSource = UserList.selfXuetang.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();

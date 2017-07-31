@@ -18,6 +18,9 @@ class HealthManagement extends React.Component{
 	constructor(props) {
 		super(props);
 	}
+	componentDidMount() {
+		MeansInfo.footerInfo = {userName: "", registration: "", dateTime: ""};
+	}
 	handleSubmit = (e) => {
 		e.preventDefault();
 		let arr = [];

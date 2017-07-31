@@ -5,6 +5,7 @@ import PatientRecord from 'models/PatientRecord';
 class TDSd extends React.Component {
   static propTypes = {
     location: PropTypes.object,
+    store: PropTypes.string,
   }
   constructor(props) {
     super(props);

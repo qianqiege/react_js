@@ -43,7 +43,7 @@ class Unine extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfUnine;
+    const dataSource = UserList.selfUnine.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();
