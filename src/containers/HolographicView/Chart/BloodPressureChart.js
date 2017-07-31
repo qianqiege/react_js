@@ -56,7 +56,7 @@ class MyComponent extends Component {
       <div>
         <HigherChart
           shape={this.state.shape}
-          data={frame}
+          data={frame.data}
           width={this.state.width}
           height={this.state.height}
           plotCfg={this.state.plotCfg}

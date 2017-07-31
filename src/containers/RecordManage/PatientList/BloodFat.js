@@ -46,7 +46,7 @@ class BloodFat extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfBloodFat;
+    const dataSource = UserList.selfBloodFat.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();
