@@ -71,18 +71,15 @@ class ManageList extends React.Component {
     const columns = this.columns;
     const dataSource = UserMana.ManaList.data.toJS();
     return (
-      <div>
-        <h1>健康管理师列表</h1>
-        <Search className="search" 
-          style={{width: 450,height:35,marginTop:50,marginLeft:30,border:0,borderBottom:0}}
-           onSearch={this.handleSearch}/>
-        <hr/>
+      <div className="search-int">
+        <h3>健康管理师列表</h3>
+        <Search className="search" onSearch={this.handleSearch}/>
         <Table bordered 
-        dataSource={dataSource} columns={columns} 
-        style={{marginTop:50}}  className="table"
+        dataSource={dataSource} 
+        columns={columns} 
         pagination={{ 
           total:UserMana.ManaList.meta.total,
-          pageSize:8,
+          pageSize:10,
           onChange(pageNumber) {
               UserMana.getManaList(
                 `http://qolm.ybyt.cc/api/v1/users/all_users?page=${pageNumber}&per_page=8`);

@@ -12,7 +12,7 @@ const FormItem = Form.Item;
 class BloodPressure extends React.Component {
 	static propTypes = {
 		form: PropTypes.object.isRequired,
-		store: PropTypes.string,
+		store: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 	}
 	constructor(props) {
 		super(props);

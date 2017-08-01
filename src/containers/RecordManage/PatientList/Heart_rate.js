@@ -43,7 +43,7 @@ class HeartRate extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfHeartRate;
+    const dataSource = UserList.selfHeartRate.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();

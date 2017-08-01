@@ -45,7 +45,7 @@ class Electro extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfEcg;
+    const dataSource = UserList.selfEcg.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();

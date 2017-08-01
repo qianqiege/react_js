@@ -57,7 +57,7 @@ class AddRole extends React.Component {
     const { name, abilities } = RoleConfig.roleItem;
     return (
       <div>
-        <Button type="primary" className="showmodal" onClick={this.showModal}>编辑</Button>
+        <span className="showBtn" onClick={this.showModal}>编辑</span>
         <Modal
           title="添加角色"
           visible={this.state.visible}

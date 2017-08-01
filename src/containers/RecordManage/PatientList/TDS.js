@@ -38,7 +38,7 @@ class TDS extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfTDS;
+    const dataSource = UserList.selfTDS.slice();
     const columns = this.columns;
     return (
       <div>

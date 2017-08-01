@@ -43,12 +43,13 @@ class SpineSelect extends React.Component{
     }); 
   }
   handleChange(value, option) {
+    MeansJz.isKaifang.levelVal = value,
+    MeansJz.jizhu.length = 0;
     MeansJz.price.length = 0;
     MeansJz.getPay(`http://qolm.ybyt.cc/api/v1/spine/spine_level_charge?spine_level_id=${option.props.dataId}`);
     MeansJz.isKaifang.jizhuPrice = 0;
     MeansJz.isKaifang.prices = MeansJz.isKaifang.allPrice;
     MeansJz.isKaifang.jiZhuBtn = true;
-
 
   }
   render(){

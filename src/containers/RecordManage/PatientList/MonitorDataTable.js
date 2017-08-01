@@ -46,7 +46,7 @@ class MonitorDataTable extends React.Component {
   }
 
   render() {
-    const dataSource = UserList.selfXueya;
+    const dataSource = UserList.selfXueya.slice();
     const columns = this.columns;
     const { uid } = UserList.userInfo;
     const currDates =new Date().toLocaleDateString();
