@@ -17,8 +17,9 @@
 
 .con p {
   text-align: left;
-  font-size: 22px;
-  text-indent: 22px;
+  font-size: 1rem;
+  text-indent: 1rem;
+  margin-bottom: .5rem;
 }
 
 .homeCon {
@@ -83,10 +84,11 @@
 
 ul li {
   float: left;
-  text-align: center;
+  // text-align: center;
   font-size: 14px;
   padding: 0 15px 0 0;
   cursor: pointer;
+  width: 100%;
 }
 
 .bottom .right ul {
@@ -97,4 +99,36 @@ ul li {
 .bottom .left ul:first-child {
   width: 30%;
   margin:0 auto;
+}
+
+
+.home-block {
+  width: 100%;
+  text-align: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin: .78rem auto;
+  .icon-block {
+    display: block;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: .8rem;
+  }
+  span {
+    color: #fff;
+    font-size: .8rem;
+  }
+}
+.home-block.block1 {
+  background: rgba(53, 131, 202, .8);
+  box-shadow: 0 0 1px #89B3FF;
+}
+.list-pro {
+  padding-left: .5rem;
+  // box-shadow: 2px 2px 3px #aaa;
+  span {
+    font-size: .8rem;
+    display: block;
+    line-height: 1.5;
+  }
 }

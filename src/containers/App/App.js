@@ -10,7 +10,7 @@ import './App.scss';
 
 import Login from "../Login/Login";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
 @observer
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
   //左侧菜单、头部；
   renderAuthorLogin() {
     return (
-      <Layout className="apps">
+      <Layout className="">
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -45,9 +45,14 @@ class App extends Component {
           <Header style={{ background: '#fff', padding: 0 }}>
             <span className="out-login-button" onClick={this.handleOut}>退出</span>
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff'}}>
-            {this.props.children}
+          <Content style={{ margin: '24px 16px 0'}}>
+            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+              {this.props.children}
+            </div>
           </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            慢病健康管理平台 ©2016 Created by 御邦医通
+          </Footer>
         </Layout>
       </Layout>
     );

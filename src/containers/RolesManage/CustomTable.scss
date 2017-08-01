@@ -1,5 +1,9 @@
+html {
+	font-size: 20px;
+}
+
 .table{
-	margin-left:30px;
+	// margin-left:30px;
 	font-size:16px;
 }
 .table th{
@@ -30,7 +34,7 @@
 //角色配置页面
 .roleconfig{
 
-	margin-bottom:50px;
+	margin-bottom: .5rem;
 }
 
 .inline div{
@@ -39,6 +43,57 @@
 
 //添加角色按钮页面
 .showmodal{
-	height: 35px;
-	font-size: 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #3583CA;
+	font-size: .75rem;
+}
+
+.role-block {
+	position: relative;
+}
+
+.showBtn {
+	color: #3583CA;
+	margin: auto .25rem;
+}
+
+.table-role {
+	margin-top: 1rem;
+}
+.ant-table-thead > tr > th { 
+	font-size: .75rem;
+	text-align: center;
+}
+.ant-table-tbody > tr > td {
+	font-size: .75rem;
+	text-align: center;
+}
+.ant-modal-footer {
+	text-align: center;
+	button {
+		margin: auto 1rem;
+	}
+}
+//健康管理师列表；
+.search-int {
+	.ant-input-affix-wrapper {
+		border-bottom: none;
+	}
+	.search {
+		width: "100%";
+		box-shadow: none;
+		margin: 1rem auto;
+		height: 35px;
+	}
+	.ant-pagination-prev {
+		width: 1.4rem;
+	}
+	.ant-pagination-item {
+		width: 1.4rem;
+	}
+	.ant-pagination-next {
+		width: 1.4rem;
+	}
 }

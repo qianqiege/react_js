@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { Icon,Modal, Button } from 'antd';
 import RoleConfig from 'models/rolesConfig';
 // import UserRoleConfig from 'models/UserRoleConfig';
+import '../CustomTable.scss';
 
 @observer
 class DeleteRole extends React.Component {
@@ -31,14 +32,14 @@ class DeleteRole extends React.Component {
   render() {
     return (
       <div>
-        <Button type="primary" style={{height:35,fontSize:15}}  onClick={this.showModal}>删除</Button>
+        <span className="showBtn" onClick={this.showModal}>删除</span>
         <Modal
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}>
-          <Icon type="exclamation-circle-o" style={{fontSize:100,marginLeft:190, color:'orange'}}/>
-          <p style={{fontSize:26,marginLeft:180,marginTop:20}}>您确定吗？</p>
-          <p style={{fontSize:18,marginLeft:160}}>您选择的角色将被删除！</p>
+          <Icon type="exclamation-circle-o" style={{fontSize:"4rem", color:'orange',display: "block"}}/>
+          <p style={{fontSize:"1.3rem", marginTop:"1rem", textAlign: "center"}}>您确定吗？</p>
+          <p style={{fontSize:".9rem", textAlign: "center"}}>您选择的角色将被删除！</p>
         </Modal>
       </div>
     );

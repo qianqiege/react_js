@@ -33,7 +33,8 @@ class CustomTable extends React.Component {
       render: (text, record) => {
         return (
           <span className="inline">
-            <EditRole store={record} />&nbsp;<DeleteRole store={record} />
+            <EditRole store={record} />
+            <DeleteRole store={record} />
           </span>   
         );
       }
@@ -48,15 +49,16 @@ class CustomTable extends React.Component {
     const columns = this.columns;
     const dataSource = RoleConfig.rolesLists.data.toJS();
     return (
-      <div>
-      <h1 className="roleconfig">角色配置</h1>
-        <AddRole  style={{marginButtom:50}}/>
+      <div className="role-block">
+      <h3 className="roleconfig">角色配置</h3>
+        <AddRole />
         <Table 
         bordered 
         dataSource={dataSource} 
         columns={columns} 
-        style={{marginTop:50}}  className="table"
+        className="table-role"
         rowKey={(record) => record.id}
+        pagination={false}
         />
       </div>
     );

@@ -1,6 +1,6 @@
 import './HomePage.scss';
 import React,{ Component } from "react";
-import { Icon } from 'antd';
+import { Icon, Row, Col } from 'antd';
 import { Link } from 'react-router';
 
 class Home extends Component {
@@ -12,34 +12,42 @@ class Home extends Component {
 			<div className="con">
 			<p>健康管理师首页</p>
 			<div className="homeCon">
-				<div className="top">
-						<div>
-							<Link to="/holographicView" style={{display: 'block', color: '#fff'}}>
-								<Icon type="question-circle-o" />
-								<span>待处理异常</span>
-							</Link>
+				<Row>
+					<Col xs={{ span: 26, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+						<div className="home-block block1">
+							<Icon type="question-circle-o" className="icon-block" />
+							<span>待处理异常</span>
 						</div>
-					<div>
-						<Icon type="phone" />
-						<span>随访预约通知</span>
-					</div>					
-					<div>
-						<Icon type="schedule" />
-						<span>今日门诊预约</span>
-					</div>					
-					<div>
-						<Icon type="retweet" />
-						<span>转诊通知</span>
-					</div>					
-					<div>
-						<Icon type="usergroup-add" />
-						<span>会员管理</span>
-					</div>					
-				</div>
-
-				<div className="bottom">
-
-					<div className="left">
+					</Col>
+					<Col xs={{ span: 26, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+						<div className="home-block block1">
+							<Icon type="phone" className="icon-block" />
+							<span>随访预约通知</span>
+						</div>
+					</Col>
+					<Col xs={{ span: 26, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+						<div className="home-block block1">
+							<Icon type="schedule" className="icon-block" />
+							<span>今日门诊预约</span>
+						</div>
+					</Col>
+					<Col xs={{ span: 26, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+						<div className="home-block block1">
+							<Icon type="schedule" className="icon-block" />
+							<span>转诊通知</span>
+						</div>
+					</Col>
+					<Col xs={{ span: 26, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+						<div className="home-block block1">
+							<Icon type="schedule" className="icon-block" />
+							<span>会员管理</span>
+						</div>
+					</Col>
+				</Row>
+			</div>
+			<div>
+				<Row>
+					<Col xs={{ span: 12 }} lg={{ span: 6, offset: 2 }} className="list-pro">
 						<span>档案室</span>
 						<ul className="clearfix">
 							<li> 
@@ -49,6 +57,8 @@ class Home extends Component {
 								<Link to="/patientList" style={{display: 'block', color: '#726f77'}}>客户列表</Link>
 							</li>
 						</ul>
+					</Col>
+					<Col xs={{ span: 12 }} lg={{ span: 6, offset: 2 }} className="list-pro">
 						<span>方案室</span>
 						<ul className="clearfix">
 							<li> 
@@ -60,10 +70,11 @@ class Home extends Component {
 							<li> 
 								<Link to="/healthManagement" style={{display: 'block', color: '#726f77'}}>健康管理</Link>
 							</li>
-						</ul>						
-					</div>
-
-					<div className="right">
+						</ul>
+					</Col>
+				</Row>
+				<Row style={{marginTop: 10}}>
+					<Col xs={{ span: 12 }} lg={{ span: 6, offset: 2 }} className="list-pro">
 						<span>体检室</span>
 						<ul className="clearfix">
 							<li>
@@ -96,12 +107,9 @@ class Home extends Component {
 									. 心率收录
 								</Link>
 							</li>						
-						</ul>						
-					</div>					
-
-				</div>
-
-				
+						</ul>	
+					</Col>
+				</Row>
 			</div>
 		</div>
 		);

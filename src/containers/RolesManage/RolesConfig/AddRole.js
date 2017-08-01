@@ -1,7 +1,7 @@
 // 角色配置页面的添加角色按钮弹出来的组件模块
 import React from 'react';
 //import ReactDOM from 'react-dom';
-import { Checkbox,Modal, Button, Input} from 'antd';
+import { Checkbox,Modal, Button, Input, Icon } from 'antd';
 import { observer } from 'mobx-react';
 // import UserRoleConfig from 'models/UserRoleConfig';
 import RoleConfig from 'models/rolesConfig';
@@ -49,7 +49,10 @@ class AddRole extends React.Component {
     const options = RoleConfig.options.toJS();
     return (
       <div>
-        <Button type="primary" className="showmodal" onClick={this.showModal}>添加角色</Button>
+        <span className="showmodal" onClick={this.showModal}>
+          <Icon type="user-add" />
+          <span>添加角色</span>
+        </span>
         <Modal
           title="添加角色"
           visible={this.state.visible}
@@ -64,10 +67,7 @@ class AddRole extends React.Component {
         <br/>
         <CheckboxGroup options={options} className="checkBox" onChange={this.handleChange}/>
         <br />
-
-        
         <br/>
-   
         <br/>
         </Modal>
       </div>
