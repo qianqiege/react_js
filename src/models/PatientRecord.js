@@ -31,7 +31,7 @@ class	PatientRecord{
 			// console.log("请求失败");
 		});
 
-		runInAction("success	patient_record",()=>{
+		runInAction("success	request",()=>{
 			this.record.name=Record.name;
 			this.record.idCard=Record.id_number;
 			this.record.birthday=Record.birthday;

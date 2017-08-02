@@ -44,38 +44,56 @@ class NormalLoginForm extends React.Component {
     
     return (
       <div>
-        <h3 style={{paddingLeft: 80, marginBottom: 10}}>添加新记录</h3>
+        <Row>
+          <Col  xs={26} sm={12} md={12} lg={26} xl={26} span={26} ><h3 style={{paddingLeft: 50, marginBottom: 10}}>添加新记录</h3></Col>
+        </Row>
+        
         <Form onSubmit={this.handleSubmit} className="login-form record-block">
           <Row>
-            <Col span={10} style={{float: 'left'}}>
-
-                  <Input onChange={this.handleChange.bind(this)} className="inpt inpt-left-t input-idcard" prefix={<span style={{fontSize: 16}}>身份证号</span>} placeholder="" />
-  
+            <Col  xs={26} sm={12} md={12} lg={26} xl={26} span={26} style={{float: 'left'}}>
               <FormItem>
-                {getFieldDecorator('name', {
+                {getFieldDecorator('idcard', {
+                  rules: [{ required: false, message: 'Please input your idcard!' }],
+                })(
+                  <Input onChange={this.handleChange.bind(this)} className="inpt inpt-left-t input-style input-idcard" prefix={<span className="fontSize">身份证号</span>}/>
+                )}
+              </FormItem>
+              
+              
+            </Col>
+            <Col xs={26} span={7} >
+              <div className="mar-b mar-t">
+                <p  className="fontSize">性别</p>
+                  <RadioGroup value={sex} disabled>
+                    <div className="inline"><Radio className="fontSize input-style" value={"男"}>男</Radio></div>
+                    <div className="inline"><Radio className="fontSize" value={"女"}>女</Radio></div>
+                  </RadioGroup>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col  xs={26} sm={12} md={12} lg={12} xl={26} span={26}>
+              <FormItem>
+                {getFieldDecorator('name',{
                   rules: [{ required: false, message: 'Please input your username!' }],
                   initialValue: `${name}`,
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>姓 名</span>} placeholder="" disabled/>
+                  <Input className="inpt input-style inpt-left-t" prefix={<span  className="fontSize">姓 名</span>} disabled/>
                 )}
               </FormItem>
-              <FormItem>
+              </Col>
+              <Col  xs={26} sm={12} md={12} lg={12} xl={26} span={7} >
+              <div className="mar-b" style={{}}>
+                <FormItem>
                 {getFieldDecorator('phone', {
-                  rules: [{ required: false, message: 'Please input your username!' }],
+                  rules: [{ required: false, message: 'Please input your phone!' }],
                   initialValue: `${phone}`,
                 })(
-                  <Input className="inpt inpt-left-t" prefix={<span style={{fontSize: 16}}>手机号</span>} placeholder="" disabled/>
+                  <Input className="inpt input-style inpt-left-t" prefix={<span  className="input-style fontSize">手机号</span>} placeholder="" disabled/>
                 )}
               </FormItem>
-            </Col>
-            <Col span={10} style={{ float: 'right', fontSize: 16 }}>
-              <div className="mar-b mar-t">
-                <p>性别</p>
-                  <RadioGroup value={sex} disabled>
-                    <Radio value={"男"}>男</Radio>
-                    <Radio value={"女"}>女</Radio>
-                  </RadioGroup>
               </div>
+              
             </Col>
           </Row>
         </Form>

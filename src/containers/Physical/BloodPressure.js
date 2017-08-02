@@ -40,23 +40,23 @@ class BloodPressure extends React.Component {
 				<div style={{clear: 'both', marginTop: 40}}>
 					<Form onSubmit={this.handleSubmit} className="login-form record-block">
 						<Row>
-						<Col span={10} style={{float: 'left', marginTop: 0,  fontSize: 16 }}>
-							<span>收缩压</span>
+						<Col xs={26} sm={26} md={12} lg={26} xl={26}  span={10} style={{float: 'left', marginTop: 0}}>
+							<span className="fontSize">收缩压</span>
 							<FormItem>
 								{getFieldDecorator('min_BloodPressure', {
 										rules: [{ required: false, message: 'Please input your username!' }],
 								})(
-										<Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
+										<Input className="border-n" suffix={<span className="fontSize">毫米汞柱</span>} placeholder="" />
 								)}
 							</FormItem>
 						</Col>
-						<Col span={10} style={{ float: 'right', fontSize: 16 }}>
-							<span>舒张压</span>
+						<Col xs={26} sm={26} md={12} lg={26} xl={26} span={10} style={{ float: 'right' ,marginLeft:20}}>
+							<span className="fontSize mar-l">舒张压</span>
 							<FormItem>
 								{getFieldDecorator('max_BloodPressure', {
 									rules: [{ required: false, message: 'Please input your username!' }],
 								})(
-									<Input className="border-n" suffix={<span className="font2">毫米汞柱</span>} placeholder="" />
+									<Input className="border-n" suffix={<span className="fontSize">毫米汞柱</span>} placeholder="" />
 								)}
 							</FormItem>
 						</Col>
